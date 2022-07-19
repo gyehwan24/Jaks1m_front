@@ -1,0 +1,44 @@
+.loginjoin {
+  display: block;
+  text-align: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginjoin_input {
+  width: 400px;
+  height: 48px;
+  padding-left: 10px;
+}
+.loginjoin_button {
+  border-color: transparent;
+  width: 400px;
+  margin: 10px;
+  height: 48px;
+  padding-left: 10px;
+  margin-top: 10px;
+}
+.login_option {
+  display: flex;
+  justify-content: space-around;
+  /* text-align: left; */
+  /* width: 100%; */
+  margin-top: 3%;
+}
+.join_input_email {
+  width: 300px;
+  height: 48px;
+  padding-left: 10px;
+}
+.join_email_direct {
+  width: 90px;
+  height: 53px;
+  margin-left: 10px;
+
+  padding-left: 4px;
+}
+
+.join_agree {
+  padding: 2%;
+  padding-left: 20%;
+}

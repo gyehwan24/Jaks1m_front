@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
 import Checkbox from "../components/Checkbox";
-
+import "./LoginJoin.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
@@ -15,48 +15,69 @@ function Login() {
   const handleInputPw = (event) => {
     setPw(event.target.value);
   };
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log("login");
+  };
   return (
-    <div>
+    <div class="loginjoin">
       <Logo />
-      <div>
-        <form htmlFor="email">
+      <form>
+        <div>
           <input
             type="text"
             name="email"
             placeholder="이메일"
             value={email}
             onChange={handleInputEmail}
+            class="loginjoin_input"
           />
-        </form>
-      </div>
-      <div>
-        <form htmlFor="password">
+        </div>
+        <div>
           <input
             type="text"
             name="password"
             placeholder="비밀번호"
             value={password}
             onChange={handleInputPw}
+            class="loginjoin_input"
           />
-        </form>
-      </div>
+        </div>
+        <div class="login_option">
+          <Checkbox text="자동로그인" />
+          <button>비밀번호 찾기</button>
+        </div>
+
+        <button
+          type="submit"
+          onSubmit={onSubmit}
+          style={{ color: "white", backgroundColor: "black" }}
+          class="loginjoin_button"
+        >
+          로그인
+        </button>
+      </form>
 
       <div>
-        <Checkbox text="자동로그인" />
-        <button style={{}}>비밀번호 찾기</button>
+        SNS 계정으로 로그인
+        <br />
+        <button>네이버</button>
+        <button>카카오</button>
       </div>
 
-      <button style={{ color: "white", backgroundColor: "black" }}>
-        로그인
-      </button>
-      <div>SNS 계정으로 로그인</div>
-      <button>네이버</button>
-      <button>카카오</button>
       <hr />
       <div>매일 매일 변화하는 삶,</div>
       <div style={{ color: "#A9A9A9" }}>작심하루에서 시작해 보세요!</div>
-      <button>
-        <Link to="/join">회원가입하기</Link>
+      <button class="loginjoin_button">
+        <Link
+          to="/join"
+          style={{
+            color: "black",
+            textDecoration: "none",
+          }}
+        >
+          회원가입하기
+        </Link>
       </button>
     </div>
   );
