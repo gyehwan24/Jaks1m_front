@@ -1,12 +1,20 @@
 import { useState } from "react";
 import Checkbox from "../components/Checkbox";
 import Logo from "../components/Logo";
+import { useDispatch } from "react-redux";
 import "./LoginJoin.css";
-function Join() {
+import { joinUser } from "../_actions/userAction";
+import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
+import axios from "axios";
+function Join(props) {
+  //state
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const dispatch = useDispatch();
+
+  //handler function
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -21,27 +29,79 @@ function Join() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("submit");
+
+    if (email === "") alert("이메일을 입력해야 합니다.");
+    if (name === "") alert("닉네임을 입력해야 합니다.");
+    if (password === "") alert("비밀번호를 입력해야 합니다.");
+    if (confirmPassword === "") alert("비밀번호 확인을 입력해야 합니다.");
     if (password !== confirmPassword) {
       return alert("비밀번호와 비밀번호 확인이 다릅니다!");
-      console.log("hi");
+    } else {
+      alert(
+        `email: ${email}
+        name: ${name}
+        pw: ${password}
+        confirmpw: ${confirmPassword}`
+      );
+      let body = {
+        email: email,
+        name: name,
+        password: password,
+        password1: confirmPassword,
+      };
+
+      dispatch(joinUser(body)).then((response) => {
+        if (response.payload.success) {
+          alert("회원가입이 완료되었습니다.");
+          props.history.push("/");
+        } else {
+          alert("회원가입에 실패했습니다.");
+        }
+      });
+      // signup(email, name, password, confirmPassword);
     }
+    //   axios.post("http://13.125.246.227:8800/api/auth/signup", {
+    //     email: email,
+    //     name: name,
+    //     password: password,
+    //     Password1: confirmPassword,
+    //   });
   };
+  //   const signup = (email, name, password, confirmPassword) => {
+  //     return function (dispatch, getState, { history }) {
+  //       axios({
+  //         method: "post",
+  //         url: "http://13.125.246.227:8800//api/auth/signup",
+  //         data: {
+  //           email: email,
+  //           name: name,
+  //           password: password,
+  //           confirmPassword: confirmPassword,
+  //         },
+  //       })
+  //         .then((response) => {
+  //           alert(response.data.result);
+  //         })
+  //         .catch((error) => {
+  //           alert("error");
+  //         });
+  //     };
+  //   };
   return (
-    <div class="loginjoin">
+    <div className="loginjoin">
       <Logo />
-      <form>
+      <form onSubmit={onSubmit}>
         <h3>목표를 위한 걸음, 작심하루가 도와줄게요!</h3>
-        <div class="join_email">
+        <div className="join_email">
           <input
             type="text"
             name="email"
             placeholder="이메일"
             value={email}
             onChange={handleInputEmail}
-            class="join_input_email"
+            className="join_input_email"
           />
-          <select class="join_email_direct">
+          <select className="join_email_direct">
             <option value="0">직접입력</option>
             <option value="naver.com">naver.com</option>
             <option value="gmail.com">gmail.com</option>
@@ -56,7 +116,7 @@ function Join() {
             placeholder="닉네임"
             value={name}
             onChange={handleInputName}
-            class="loginjoin_input"
+            className="loginjoin_input"
           />
         </div>
         <div>
@@ -66,7 +126,7 @@ function Join() {
             placeholder="비밀번호"
             value={password}
             onChange={handleInputPassword}
-            class="loginjoin_input"
+            className="loginjoin_input"
           />
         </div>
         <div>
@@ -76,10 +136,10 @@ function Join() {
             placeholder="비밀번호 확인"
             value={confirmPassword}
             onChange={handleInputComfirmPassword}
-            class="loginjoin_input"
+            className="loginjoin_input"
           />
         </div>
-        <div class="join_agree">
+        <div className="join_agree">
           <Checkbox text="서비스 이용약관에 동의합니다. (필수)" />
           <Checkbox text="개인정보 수집 및 이용에 동의합니다. (필수)" />
           <Checkbox text="이벤트 정보동의 마케팅 수신에 동의합니다. (선택)" />
@@ -87,9 +147,8 @@ function Join() {
         <div>
           <button
             type="submit"
-            onSubmit={onSubmit}
             style={{ color: "white", backgroundColor: "#A9A9A9" }}
-            class="loginjoin_button"
+            className="loginjoin_button"
           >
             회원가입
           </button>

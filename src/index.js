@@ -2,12 +2,30 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import promiseMiddleware from "redux-promise";
+import reduxThunk from "redux-thunk";
+import reducer from "./_reducers";
+
+const createStoreWidthMiddleware = applyMiddleware(
+  promiseMiddleware,
+  reduxThunk
+)(createStore);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Provider
+        store={createStoreWidthMiddleware(
+          reducer,
+          window.__REDUX_DEVTOOLS_EXTENSION__ &&
+            window.__REDUX_DEVTOOLS_EXTENSION__()
+        )}
+      >
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

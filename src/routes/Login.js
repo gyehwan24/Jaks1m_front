@@ -4,6 +4,7 @@ import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
 import Checkbox from "../components/Checkbox";
 import "./LoginJoin.css";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
@@ -17,12 +18,24 @@ function Login() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("login");
+    if (email === "") {
+      alert("이메일을 입력해야 합니다.");
+    }
+    if (password === "") {
+      alert("비밀번호를 입력해야 합니다");
+    } else {
+      alert("login 성공");
+    }
+  };
+  const handleAutoLogin = (event) => {
+    event.preventDefault();
+    setAutoLogin((current) => !current);
+    alert(autoLogin);
   };
   return (
-    <div class="loginjoin">
+    <div className="loginjoin">
       <Logo />
-      <form>
+      <form onSubmit={onSubmit}>
         <div>
           <input
             type="text"
@@ -30,7 +43,7 @@ function Login() {
             placeholder="이메일"
             value={email}
             onChange={handleInputEmail}
-            class="loginjoin_input"
+            className="loginjoin_input"
           />
         </div>
         <div>
@@ -40,24 +53,22 @@ function Login() {
             placeholder="비밀번호"
             value={password}
             onChange={handleInputPw}
-            class="loginjoin_input"
+            className="loginjoin_input"
           />
-        </div>
-        <div class="login_option">
-          <Checkbox text="자동로그인" />
-          <button>비밀번호 찾기</button>
         </div>
 
         <button
           type="submit"
-          onSubmit={onSubmit}
           style={{ color: "white", backgroundColor: "black" }}
-          class="loginjoin_button"
+          className="loginjoin_button"
         >
           로그인
         </button>
       </form>
-
+      <div className="login_option">
+        <Checkbox text={"자동로그인"} onClick={handleAutoLogin} />
+        <button>비밀번호 찾기</button>
+      </div>
       <div>
         SNS 계정으로 로그인
         <br />
@@ -68,7 +79,7 @@ function Login() {
       <hr />
       <div>매일 매일 변화하는 삶,</div>
       <div style={{ color: "#A9A9A9" }}>작심하루에서 시작해 보세요!</div>
-      <button class="loginjoin_button">
+      <button className="loginjoin_button">
         <Link
           to="/join"
           style={{

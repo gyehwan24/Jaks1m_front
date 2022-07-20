@@ -17,7 +17,7 @@ function Checkbox({ text }) {
 
       <StyledLabel htmlFor={text}>
         <StyledInput type="checkbox" name={text} />
-        {text}
+        <Button>{text}</Button>
       </StyledLabel>
     </div>
   );
@@ -39,6 +39,7 @@ const StyledInput = styled.input`
     background-color: #684fca;
   }
 `;
+
 const StyledLabel = styled.label`
   display: flex;
   align-items: center;
@@ -48,10 +49,7 @@ const StyledLabel = styled.label`
 
 const Button = styled.button`
   display: block;
-  padding: 6px 10px;
-  color: #fff;
   font-size: 18px;
-  border-radius: 3px;
-  background-color: crimson;
+  background-color: white;
   border: 0;
 `;
