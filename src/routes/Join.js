@@ -6,6 +6,8 @@ import "./LoginJoin.css";
 import { joinUser } from "../_actions/userAction";
 import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 function Join(props) {
   //state
   const [email, setEmail] = useState("");
@@ -49,7 +51,6 @@ function Join(props) {
         password: password,
         password1: confirmPassword,
       };
-
       dispatch(joinUser(body)).then((response) => {
         if (response.payload.success) {
           alert("회원가입이 완료되었습니다.");
@@ -60,12 +61,13 @@ function Join(props) {
       });
       // signup(email, name, password, confirmPassword);
     }
-    //   axios.post("http://13.125.246.227:8800/api/auth/signup", {
-    //     email: email,
-    //     name: name,
-    //     password: password,
-    //     Password1: confirmPassword,
-    //   });
+
+    // axios.post("http://13.125.246.227:8800/api/auth/signup", {
+    //   email: email,
+    //   name: name,
+    //   password: password,
+    //   Password1: confirmPassword,
+    // });
   };
   //   const signup = (email, name, password, confirmPassword) => {
   //     return function (dispatch, getState, { history }) {
@@ -154,6 +156,13 @@ function Join(props) {
           </button>
         </div>
       </form>
+      <div>
+        SNS 계정으로 가입
+        <button>네이버</button>
+        <button>
+          <Link to="accounts.kakao.com/">카카오</Link>
+        </button>
+      </div>
     </div>
   );
 }

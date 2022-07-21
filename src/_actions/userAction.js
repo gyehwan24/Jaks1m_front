@@ -14,7 +14,7 @@ const USER_URL = "api/auth";
 export function joinUser(dataToSubmit) {
   // axios를 이용해 login 요청을 보내고 response.data를 반환하여 request에 넣어준다.
   const request = axios
-    .post("http://13.125.246.227:8800/api/auth/signup", dataToSubmit)
+    .post("http://13.209.35.181:8800/api/auth/signup", dataToSubmit)
     .then((response) => response.data);
 
   return {
