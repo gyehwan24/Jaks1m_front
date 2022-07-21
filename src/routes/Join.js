@@ -7,14 +7,19 @@ import { joinUser } from "../_actions/userAction";
 import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Kakao from "./Kakao";
 
-function Join(props) {
+function Join() {
   //state
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const dispatch = useDispatch();
+
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
+  const testUrl =
+    "https://kauth.kakao.com/oauth/authorize?client_id=88ca81698af5c54707bdc5a63341133b&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code";
 
   //handler function
   const handleInputEmail = (event) => {
@@ -52,43 +57,16 @@ function Join(props) {
         password1: confirmPassword,
       };
       dispatch(joinUser(body)).then((response) => {
-        if (response.payload.success) {
-          alert("회원가입이 완료되었습니다.");
-          props.history.push("/");
-        } else {
-          alert("회원가입에 실패했습니다.");
+        if (response.status === 400) {
+          alert("중복된 이메일입니다.");
         }
+        console.log(response);
+        alert(response.status);
       });
       // signup(email, name, password, confirmPassword);
     }
-
-    // axios.post("http://13.125.246.227:8800/api/auth/signup", {
-    //   email: email,
-    //   name: name,
-    //   password: password,
-    //   Password1: confirmPassword,
-    // });
   };
-  //   const signup = (email, name, password, confirmPassword) => {
-  //     return function (dispatch, getState, { history }) {
-  //       axios({
-  //         method: "post",
-  //         url: "http://13.125.246.227:8800//api/auth/signup",
-  //         data: {
-  //           email: email,
-  //           name: name,
-  //           password: password,
-  //           confirmPassword: confirmPassword,
-  //         },
-  //       })
-  //         .then((response) => {
-  //           alert(response.data.result);
-  //         })
-  //         .catch((error) => {
-  //           alert("error");
-  //         });
-  //     };
-  //   };
+
   return (
     <div className="loginjoin">
       <Logo />
@@ -160,7 +138,8 @@ function Join(props) {
         SNS 계정으로 가입
         <button>네이버</button>
         <button>
-          <Link to="accounts.kakao.com/">카카오</Link>
+          {/* <Link to="/join/accounts.kakao.com/">카카오</Link> */}
+          <a href={testUrl}>카카오</a>
         </button>
       </div>
     </div>

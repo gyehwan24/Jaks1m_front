@@ -4,9 +4,11 @@ import Join from "./routes/Join";
 import Home from "./routes/Home";
 import Kakao from "./routes/Kakao";
 import "./App.css";
+
 function App() {
   return (
     <Routes>
+      <Route path="/join/oauth/kakao" element={<Kakao />} />
       <Route path="/join/accounts.kakao.com/" element={<Kakao />} />
       <Route path="/join" element={<Join />} />
       <Route path="/login" element={<Login />} />
