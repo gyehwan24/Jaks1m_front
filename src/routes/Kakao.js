@@ -22,6 +22,7 @@ function Kakao() {
   };
   dispatch(kakaoJoin(body)).then((response) => {
     console.log(response.data);
+    alert(response.payload);
   });
   return <h2>인가코드 posting..</h2>;
 }

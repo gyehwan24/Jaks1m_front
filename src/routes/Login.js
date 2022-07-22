@@ -30,12 +30,11 @@ function Login() {
   const handleAutoLogin = (event) => {
     event.preventDefault();
     setAutoLogin((current) => !current);
-    alert(autoLogin);
   };
   return (
     <div className="loginjoin">
       <Logo />
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="login_form">
         <div>
           <input
             type="text"
@@ -56,29 +55,65 @@ function Login() {
             className="loginjoin_input"
           />
         </div>
-
+        <div className="login_option">
+          {/* <Checkbox text={"자동로그인"} onClick={handleAutoLogin} /> */}
+          <label className="checkbox_label" onClick={handleAutoLogin}>
+            <input
+              type="checkbox"
+              className={autoLogin ? "checkbox_on" : "checkbox_off"}
+            />
+            자동로그인
+          </label>
+          <button
+            style={{
+              border: "none",
+              backgroundColor: "white",
+              textDecoration: "underline",
+            }}
+          >
+            비밀번호 찾기
+          </button>
+        </div>
         <button
           type="submit"
-          style={{ color: "white", backgroundColor: "black" }}
+          style={{
+            color: "white",
+            backgroundColor: "black",
+          }}
           className="loginjoin_button"
         >
           로그인
         </button>
       </form>
-      <div className="login_option">
-        <Checkbox text={"자동로그인"} onClick={handleAutoLogin} />
-        <button>비밀번호 찾기</button>
-      </div>
+
       <div>
-        SNS 계정으로 로그인
-        <br />
-        <button>네이버</button>
-        <button>카카오</button>
+        <h3>SNS 계정으로 로그인</h3>
+
+        <button
+          style={{
+            border: "none",
+            backgroundColor: "white",
+            marginRight: "10px",
+          }}
+        >
+          <img src="/img/Naver_logo.png" />
+        </button>
+        <button
+          style={{
+            border: "none",
+            backgroundColor: "white",
+            marginLeft: "10px",
+          }}
+        >
+          <img src="/img/Kakao_logo.png" />
+        </button>
       </div>
 
-      <hr />
-      <div>매일 매일 변화하는 삶,</div>
-      <div style={{ color: "#A9A9A9" }}>작심하루에서 시작해 보세요!</div>
+      <hr style={{ marginTop: "30px" }} />
+      <div style={{ marginTop: "30px" }}>매일 매일 변화하는 삶,</div>
+      <div style={{ color: "#A9A9A9", marginBottom: "10px" }}>
+        작심하루에서 시작해 보세요!
+      </div>
       <button className="loginjoin_button">
         <Link
           to="/join"

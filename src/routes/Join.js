@@ -15,12 +15,13 @@ function Join() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [agree_1, setAgree_1] = useState(false);
+  const [agree_2, setAgree_2] = useState(false);
+  const [agree_3, setAgree_3] = useState(false);
+
+  // const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
   const dispatch = useDispatch();
-
-  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
-  const testUrl =
-    "https://kauth.kakao.com/oauth/authorize?client_id=88ca81698af5c54707bdc5a63341133b&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code";
-
   //handler function
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
@@ -34,6 +35,19 @@ function Join() {
   const handleInputComfirmPassword = (event) => {
     setConfirmPassword(event.target.value);
   };
+
+  const handleAgree_1 = (event) => {
+    event.preventDefault();
+    setAgree_1((current) => !current);
+  };
+  const handleAgree_2 = (event) => {
+    event.preventDefault();
+    setAgree_2((current) => !current);
+  };
+  const handleAgree_3 = (event) => {
+    event.preventDefault();
+    setAgree_3((current) => !current);
+  };
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -41,9 +55,9 @@ function Join() {
     if (name === "") alert("닉네임을 입력해야 합니다.");
     if (password === "") alert("비밀번호를 입력해야 합니다.");
     if (confirmPassword === "") alert("비밀번호 확인을 입력해야 합니다.");
-    if (password !== confirmPassword) {
-      return alert("비밀번호와 비밀번호 확인이 다릅니다!");
-    } else {
+    if (password !== confirmPassword)
+      alert("비밀번호와 비밀번호 확인이 다릅니다!");
+    else {
       alert(
         `email: ${email}
         name: ${name}
@@ -63,7 +77,6 @@ function Join() {
         console.log(response);
         alert(response.status);
       });
-      // signup(email, name, password, confirmPassword);
     }
   };
 
@@ -120,14 +133,37 @@ function Join() {
           />
         </div>
         <div className="join_agree">
-          <Checkbox text="서비스 이용약관에 동의합니다. (필수)" />
-          <Checkbox text="개인정보 수집 및 이용에 동의합니다. (필수)" />
-          <Checkbox text="이벤트 정보동의 마케팅 수신에 동의합니다. (선택)" />
+          <label className="checkbox_label" onClick={handleAgree_1}>
+            <input
+              type="checkbox"
+              className={agree_1 === true ? "checkbox_on" : "checkbox_off"}
+            />
+            서비스 이용약관에 동의합니다. (필수)
+          </label>
+          <label className="checkbox_label" onClick={handleAgree_2}>
+            <input
+              type="checkbox"
+              className={agree_2 ? "checkbox_on" : "checkbox_off"}
+            />
+            개인정보 수집 및 이용에 동의합니다. (필수)
+          </label>
+          <label className="checkbox_label" onClick={handleAgree_3}>
+            <input
+              type="checkbox"
+              className={agree_3 ? "checkbox_on" : "checkbox_off"}
+            />
+            이벤트 정보동의 마케팅 수신에 동의합니다. (선택)
+          </label>
         </div>
+
         <div>
           <button
             type="submit"
-            style={{ color: "white", backgroundColor: "#A9A9A9" }}
+            style={{
+              color: "white",
+              backgroundColor: "#A9A9A9",
+              // fontSize: "16px",
+            }}
             className="loginjoin_button"
           >
             회원가입
@@ -135,11 +171,27 @@ function Join() {
         </div>
       </form>
       <div>
-        SNS 계정으로 가입
-        <button>네이버</button>
-        <button>
-          {/* <Link to="/join/accounts.kakao.com/">카카오</Link> */}
-          <a href={testUrl}>카카오</a>
+        <h3 style={{ marginBottom: 0 }}>SNS 계정으로 가입</h3>
+        <br />
+        <button
+          style={{
+            border: "none",
+            backgroundColor: "white",
+            marginRight: "10px",
+          }}
+        >
+          <img src="/img/Naver_logo.png" />
+        </button>
+        <button
+          style={{
+            border: "none",
+            backgroundColor: "white",
+            marginLeft: "10px",
+          }}
+        >
+          <a href={kakaoUrl}>
+            <img src="/img/Kakao_logo.png" />
+          </a>
         </button>
       </div>
     </div>

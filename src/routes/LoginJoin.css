@@ -1,34 +1,39 @@
 .loginjoin {
-  display: block;
+  font-family: "Roboto-Medium";
   text-align: center;
   align-items: center;
   height: 100vh;
 }
-
-.loginjoin_input {
-  width: 400px;
-  height: 48px;
-  padding-left: 10px;
+.login_form {
+  margin-top: 50px;
+  margin-bottom: 20px;
 }
+
 .loginjoin_button {
   border-color: transparent;
   width: 400px;
-  margin: 10px;
+  margin: 5px;
   height: 48px;
   padding-left: 10px;
-  margin-top: 10px;
 }
 .login_option {
   display: flex;
   justify-content: space-around;
   /* text-align: left; */
   /* width: 100%; */
-  margin-top: 3%;
+  margin: 20px;
+}
+.loginjoin_input {
+  width: 400px;
+  height: 48px;
+  padding-left: 10px;
+  margin-bottom: 2px;
 }
 .join_input_email {
   width: 300px;
   height: 48px;
   padding-left: 10px;
+  margin-bottom: 2px;
 }
 .join_email_direct {
   width: 90px;
@@ -38,6 +43,43 @@
 }
 
 .join_agree {
-  padding: 2%;
-  /* padding-left: 20%; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  text-align: center;
+  margin: 12px;
+}
+.checkbox_off {
+  appearance: none;
+  border-color: transparent;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+  background-size: 100%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #a9a9a9;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 1rem;
+}
+.checkbox_on {
+  appearance: none;
+  border-color: transparent;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+  background-size: 100%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: #a9a9a9;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 1rem;
+  background-color: #684fca;
+}
+.checkbox_label {
+  display: flex;
+  margin: 5px;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* text-align: center; */
+  /* user-select: none; */
 }

@@ -1,5 +1,6 @@
 import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <div>
