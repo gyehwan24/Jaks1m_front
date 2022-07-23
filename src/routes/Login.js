@@ -56,7 +56,6 @@ function Login() {
           />
         </div>
         <div className="login_option">
-          {/* <Checkbox text={"자동로그인"} onClick={handleAutoLogin} /> */}
           <label className="checkbox_label" onClick={handleAutoLogin}>
             <input
               type="checkbox"
@@ -69,6 +68,7 @@ function Login() {
               border: "none",
               backgroundColor: "white",
               textDecoration: "underline",
+              marginLeft: "220px",
             }}
           >
             비밀번호 찾기

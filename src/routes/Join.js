@@ -50,14 +50,13 @@ function Join() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-
-    if (email === "") alert("이메일을 입력해야 합니다.");
-    if (name === "") alert("닉네임을 입력해야 합니다.");
-    if (password === "") alert("비밀번호를 입력해야 합니다.");
-    if (confirmPassword === "") alert("비밀번호 확인을 입력해야 합니다.");
-    if (password !== confirmPassword)
-      alert("비밀번호와 비밀번호 확인이 다릅니다!");
-    else {
+    if (
+      email !== "" &&
+      name !== "" &&
+      password !== "" &&
+      confirmPassword !== "" &&
+      password === confirmPassword
+    ) {
       alert(
         `email: ${email}
         name: ${name}
@@ -78,6 +77,12 @@ function Join() {
         alert(response.status);
       });
     }
+    if (email === "") alert("이메일을 입력해야 합니다.");
+    if (name === "") alert("닉네임을 입력해야 합니다.");
+    if (password === "") alert("비밀번호를 입력해야 합니다.");
+    if (confirmPassword === "") alert("비밀번호 확인을 입력해야 합니다.");
+    if (password !== confirmPassword)
+      alert("비밀번호와 비밀번호 확인이 다릅니다!");
   };
 
   return (
@@ -133,21 +138,33 @@ function Join() {
           />
         </div>
         <div className="join_agree">
-          <label className="checkbox_label" onClick={handleAgree_1}>
+          <label
+            className="checkbox_label"
+            onClick={handleAgree_1}
+            style={{ marginRight: "140px" }}
+          >
             <input
               type="checkbox"
               className={agree_1 === true ? "checkbox_on" : "checkbox_off"}
             />
             서비스 이용약관에 동의합니다. (필수)
           </label>
-          <label className="checkbox_label" onClick={handleAgree_2}>
+          <label
+            className="checkbox_label"
+            onClick={handleAgree_2}
+            style={{ marginRight: "100px" }}
+          >
             <input
               type="checkbox"
               className={agree_2 ? "checkbox_on" : "checkbox_off"}
             />
             개인정보 수집 및 이용에 동의합니다. (필수)
           </label>
-          <label className="checkbox_label" onClick={handleAgree_3}>
+          <label
+            className="checkbox_label"
+            onClick={handleAgree_3}
+            style={{ marginRight: "51px" }}
+          >
             <input
               type="checkbox"
               className={agree_3 ? "checkbox_on" : "checkbox_off"}
@@ -162,7 +179,7 @@ function Join() {
             style={{
               color: "white",
               backgroundColor: "#A9A9A9",
-              // fontSize: "16px",
+              fontSize: "16px",
             }}
             className="loginjoin_button"
           >
@@ -180,7 +197,9 @@ function Join() {
             marginRight: "10px",
           }}
         >
-          <img src="/img/Naver_logo.png" />
+          <a>
+            <img src="/img/Naver_logo.png" />
+          </a>
         </button>
         <button
           style={{

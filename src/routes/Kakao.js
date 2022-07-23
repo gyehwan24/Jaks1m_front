@@ -21,10 +21,11 @@ function Kakao() {
     code: code,
   };
   dispatch(kakaoJoin(body)).then((response) => {
+    console.log(response);
     console.log(response.data);
-    alert(response.payload);
+    alert(response.payload.email);
   });
-  return <h2>인가코드 posting..</h2>;
+  return <h2>code posting..</h2>;
 }
 
 export default Kakao;

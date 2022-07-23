@@ -18,9 +18,7 @@
 }
 .login_option {
   display: flex;
-  justify-content: space-around;
-  /* text-align: left; */
-  /* width: 100%; */
+  justify-content: center;
   margin: 20px;
 }
 .loginjoin_input {
@@ -45,7 +43,6 @@
 .join_agree {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   text-align: center;
   margin: 12px;
@@ -78,8 +75,4 @@
 .checkbox_label {
   display: flex;
   margin: 5px;
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* text-align: center; */
-  /* user-select: none; */
 }

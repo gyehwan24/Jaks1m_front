@@ -3,7 +3,6 @@ import Login from "./routes/Login";
 import Join from "./routes/Join";
 import Home from "./routes/Home";
 import Kakao from "./routes/Kakao";
-import "./App.css";
 
 function App() {
   return (
