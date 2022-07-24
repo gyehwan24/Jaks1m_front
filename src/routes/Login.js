@@ -33,7 +33,10 @@ function Login() {
   };
   return (
     <div className="loginjoin">
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
+
       <form onSubmit={onSubmit} className="login_form">
         <div>
           <input

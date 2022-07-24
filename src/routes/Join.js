@@ -87,7 +87,10 @@ function Join() {
 
   return (
     <div className="loginjoin">
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
+
       <form onSubmit={onSubmit}>
         <h3>목표를 위한 걸음, 작심하루가 도와줄게요!</h3>
         <div className="join_email">
