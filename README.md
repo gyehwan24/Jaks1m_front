@@ -1,1 +1,1 @@
-# Project <Jaks1m> front-end
+# Project Jaks1m front-end
