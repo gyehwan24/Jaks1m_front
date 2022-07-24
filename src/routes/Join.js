@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Checkbox from "../components/Checkbox";
 import Logo from "../components/Logo";
 import { useDispatch } from "react-redux";
 import "./LoginJoin.css";
@@ -8,6 +7,7 @@ import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Kakao from "./Kakao";
+import Naver from "./Naver";
 
 function Join() {
   //state
@@ -21,6 +21,8 @@ function Join() {
 
   // const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
+  const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=http://localhost:3000/join/oauth/naver&state=jaksim`;
+
   const dispatch = useDispatch();
   //handler function
   const handleInputEmail = (event) => {
@@ -200,10 +202,11 @@ function Join() {
             marginRight: "10px",
           }}
         >
-          <a>
+          <a href={naverUrl}>
             <img src="/img/Naver_logo.png" />
           </a>
         </button>
+
         <button
           style={{
             border: "none",

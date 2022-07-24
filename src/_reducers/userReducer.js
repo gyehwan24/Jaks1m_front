@@ -1,4 +1,9 @@
-import { JOIN_USER, KAKAO_JOIN, KAKAO_GET_TOKEN } from "../_actions/types";
+import {
+  JOIN_USER,
+  KAKAO_JOIN,
+  KAKAO_GET_TOKEN,
+  NAVER_JOIN,
+} from "../_actions/types";
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -9,6 +14,9 @@ export default function (state = {}, action) {
       return { ...state, loginSuccess: action.payload };
       break;
     case KAKAO_GET_TOKEN:
+      return { ...state, loginSuccess: action.payload };
+      break;
+    case NAVER_JOIN:
       return { ...state, loginSuccess: action.payload };
       break;
     default:

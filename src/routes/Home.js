@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div>
-      <h1>Homepage</h1>
+      <h1>작심하루 Homepage</h1>
       <button>
         <Link to="/login">로그인</Link>
       </button>

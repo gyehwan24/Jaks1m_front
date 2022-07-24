@@ -12,6 +12,7 @@
 
 import { kakaoJoin } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 function Kakao() {
   const dispatch = useDispatch();
   //인가코드
@@ -20,12 +21,15 @@ function Kakao() {
   let body = {
     code: code,
   };
-  dispatch(kakaoJoin(body)).then((response) => {
-    console.log(response);
-    console.log(response.data);
-    alert(response.payload.email);
-  });
-  return <h2>code posting..</h2>;
+  useEffect(() => {
+    dispatch(kakaoJoin(body)).then((response) => {
+      console.log(response);
+
+      alert(response.payload.email + response.payload.name);
+    });
+  }, []);
+
+  return <h2>Kakao code posting..</h2>;
 }
 
 export default Kakao;
