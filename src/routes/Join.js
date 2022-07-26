@@ -50,6 +50,7 @@ function Join() {
     event.preventDefault();
     setAgree_3((current) => !current);
   };
+  //회원가입 버튼 눌렀을 때
   const onSubmit = (event) => {
     event.preventDefault();
     if (
@@ -76,7 +77,6 @@ function Join() {
           alert("중복된 이메일입니다.");
         }
         console.log(response);
-        alert(response.status);
       });
     }
     if (email === "") alert("이메일을 입력해야 합니다.");

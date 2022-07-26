@@ -4,12 +4,19 @@ import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
 import Checkbox from "../components/Checkbox";
 import "./LoginJoin.css";
+import { LOGIN_USER } from "../_actions/types";
+import { getNewToken, loginUser } from "../_actions/userAction";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
   const [autoLogin, setAutoLogin] = useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const AT = "AT";
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -18,21 +25,42 @@ function Login() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    if (email === "") {
-      alert("이메일을 입력해야 합니다.");
+    if (email !== "" && password !== "") {
+      let body = {
+        email: email,
+        password: password,
+      };
+      dispatch(loginUser(body)).then((response) => {
+        console.log(response);
+        localStorage.setItem(AT, response.payload.accessToken);
+        localStorage.setItem("USER_NAME", response.payload.user.name);
+        alert("로그인 되었습니다!");
+        // navigate("/");
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.payload.accessToken}`;
+      });
     }
-    if (password === "") {
-      alert("비밀번호를 입력해야 합니다");
-    } else {
-      alert("login 성공");
-    }
+
+    if (email === "") alert("이메일을 입력해야 합니다.");
+    if (password === "") alert("비밀번호를 입력해야 합니다.");
   };
   const handleAutoLogin = (event) => {
     event.preventDefault();
     setAutoLogin((current) => !current);
   };
+  const getToken = () => {
+    const token = localStorage.getItem(AT);
+    let body = {
+      accessToken: token,
+    };
+    dispatch(getNewToken(body)).then((response) => {
+      console.log(response);
+    });
+  };
   return (
     <div className="loginjoin">
+      <button onClick={getToken}>refresh Token</button>
       <Link to="/">
         <Logo />
       </Link>

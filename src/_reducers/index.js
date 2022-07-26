@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import user from "./userReducer";
 
-const rootReducer = combineReducers({
+//2개 이상의 reducer를 사용할 때,
+
+export default combineReducers({
   user,
 });
-
-export default rootReducer;

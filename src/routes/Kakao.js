@@ -22,9 +22,10 @@ function Kakao() {
     code: code,
   };
   useEffect(() => {
+    //dispatch는 reducer로 메세지를 보낸다. 메세지는 action에 정의되어있다.
     dispatch(kakaoJoin(body)).then((response) => {
       console.log(response);
-
+      console.log(response.type);
       alert(response.payload.email + response.payload.name);
     });
   }, []);

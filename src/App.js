@@ -4,6 +4,7 @@ import Join from "./routes/Join";
 import Home from "./routes/Home";
 import Kakao from "./routes/Kakao";
 import Naver from "./routes/Naver";
+import axios from "axios";
 
 function App() {
   return (
