@@ -9,8 +9,10 @@ import reduxThunk from "redux-thunk";
 import Reducer from "./_reducers";
 import "./index.css";
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3000";
-axios.defaults.withCredentials = true;
+import { CookiesProvider } from "react-cookie";
+// axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.withCredentials = true;
+
 const createStoreWidthMiddleware = applyMiddleware(
   promiseMiddleware,
   reduxThunk
@@ -19,16 +21,18 @@ const createStoreWidthMiddleware = applyMiddleware(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Provider
-        store={createStoreWidthMiddleware(
-          Reducer,
-          window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            window.__REDUX_DEVTOOLS_EXTENSION__()
-        )}
-      >
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <Provider
+          store={createStoreWidthMiddleware(
+            Reducer,
+            window.__REDUX_DEVTOOLS_EXTENSION__ &&
+              window.__REDUX_DEVTOOLS_EXTENSION__()
+          )}
+        >
+          <App />
+        </Provider>
+      </BrowserRouter>
+    </CookiesProvider>
   </React.StrictMode>
 );

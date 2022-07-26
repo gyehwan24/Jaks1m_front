@@ -8,14 +8,14 @@ import {
 } from "./types";
 
 import axios from "axios";
-// axios.defaults.baseURL = "http://localhost:3000";
-// axios.defaults.withCredentials = true;
+import { customAxios } from "../customAxios";
+
 //Action Creator return Object
 
 export function joinUser(dataToSubmit) {
   // axios를 이용해 login 요청을 보내고 response.data를 반환하여 request에 넣어준다.
-  const request = axios
-    .post("http://13.209.66.190:8800/api/auth/signup", dataToSubmit)
+  const request = customAxios
+    .post("/api/auth/signup", dataToSubmit)
     .then((response) => response.data);
   return {
     //action정의 (type,payload가 action)
@@ -25,8 +25,8 @@ export function joinUser(dataToSubmit) {
 }
 
 export function kakaoJoin(dataToSubmit) {
-  const request = axios
-    .post("http://13.209.66.190:8800/api/auth/kakao/login", dataToSubmit)
+  const request = customAxios
+    .post("/api/auth/kakao/login", dataToSubmit)
     .then((response) => response.data);
 
   return {
@@ -44,8 +44,8 @@ export function kakaoJoin(dataToSubmit) {
 // }
 
 export function naverJoin(dataToSubmit) {
-  const request = axios
-    .post("http://13.209.66.190:8800/api/auth/naver/login", dataToSubmit)
+  const request = customAxios
+    .post("/api/auth/naver/login", dataToSubmit)
     .then((response) => response.data);
   return {
     type: NAVER_JOIN,
@@ -54,8 +54,8 @@ export function naverJoin(dataToSubmit) {
 }
 //login 시 post
 export function loginUser(dataTosubmit) {
-  const request = axios
-    .post("http://13.209.66.190:8800/api/auth/signin", dataTosubmit)
+  const request = customAxios
+    .post("/api/auth/signin", dataTosubmit)
     .then((response) => response.data);
   return {
     type: LOGIN_USER,
@@ -64,8 +64,8 @@ export function loginUser(dataTosubmit) {
 }
 
 export function getNewToken(dataTosubmit) {
-  const request = axios
-    .post("http://13.209.66.190:8800/api/auth/refresh", dataTosubmit)
+  const request = customAxios
+    .post("/api/auth/refresh", dataTosubmit)
     .then((response) => response.data);
   return {
     type: GET_NEWTOKEN,

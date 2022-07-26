@@ -9,14 +9,15 @@ import { getNewToken, loginUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useCookies } from "react-cookie";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
   const [autoLogin, setAutoLogin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const AT = "AT";
+  const ACESS_TOKEN = "AT";
+  const [cookies, setCookie, removeCookie] = useCookies(["myCookie"]);
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -32,13 +33,27 @@ function Login() {
       };
       dispatch(loginUser(body)).then((response) => {
         console.log(response);
-        localStorage.setItem(AT, response.payload.accessToken);
+        localStorage.setItem(ACESS_TOKEN, response.payload.accessToken);
         localStorage.setItem("USER_NAME", response.payload.user.name);
+        // setCookie("refreshToken", response.payload.accessToken);
         alert("로그인 되었습니다!");
-        // navigate("/");
+
+        //API 요청마다 헤더에 accessToken 담아 보내도록 세팅
         axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.payload.accessToken}`;
+          "AccessToken"
+        ] = `${response.payload.accessToken}`;
+        axios.defaults.headers.common[
+          "RefreshToken"
+        ] = `${response.payload.refreshToken}`;
+        axios
+          .get("http://jaksimharu.shop:8800/api/auth/refresh", {
+            headers: {
+              Authorization: `${response.payload.refreshToken}`,
+            },
+          })
+          .then((response) => response.data);
+
+        navigate("/");
       });
     }
 
@@ -49,18 +64,9 @@ function Login() {
     event.preventDefault();
     setAutoLogin((current) => !current);
   };
-  const getToken = () => {
-    const token = localStorage.getItem(AT);
-    let body = {
-      accessToken: token,
-    };
-    dispatch(getNewToken(body)).then((response) => {
-      console.log(response);
-    });
-  };
+
   return (
     <div className="loginjoin">
-      <button onClick={getToken}>refresh Token</button>
       <Link to="/">
         <Logo />
       </Link>
