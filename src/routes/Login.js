@@ -67,9 +67,7 @@ function Login() {
 
   return (
     <div className="loginjoin">
-      <Link to="/">
-        <Logo />
-      </Link>
+      <Logo />
 
       <form onSubmit={onSubmit} className="login_form">
         <div>
@@ -79,6 +77,7 @@ function Login() {
             placeholder="이메일"
             value={email}
             onChange={handleInputEmail}
+            onSubmit={onSubmit}
             className="loginjoin_input"
           />
         </div>
@@ -100,16 +99,9 @@ function Login() {
             />
             자동로그인
           </label>
-          <button
-            style={{
-              border: "none",
-              backgroundColor: "white",
-              textDecoration: "underline",
-              marginLeft: "220px",
-            }}
-          >
-            비밀번호 찾기
-          </button>
+          {/* <Link to="/findpw"> */}
+          <button className="login_findpw">비밀번호 찾기</button>
+          {/* </Link> */}
         </div>
         <button
           type="submit"
@@ -151,17 +143,17 @@ function Login() {
       <div style={{ color: "#A9A9A9", marginBottom: "10px" }}>
         작심하루에서 시작해 보세요!
       </div>
-      <button className="loginjoin_button">
-        <Link
-          to="/join"
+      <Link to="/join">
+        <button
+          className="loginjoin_button"
           style={{
             color: "black",
             textDecoration: "none",
           }}
         >
           회원가입하기
-        </Link>
-      </button>
+        </button>
+      </Link>
     </div>
   );
 }

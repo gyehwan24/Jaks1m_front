@@ -1,24 +1,30 @@
+div {
+  font-family: "Roboto-Medium";
+}
 header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
-nav {
-  display: inline-block;
-  vertical-align: middle;
+nav > div {
+  display: flex;
+  flex-direction: row;
+  float: right;
+  height: 30px;
 }
 ul li {
   list-style: none;
 }
 
 #menu {
-  font: bold 16px "malgun gothic";
+  font: bold 16px "Roboto-Medium";
   width: 700px;
   height: 50px;
-  background: #ccc;
+  /* background: #ccc; */
   color: black;
-  line-height: 50px;
+  line-height: 40px;
   margin: 0 auto;
-  /* text-align: center; */
+  padding-left: 1.5%;
   margin-right: 500px;
 }
 #menu > ul > li {
@@ -33,16 +39,19 @@ ul li {
   font-size: 14px;
   background: skyblue;
 }
-.loginjoin_Btn {
+.loginjoin_btn {
   float: right;
   border-color: transparent;
   background-color: white;
   color: black;
   text-decoration: none;
+  margin-right: 4px;
 }
 .container {
   display: flex;
-  justify-content: space-around;
+  position: absolute;
+  left: 130px;
+  /* justify-content: space-around; */
 }
 
 /* input 중에 id가 trigger인 항목에 대한 css */
@@ -51,7 +60,7 @@ input[id="trigger"] {
 }
 
 /* label 중에 for가 trigger인 항목 */
-label[htmlFor="trigger"] {
+label[for="trigger"] {
   width: 30px;
   height: 20px;
   display: block;
@@ -60,7 +69,7 @@ label[htmlFor="trigger"] {
 }
 
 /* label 중에 for가 trigger인 항목 안의 span */
-label[htmlFor="trigger"] span {
+label[for="trigger"] span {
   display: block;
   height: 2px;
   background-color: #000;
@@ -72,15 +81,15 @@ label[htmlFor="trigger"] span {
 }
 
 /* label[for=trigger] > span의 n번째 요소 */
-label[htmlFor="trigger"] span:nth-child(1) {
+label[for="trigger"] span:nth-child(1) {
   top: 0;
 }
 
-label[htmlFor="trigger"] span:nth-child(2) {
+label[for="trigger"] span:nth-child(2) {
   top: 50%;
 }
 
-label[htmlFor="trigger"] span:nth-child(3) {
+label[for="trigger"] span:nth-child(3) {
   top: 100%;
 }
 
@@ -100,7 +109,7 @@ input[id="trigger"]:checked + label span:nth-child(3) {
 }
 
 /* 메뉴바 */
-.menu {
+/* .menu {
   width: 250px;
   height: 10vh;
   background-color: rgb(102, 67, 67);
@@ -109,12 +118,12 @@ input[id="trigger"]:checked + label span:nth-child(3) {
   left: 0;
   left: -250px;
   transition: 0.3s;
-}
+} */
 
 /* input[id=trigger]가 체크되었을 때 사이드바가 나오는 형제 인접자 */
-input[id="trigger"]:checked ~ .menu {
+/* input[id="trigger"]:checked ~ .menu {
   left: 0;
-}
+} */
 
 /* check시 같이 밀려나가는 CSS 햄버거 메뉴 */
 /* input[id="trigger"]:checked + label[for="trigger"] {

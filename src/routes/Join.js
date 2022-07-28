@@ -58,7 +58,9 @@ function Join() {
       name !== "" &&
       password !== "" &&
       confirmPassword !== "" &&
-      password === confirmPassword
+      password === confirmPassword &&
+      agree_1 === true &&
+      agree_2 === true
     ) {
       alert(
         `email: ${email}
@@ -85,13 +87,13 @@ function Join() {
     if (confirmPassword === "") alert("비밀번호 확인을 입력해야 합니다.");
     if (password !== confirmPassword)
       alert("비밀번호와 비밀번호 확인이 다릅니다!");
+    if (agree_1 === false || agree_2 === false)
+      alert("약관에 동의해야 합니다.");
   };
 
   return (
     <div className="loginjoin">
-      <Link to="/">
-        <Logo />
-      </Link>
+      <Logo />
 
       <form onSubmit={onSubmit}>
         <h3>목표를 위한 걸음, 작심하루가 도와줄게요!</h3>
