@@ -4,12 +4,12 @@ import Join from "./routes/Join";
 import Home from "./routes/Home";
 import Kakao from "./routes/Kakao";
 import Naver from "./routes/Naver";
-import axios from "axios";
 import FindPw from "./routes/FindPw";
-
+import ProfilePage from "./routes/ProfilePage";
 function App() {
   return (
     <Routes>
+      <Route path="/profile" element={<ProfilePage />} />
       <Route path="/findpw" element={<FindPw />} />
       <Route path="/join/oauth/naver" element={<Naver />} />
       <Route path="/join/oauth/kakao" element={<Kakao />} />

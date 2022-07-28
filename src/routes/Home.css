@@ -10,7 +10,10 @@ nav > div {
   display: flex;
   flex-direction: row;
   float: right;
-  height: 30px;
+  height: 32px;
+}
+nav > div > button {
+  font: bold 14px "Roboto-Medium";
 }
 ul li {
   list-style: none;

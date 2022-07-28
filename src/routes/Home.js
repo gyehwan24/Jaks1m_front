@@ -1,11 +1,12 @@
 import Logo from "../components/Logo";
+import Profile from "../components/Profile";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import { useDispatch } from "react-redux";
 import { getNewToken } from "../_actions/userAction";
 
 function Home() {
-  const userName = localStorage.getItem("USER_NAME");
+  const userName = localStorage.getItem("USER_NAME"); //localStorage에 저장한 userName
   // const dispatch = useDispatch();
   // const getToken = () => {
   //   const token = localStorage.getItem("AT");
@@ -57,6 +58,7 @@ function Home() {
             </div>
           ) : (
             <div>
+              <Profile />
               <button className="loginjoin_btn">
                 <Link to="/join" className="loginjoin_btn">
                   회원가입
@@ -69,7 +71,7 @@ function Home() {
               </button>
               <img
                 src="img/search.png"
-                style={{ width: "24px", height: "24px" }}
+                style={{ width: "28px", height: "28px" }}
               ></img>
             </div>
           )}
