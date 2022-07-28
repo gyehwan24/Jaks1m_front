@@ -8,7 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Kakao from "./Kakao";
 import Naver from "./Naver";
-
+import { useNavigate } from "react-router-dom";
 function Join() {
   //state
   const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ function Join() {
   const [agree_1, setAgree_1] = useState(false);
   const [agree_2, setAgree_2] = useState(false);
   const [agree_3, setAgree_3] = useState(false);
-
+  const navigate = useNavigate();
   // const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
   const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=http://localhost:3000/join/oauth/naver&state=jaksim`;
@@ -80,6 +80,7 @@ function Join() {
         }
         console.log(response);
       });
+      navigate("/login");
     }
     if (email === "") alert("이메일을 입력해야 합니다.");
     if (name === "") alert("닉네임을 입력해야 합니다.");

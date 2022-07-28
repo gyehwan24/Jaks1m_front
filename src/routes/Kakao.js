@@ -13,8 +13,13 @@
 import { kakaoJoin } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Kakao() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const ACCESS_TOKEN = "ACCESS_TOKEN";
+  const USER_NAME = "USER_NAME";
   //인가코드
   let code = new URL(window.location.href).searchParams.get("code");
 
@@ -25,9 +30,18 @@ function Kakao() {
     //dispatch는 reducer로 메세지를 보낸다. 메세지는 action에 정의되어있다.
     dispatch(kakaoJoin(body)).then((response) => {
       console.log(response);
-      console.log(response.type);
       alert(response.payload.email + response.payload.name);
+      localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
+      localStorage.setItem(USER_NAME, response.payload.responseUser.name);
+      axios.defaults.headers.common[
+        "AccessToken"
+      ] = `${response.payload.accessToken}`;
+      axios.defaults.headers.common[
+        "RefreshToken"
+      ] = `${response.payload.refreshToken}`;
     });
+
+    navigate("/");
   }, []);
 
   return <h2>Kakao code posting..</h2>;

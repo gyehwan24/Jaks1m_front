@@ -18,6 +18,8 @@ function Login() {
   const navigate = useNavigate();
   const ACESS_TOKEN = "AT";
   const [cookies, setCookie, removeCookie] = useCookies(["myCookie"]);
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
+  const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=http://localhost:3000/join/oauth/naver&state=jaksim`;
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
   };
@@ -34,7 +36,7 @@ function Login() {
       dispatch(loginUser(body)).then((response) => {
         console.log(response);
         localStorage.setItem(ACESS_TOKEN, response.payload.accessToken);
-        localStorage.setItem("USER_NAME", response.payload.user.name);
+        localStorage.setItem("USER_NAME", response.payload.responseUser.name);
         // setCookie("refreshToken", response.payload.accessToken);
         alert("로그인 되었습니다!");
 
@@ -45,13 +47,13 @@ function Login() {
         axios.defaults.headers.common[
           "RefreshToken"
         ] = `${response.payload.refreshToken}`;
-        axios
-          .get("http://jaksimharu.shop:8800/api/auth/refresh", {
-            headers: {
-              Authorization: `${response.payload.refreshToken}`,
-            },
-          })
-          .then((response) => response.data);
+        // axios
+        //   .get("http://jaksimharu.shop:8800/api/auth/refresh", {
+        //     headers: {
+        //       Authorization: `${response.payload.refreshToken}`,
+        //     },
+        //   })
+        //   .then((response) => response.data);
 
         navigate("/");
       });
@@ -125,7 +127,9 @@ function Login() {
             marginRight: "10px",
           }}
         >
-          <img src="/img/Naver_logo.png" />
+          <a href={naverUrl}>
+            <img src="/img/Naver_logo.png" />
+          </a>
         </button>
         <button
           style={{
@@ -134,7 +138,9 @@ function Login() {
             marginLeft: "10px",
           }}
         >
-          <img src="/img/Kakao_logo.png" />
+          <a href={kakaoUrl}>
+            <img src="/img/Kakao_logo.png" />
+          </a>
         </button>
       </div>
 
