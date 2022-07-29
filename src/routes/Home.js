@@ -2,24 +2,29 @@ import Logo from "../components/Logo";
 import Profile from "../components/Profile";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import { useDispatch } from "react-redux";
-import { getNewToken } from "../_actions/userAction";
-import { useEffect } from "react";
-// import { useIsFocused } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Home() {
   const USER_NAME = "USER_NAME";
   const ACCESS_TOKEN = "ACCESS_TOKEN";
   const userName = localStorage.getItem(USER_NAME); //localStorage에 저장한 userName
-  // const isFocused = useIsFocused();
+  const [greeting, setGreeting] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    setGreeting(`${userName}님 안녕하세요!`);
+  }, [userName]);
+
   const handleLogout = (event) => {
     event.preventDefault();
     localStorage.removeItem(USER_NAME);
     localStorage.removeItem(ACCESS_TOKEN);
     alert("로그아웃 되었습니다!");
+    navigate("/");
   };
-  // useEffect(() => {
-  //   console.log("refresh");
-  // }, [isFocused]);
+  const handleMouse = () => {
+    console.log("mouse");
+  };
+
   return (
     <div>
       <header>
@@ -59,7 +64,7 @@ function Home() {
             </div>
           ) : (
             <div>
-              <button className="loginjoin_btn">
+              <button onMouseEnter={handleMouse} className="loginjoin_btn">
                 <Link to="/join" className="loginjoin_btn">
                   회원가입
                 </Link>
@@ -79,7 +84,8 @@ function Home() {
       </header>
 
       <Logo />
-      {userName !== null ? <h1>{userName}님, 안녕하세요!</h1> : null}
+
+      {userName !== null ? <h1>{greeting}</h1> : null}
     </div>
   );
 }

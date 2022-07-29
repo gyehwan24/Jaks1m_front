@@ -16,7 +16,9 @@ function Login() {
   const [autoLogin, setAutoLogin] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const ACESS_TOKEN = "AT";
+  const ACCESS_TOKEN = "ACCESS_TOKEN";
+  const USER_NAME = "USER_NAME";
+  const USER_PROFILE = "USER_PROFILE";
   const [cookies, setCookie, removeCookie] = useCookies(["myCookie"]);
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
   const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=http://localhost:3000/join/oauth/naver&state=jaksim`;
@@ -35,8 +37,9 @@ function Login() {
       };
       dispatch(loginUser(body)).then((response) => {
         console.log(response);
-        localStorage.setItem(ACESS_TOKEN, response.payload.accessToken);
-        localStorage.setItem("USER_NAME", response.payload.responseUser.name);
+        localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
+        localStorage.setItem(USER_NAME, response.payload.responseUser.name);
+        // localStorage.setItem(USER_PROFILE, response.payload.responseUser.);
         // setCookie("refreshToken", response.payload.accessToken);
         alert("로그인 되었습니다!");
 
@@ -66,7 +69,17 @@ function Login() {
     event.preventDefault();
     setAutoLogin((current) => !current);
   };
+  const handleClearBtn = (event) => {
+    event.preventDefault();
+    console.log(event);
+    if (event.target.className == "clearBtn_email") {
+      setEmail("");
+    }
 
+    if (event.target.className == "clearBtn_pw") {
+      setPw("");
+    }
+  };
   return (
     <div className="loginjoin">
       <Logo />
@@ -82,6 +95,9 @@ function Login() {
             onSubmit={onSubmit}
             className="loginjoin_input"
           />
+          <button onClick={handleClearBtn} className="clearBtn_email">
+            ✖
+          </button>
         </div>
         <div>
           <input
@@ -92,6 +108,9 @@ function Login() {
             onChange={handleInputPw}
             className="loginjoin_input"
           />
+          <button onClick={handleClearBtn} className="clearBtn_pw">
+            ✖
+          </button>
         </div>
         <div className="login_option">
           <label className="checkbox_label" onClick={handleAutoLogin}>
@@ -101,9 +120,9 @@ function Login() {
             />
             자동로그인
           </label>
-          {/* <Link to="/findpw"> */}
-          <button className="login_findpw">비밀번호 찾기</button>
-          {/* </Link> */}
+          <Link to="/findpw">
+            <button className="login_findpw">비밀번호 찾기</button>
+          </Link>
         </div>
         <button
           type="submit"

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-
-function Profile() {
+import ImgUploader from "./ImgUploader";
+function Profile(prop) {
   return (
     <div>
       <Link to="/profile">

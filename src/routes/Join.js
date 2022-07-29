@@ -18,6 +18,7 @@ function Join() {
   const [agree_1, setAgree_1] = useState(false);
   const [agree_2, setAgree_2] = useState(false);
   const [agree_3, setAgree_3] = useState(false);
+  const clearBtnStyle = `style={{display:"none"}}`;
   const navigate = useNavigate();
   // const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
@@ -81,6 +82,7 @@ function Join() {
         console.log(response);
       });
       navigate("/login");
+      alert("로그인 해주세요.");
     }
     if (email === "") alert("이메일을 입력해야 합니다.");
     if (name === "") alert("닉네임을 입력해야 합니다.");
@@ -91,29 +93,48 @@ function Join() {
     if (agree_1 === false || agree_2 === false)
       alert("약관에 동의해야 합니다.");
   };
-
+  const handleClearBtn = (event) => {
+    event.preventDefault();
+    console.log(event);
+    if (event.target.className == "clearBtn_email") {
+      setEmail("");
+    }
+    if (event.target.className == "clearBtn_name") {
+      setName("");
+    }
+    if (event.target.className == "clearBtn_pw") {
+      setPassword("");
+    }
+    if (event.target.className == "clearBtn_confirmPw") {
+      setConfirmPassword("");
+    }
+  };
   return (
     <div className="loginjoin">
       <Logo />
 
       <form onSubmit={onSubmit}>
         <h3>목표를 위한 걸음, 작심하루가 도와줄게요!</h3>
-        <div className="join_email">
+        <div>
           <input
             type="text"
             name="email"
             placeholder="이메일"
             value={email}
             onChange={handleInputEmail}
-            className="join_input_email"
+            className="loginjoin_input"
           />
-          <select className="join_email_direct">
+
+          {/* <select className="join_email_direct">
             <option value="0">직접입력</option>
             <option value="naver.com">naver.com</option>
             <option value="gmail.com">gmail.com</option>
             <option value="hanmail.net">hanmail.net</option>
             <option value="nate.com">nate.com</option>
-          </select>
+          </select> */}
+          <button onClick={handleClearBtn} className="clearBtn_email">
+            ✖
+          </button>
         </div>
         <div>
           <input
@@ -124,6 +145,9 @@ function Join() {
             onChange={handleInputName}
             className="loginjoin_input"
           />
+          <button onClick={handleClearBtn} className="clearBtn_name">
+            ✖
+          </button>
         </div>
         <div>
           <input
@@ -134,6 +158,9 @@ function Join() {
             onChange={handleInputPassword}
             className="loginjoin_input"
           />
+          <button onClick={handleClearBtn} className="clearBtn_pw">
+            ✖
+          </button>
         </div>
         <div>
           <input
@@ -144,6 +171,9 @@ function Join() {
             onChange={handleInputComfirmPassword}
             className="loginjoin_input"
           />
+          <button onClick={handleClearBtn} className="clearBtn_confirmPw">
+            ✖
+          </button>
         </div>
         <div className="join_agree">
           <label
@@ -188,6 +218,7 @@ function Join() {
               color: "white",
               backgroundColor: "#A9A9A9",
               fontSize: "16px",
+              // marginRight: "22px",
             }}
             className="loginjoin_button"
           >
