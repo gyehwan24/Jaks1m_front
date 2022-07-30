@@ -5,6 +5,8 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid black;
 }
 nav > div {
   display: flex;
@@ -66,11 +68,12 @@ input[id="trigger"] {
 
 /* label 중에 for가 trigger인 항목 */
 label[for="trigger"] {
-  width: 30px;
-  height: 20px;
+  width: 25px;
+  height: 15px;
   display: block;
   position: relative;
   cursor: pointer;
+  margin-top: 8.3px;
 }
 
 /* label 중에 for가 trigger인 항목 안의 span */
@@ -91,7 +94,7 @@ label[for="trigger"] span:nth-child(1) {
 }
 
 label[for="trigger"] span:nth-child(2) {
-  top: 50%;
+  top: 48%;
 }
 
 label[for="trigger"] span:nth-child(3) {
@@ -111,6 +114,12 @@ input[id="trigger"]:checked + label span:nth-child(2) {
 input[id="trigger"]:checked + label span:nth-child(3) {
   top: 50%;
   transform: rotate(-45deg);
+}
+.logo {
+  margin: 0;
+  margin-top: 2px;
+  text-decoration-line: none;
+  color: black;
 }
 
 /* 메뉴바 */

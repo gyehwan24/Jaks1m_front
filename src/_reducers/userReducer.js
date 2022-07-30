@@ -5,6 +5,7 @@ import {
   NAVER_JOIN,
   LOGIN_USER,
   GET_NEWTOKEN,
+  IMAGE_UPLOAD,
 } from "../_actions/types";
 
 //reducer -> mute state 금지 -> ...state / 값을 변경하는게 아니라 새로운 객체를 반환한다.
@@ -22,11 +23,14 @@ export default function (state = {}, action) {
       return { ...state, loginSuccess: action.payload };
       break;
     case NAVER_JOIN:
+      console.log(state, action);
       return { ...state, loginSuccess: action.payload };
       break;
     case LOGIN_USER:
       return { ...state, loginSuccess: action.payload };
     case GET_NEWTOKEN:
+      return { ...state, loginSuccess: action.payload };
+    case IMAGE_UPLOAD:
       return { ...state, loginSuccess: action.payload };
     default:
       return state;

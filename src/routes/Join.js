@@ -109,6 +109,7 @@ function Join() {
       setConfirmPassword("");
     }
   };
+
   return (
     <div className="loginjoin">
       <Logo />

@@ -5,6 +5,7 @@ import {
   LOGIN_USER,
   GET_NEWTOKEN,
   KAKAO_GET_TOKEN,
+  IMAGE_UPLOAD,
 } from "./types";
 
 import axios from "axios";
@@ -69,6 +70,17 @@ export function getNewToken(dataTosubmit) {
     .then((response) => response.data);
   return {
     type: GET_NEWTOKEN,
+    payload: request,
+  };
+}
+
+//서버에 이미지 업로드
+export function imageUpload(dataToSubmit) {
+  const request = customAxios
+    .post("/api", dataToSubmit)
+    .then((response) => response.data);
+  return {
+    type: IMAGE_UPLOAD,
     payload: request,
   };
 }
