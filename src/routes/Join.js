@@ -152,7 +152,7 @@ function Join() {
           <label
             className={agree_1 ? "checkbox_label_on" : "checkbox_label_off"}
             onClick={handleAgree_1}
-            style={{ marginRight: "140px" }}
+            style={{ marginRight: "142px" }}
           >
             <input
               type="checkbox"
@@ -174,7 +174,7 @@ function Join() {
           <label
             className={agree_3 ? "checkbox_label_on" : "checkbox_label_off"}
             onClick={handleAgree_3}
-            style={{ marginRight: "58px" }}
+            style={{ marginRight: "57px" }}
           >
             <input
               type="checkbox"

@@ -9,16 +9,15 @@ import styled from "styled-components";
 const StyledImg = styled.img`
   position: absolute;
   width: 100%;
-
   left: 0px;
   top: ${(props) => props.top};
   display: block;
 `;
-
+styled(Header)`
+  position: fixed;
+`;
 function Home() {
   const USER_NAME = "USER_NAME";
-  const ACCESS_TOKEN = "ACCESS_TOKEN";
-  const IMG_PROFILE = "IMG_PROFILE";
   const userName = localStorage.getItem(USER_NAME); //localStorage에 저장한 userName
   const [greeting, setGreeting] = useState("");
   const navigate = useNavigate();
@@ -29,8 +28,8 @@ function Home() {
 
   return (
     <div>
-      <Header />
       <StyledImg src="/img/home/home_1.png" top={"75px"}></StyledImg>
+      <Header />
       <StyledImg src="/img/home/home_2.png" top={"629px"}></StyledImg>
       <StyledImg src="/img/home/home_3.png" top={"1275px"}></StyledImg>
       <StyledImg src="/img/home/home_4.png" top={"1877px"}></StyledImg>

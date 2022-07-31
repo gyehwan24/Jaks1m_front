@@ -70,15 +70,12 @@ export function getNewToken(dataTosubmit) {
 export function imageUpload(dataToSubmit) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios
-    .post(
-      "/api/users/edit-profile",
-      dataToSubmit
-      // {
-      //   headers: {
-      //     Authorization: `${accessToken}`,
-      //   },
-      // }
-    )
+    .post("/api/users/edit-profile", dataToSubmit, {
+      headers: {
+        Authorization: `${accessToken}`,
+        "Content-Type": "multipart/form-data",
+      },
+    })
     .then((response) => response.data);
   return {
     type: IMAGE_UPLOAD,

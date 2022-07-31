@@ -3,11 +3,17 @@ import "./Header.css";
 import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 function Header() {
   const USER_NAME = "USER_NAME";
   const ACCESS_TOKEN = "ACCESS_TOKEN";
   const IMG_PROFILE = "IMG_PROFILE";
   const userName = localStorage.getItem(USER_NAME); //localStorage에 저장한 userName
+  const [menuClicked, setMenuClicked] = useState(false);
+  const handleMenuClick = () => {
+    setMenuClicked((current) => !current);
+  };
   const navigate = useNavigate();
   const handleLogout = (event) => {
     event.preventDefault();
@@ -25,23 +31,25 @@ function Header() {
         </Link>
 
         <div className="container">
-          <input type="checkbox" id="trigger" />
+          <input type="checkbox" id="trigger" onClick={handleMenuClick} />
           <label htmlFor="trigger">
             <span></span>
             <span></span>
             <span></span>
+            <ul id="menu">
+              <li>
+                전체 카테고리
+                <div className={menuClicked ? "menu_item_on" : "menu_item_off"}>
+                  <ul>
+                    <li>게시판</li>
+                  </ul>
+                  <ul>
+                    <li>ToDo</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
           </label>
-          <ul id="menu">
-            <li>
-              전체 카테고리
-              {/* <ul>
-                <li>게시판</li>
-              </ul>
-              <ul>
-                <li>ToDo</li>
-              </ul> */}
-            </li>
-          </ul>
         </div>
 
         <nav>

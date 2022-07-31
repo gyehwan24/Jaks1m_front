@@ -41,11 +41,11 @@ function ImageUploader() {
     event.preventDefault();
     if (image.image_file) {
       const formData = new FormData();
-      formData.append("file", image.image_file);
-      dispatch(imageUpload(formData)).then((responese) => {
-        console.log(responese);
+      formData.append("image", image.image_file);
+      dispatch(imageUpload(formData)).then((response) => {
+        console.log(response);
         alert("사진이 업로드 되었습니다!");
-        localStorage.setItem("IMG_PROFILE", image.image_file);
+        localStorage.setItem("IMG_PROFILE", response.payload.updatedImg);
       });
     } else {
       alert("사진을 등록하세요!");

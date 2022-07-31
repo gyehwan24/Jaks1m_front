@@ -28,7 +28,6 @@ export default function (state = {}, action) {
     case GET_NEWTOKEN:
       return { ...state, loginSuccess: action.payload };
     case IMAGE_UPLOAD:
-      console.log(state, action);
       return { ...state, loginSuccess: action.payload };
     default:
       return state;
