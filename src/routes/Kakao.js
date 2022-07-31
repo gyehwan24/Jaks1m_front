@@ -36,11 +36,11 @@ function Kakao() {
       localStorage.setItem(USER_NAME, response.payload.responseUser.name);
       localStorage.setItem(IMG_PROFILE, response.payload.responseUser.img);
       axios.defaults.headers.common[
-        "AccessToken"
-      ] = `${response.payload.accessToken}`;
-      axios.defaults.headers.common[
-        "RefreshToken"
-      ] = `${response.payload.refreshToken}`;
+        "accesstoken"
+      ] = `Bearer ${response.payload.accessToken}`;
+      // axios.defaults.headers.common[
+      //   "refreshtoken"
+      // ] = `Bearer ${response.payload.refreshToken}`;
     });
     navigate("/");
   }, []);

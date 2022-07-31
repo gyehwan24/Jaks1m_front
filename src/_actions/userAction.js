@@ -36,14 +36,6 @@ export function kakaoJoin(dataToSubmit) {
   };
 }
 
-// export function kakaoGetToken(dataTosubmit) {
-//   const request = axios.get().then((response) => response.data);
-//   return {
-//     type: KAKAO_GET_TOKEN,
-//     payload: request,
-//   };
-// }
-
 export function naverJoin(dataToSubmit) {
   const request = customAxios
     .post("/api/auth/naver/login", dataToSubmit)
@@ -76,8 +68,17 @@ export function getNewToken(dataTosubmit) {
 
 //서버에 이미지 업로드
 export function imageUpload(dataToSubmit) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios
-    .post("/api", dataToSubmit)
+    .post(
+      "/api/users/edit-profile",
+      dataToSubmit
+      // {
+      //   headers: {
+      //     Authorization: `${accessToken}`,
+      //   },
+      // }
+    )
     .then((response) => response.data);
   return {
     type: IMAGE_UPLOAD,

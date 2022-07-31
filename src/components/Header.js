@@ -55,7 +55,15 @@ function Header() {
               >
                 로그아웃
               </button>
-              <img src="img/search.png"></img>
+              <img
+                src="img/search.png"
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  marginTop: "20px",
+                  marginRight: "15px",
+                }}
+              ></img>
             </div>
           ) : (
             <div>
@@ -71,7 +79,12 @@ function Header() {
               </button>
               <img
                 src="img/search.png"
-                style={{ width: "25px", height: "25px", marginTop: "20px" }}
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  marginTop: "20px",
+                  marginRight: "15px",
+                }}
               ></img>
             </div>
           )}

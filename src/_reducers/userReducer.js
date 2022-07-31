@@ -19,9 +19,6 @@ export default function (state = {}, action) {
       console.log(state, action);
       return { ...state, loginSuccess: action.payload };
       break;
-    case KAKAO_GET_TOKEN:
-      return { ...state, loginSuccess: action.payload };
-      break;
     case NAVER_JOIN:
       console.log(state, action);
       return { ...state, loginSuccess: action.payload };
@@ -31,6 +28,7 @@ export default function (state = {}, action) {
     case GET_NEWTOKEN:
       return { ...state, loginSuccess: action.payload };
     case IMAGE_UPLOAD:
+      console.log(state, action);
       return { ...state, loginSuccess: action.payload };
     default:
       return state;

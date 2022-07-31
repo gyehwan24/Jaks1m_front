@@ -150,7 +150,7 @@ function Join() {
         </div>
         <div className="join_agree">
           <label
-            className="checkbox_label"
+            className={agree_1 ? "checkbox_label_on" : "checkbox_label_off"}
             onClick={handleAgree_1}
             style={{ marginRight: "140px" }}
           >
@@ -161,9 +161,9 @@ function Join() {
             서비스 이용약관에 동의합니다. (필수)
           </label>
           <label
-            className="checkbox_label"
+            className={agree_2 ? "checkbox_label_on" : "checkbox_label_off"}
             onClick={handleAgree_2}
-            style={{ marginRight: "100px" }}
+            style={{ marginRight: "104px" }}
           >
             <input
               type="checkbox"
@@ -172,9 +172,9 @@ function Join() {
             개인정보 수집 및 이용에 동의합니다. (필수)
           </label>
           <label
-            className="checkbox_label"
+            className={agree_3 ? "checkbox_label_on" : "checkbox_label_off"}
             onClick={handleAgree_3}
-            style={{ marginRight: "51px" }}
+            style={{ marginRight: "58px" }}
           >
             <input
               type="checkbox"
@@ -190,8 +190,7 @@ function Join() {
             style={{
               color: "white",
               backgroundColor: "#A9A9A9",
-              fontSize: "16px",
-              // marginRight: "22px",
+              fontSize: "18px",
             }}
             className="loginjoin_button"
           >
@@ -210,7 +209,7 @@ function Join() {
           }}
         >
           <a href={naverUrl}>
-            <img src="/img/Naver_logo.png" />
+            <img src="/img/Naver_logo.png" style={{ width: "60px" }} />
           </a>
         </button>
 
@@ -222,7 +221,7 @@ function Join() {
           }}
         >
           <a href={kakaoUrl}>
-            <img src="/img/Kakao_logo.png" />
+            <img src="/img/Kakao_logo.png" style={{ width: "60px" }} />
           </a>
         </button>
       </div>

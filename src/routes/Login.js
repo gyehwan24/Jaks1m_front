@@ -39,7 +39,6 @@ function Login() {
         console.log(response);
         localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
-        // localStorage.setItem(USER_PROFILE, response.payload.responseUser.);
         // setCookie("refreshToken", response.payload.accessToken);
         alert("로그인 되었습니다!");
 
@@ -47,16 +46,9 @@ function Login() {
         axios.defaults.headers.common[
           "AccessToken"
         ] = `${response.payload.accessToken}`;
-        axios.defaults.headers.common[
-          "RefreshToken"
-        ] = `${response.payload.refreshToken}`;
-        // axios
-        //   .get("http://jaksimharu.shop:8800/api/auth/refresh", {
-        //     headers: {
-        //       Authorization: `${response.payload.refreshToken}`,
-        //     },
-        //   })
-        //   .then((response) => response.data);
+        // axios.defaults.headers.common[
+        //   "RefreshToken"
+        // ] = `${response.payload.refreshToken}`;
 
         navigate("/");
       });
@@ -97,7 +89,10 @@ function Login() {
           />
         </div>
         <div className="login_option">
-          <label className="checkbox_label" onClick={handleAutoLogin}>
+          <label
+            className={autoLogin ? "checkbox_label_on" : "checkbox_label_off"}
+            onClick={handleAutoLogin}
+          >
             <input
               type="checkbox"
               className={autoLogin ? "checkbox_on" : "checkbox_off"}
@@ -131,7 +126,7 @@ function Login() {
           }}
         >
           <a href={naverUrl}>
-            <img src="/img/Naver_logo.png" />
+            <img src="/img/Naver_logo.png" style={{ width: "60px" }} />
           </a>
         </button>
         <button
@@ -142,7 +137,7 @@ function Login() {
           }}
         >
           <a href={kakaoUrl}>
-            <img src="/img/Kakao_logo.png" />
+            <img src="/img/Kakao_logo.png" style={{ width: "60px" }} />
           </a>
         </button>
       </div>

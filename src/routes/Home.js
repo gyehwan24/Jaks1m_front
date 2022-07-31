@@ -30,10 +30,10 @@ function Home() {
   return (
     <div>
       <Header />
-      <StyledImg src="img/home/home_1.png" top={"75px"}></StyledImg>
-      <StyledImg src="img/home/home_2.png" top={"629px"}></StyledImg>
-      <StyledImg src="img/home/home_3.png" top={"1275px"}></StyledImg>
-      <StyledImg src="img/home/home_4.png" top={"1877px"}></StyledImg>
+      <StyledImg src="/img/home/home_1.png" top={"75px"}></StyledImg>
+      <StyledImg src="/img/home/home_2.png" top={"629px"}></StyledImg>
+      <StyledImg src="/img/home/home_3.png" top={"1275px"}></StyledImg>
+      <StyledImg src="/img/home/home_4.png" top={"1877px"}></StyledImg>
       {/* {userName !== null ? <h1>{greeting}</h1> : null} */}
     </div>
   );

@@ -10,7 +10,12 @@ function Profile(prop) {
         ) : (
           <img
             src="img/profile_icon.png"
-            style={{ width: "32px", heigth: "32px" }}
+            style={{
+              width: "32px",
+              heigth: "32px",
+              marginTop: "16px",
+              marginRight: "9px",
+            }}
           />
         )}
       </Link>

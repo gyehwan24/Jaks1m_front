@@ -27,9 +27,9 @@ function Naver() {
       axios.defaults.headers.common[
         "AccessToken"
       ] = `${response.payload.accessToken}`;
-      axios.defaults.headers.common[
-        "RefreshToken"
-      ] = `${response.payload.refreshToken}`;
+      // axios.defaults.headers.common[
+      //   "RefreshToken"
+      // ] = `${response.payload.refreshToken}`;
     });
     navigate("/");
   }, []);
