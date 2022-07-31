@@ -93,22 +93,6 @@ function Join() {
     if (agree_1 === false || agree_2 === false)
       alert("약관에 동의해야 합니다.");
   };
-  const handleClearBtn = (event) => {
-    event.preventDefault();
-    console.log(event);
-    if (event.target.className == "clearBtn_email") {
-      setEmail("");
-    }
-    if (event.target.className == "clearBtn_name") {
-      setName("");
-    }
-    if (event.target.className == "clearBtn_pw") {
-      setPassword("");
-    }
-    if (event.target.className == "clearBtn_confirmPw") {
-      setConfirmPassword("");
-    }
-  };
 
   return (
     <div className="loginjoin">
@@ -133,9 +117,6 @@ function Join() {
             <option value="hanmail.net">hanmail.net</option>
             <option value="nate.com">nate.com</option>
           </select> */}
-          <button onClick={handleClearBtn} className="clearBtn_email">
-            ✖
-          </button>
         </div>
         <div>
           <input
@@ -146,9 +127,6 @@ function Join() {
             onChange={handleInputName}
             className="loginjoin_input"
           />
-          <button onClick={handleClearBtn} className="clearBtn_name">
-            ✖
-          </button>
         </div>
         <div>
           <input
@@ -159,9 +137,6 @@ function Join() {
             onChange={handleInputPassword}
             className="loginjoin_input"
           />
-          <button onClick={handleClearBtn} className="clearBtn_pw">
-            ✖
-          </button>
         </div>
         <div>
           <input
@@ -172,9 +147,6 @@ function Join() {
             onChange={handleInputComfirmPassword}
             className="loginjoin_input"
           />
-          <button onClick={handleClearBtn} className="clearBtn_confirmPw">
-            ✖
-          </button>
         </div>
         <div className="join_agree">
           <label

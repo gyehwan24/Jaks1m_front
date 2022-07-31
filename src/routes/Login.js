@@ -69,17 +69,7 @@ function Login() {
     event.preventDefault();
     setAutoLogin((current) => !current);
   };
-  const handleClearBtn = (event) => {
-    event.preventDefault();
-    console.log(event);
-    if (event.target.className == "clearBtn_email") {
-      setEmail("");
-    }
 
-    if (event.target.className == "clearBtn_pw") {
-      setPw("");
-    }
-  };
   return (
     <div className="loginjoin">
       <Logo />
@@ -95,9 +85,6 @@ function Login() {
             onSubmit={onSubmit}
             className="loginjoin_input"
           />
-          <button onClick={handleClearBtn} className="clearBtn_email">
-            ✖
-          </button>
         </div>
         <div>
           <input
@@ -108,9 +95,6 @@ function Login() {
             onChange={handleInputPw}
             className="loginjoin_input"
           />
-          <button onClick={handleClearBtn} className="clearBtn_pw">
-            ✖
-          </button>
         </div>
         <div className="login_option">
           <label className="checkbox_label" onClick={handleAutoLogin}>

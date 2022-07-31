@@ -6,31 +6,37 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding-bottom: 10px;
-  border-bottom: 1.5px solid black;
+  /* border-bottom: 1.5px solid black; */
 }
 nav > div {
   display: flex;
   flex-direction: row;
-  float: right;
-  height: 32px;
+  /* position: absolute; */
+  /* float: right; */
+  height: 65px;
 }
 nav > div > button {
-  font: bold 14px "Roboto-Medium";
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
 }
 ul li {
   list-style: none;
 }
 
 #menu {
-  font: bold 16px "Roboto-Medium";
-  width: 380px;
-  height: 50px;
-  /* background: #ccc; */
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 35px;
   color: black;
-  line-height: 40px;
+  width: 380px;
+  height: 40px;
   margin: 0 auto;
-  padding-left: 3%;
-  /* margin-right: 500px; */
+  padding-left: 16.5px;
 }
 #menu > ul > li {
   float: left;
@@ -50,13 +56,14 @@ ul li {
   background-color: white;
   color: black;
   text-decoration: none;
-  margin-right: 4px;
+  margin-right: 10px;
   cursor: pointer;
 }
 .container {
   display: flex;
   position: absolute;
-  left: 130px;
+  top: 24px;
+  left: 146px;
   /* width: 100px; */
   /* justify-content: space-around; */
 }
@@ -115,9 +122,18 @@ input[id="trigger"]:checked + label span:nth-child(3) {
   top: 50%;
   transform: rotate(-45deg);
 }
-.logo {
+h2.logo {
+  position: absolute;
+  width: 62px;
+  height: 27px;
+  left: 52px;
+  top: 26px;
   margin: 0;
-  margin-top: 2px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 27px;
   text-decoration-line: none;
   color: black;
 }

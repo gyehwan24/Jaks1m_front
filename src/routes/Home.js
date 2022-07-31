@@ -4,6 +4,16 @@ import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledImg = styled.img`
+  position: absolute;
+  width: 100%;
+
+  left: 0px;
+  top: ${(props) => props.top};
+  display: block;
+`;
 
 function Home() {
   const USER_NAME = "USER_NAME";
@@ -20,9 +30,11 @@ function Home() {
   return (
     <div>
       <Header />
-      <Logo />
-
-      {userName !== null ? <h1>{greeting}</h1> : null}
+      <StyledImg src="img/home/home_1.png" top={"75px"}></StyledImg>
+      <StyledImg src="img/home/home_2.png" top={"629px"}></StyledImg>
+      <StyledImg src="img/home/home_3.png" top={"1275px"}></StyledImg>
+      <StyledImg src="img/home/home_4.png" top={"1877px"}></StyledImg>
+      {/* {userName !== null ? <h1>{greeting}</h1> : null} */}
     </div>
   );
 }

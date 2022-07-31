@@ -20,11 +20,10 @@ function Header() {
   return (
     <div>
       <header>
-        <h2 className="logo">
-          <Link to="/" className="logo">
-            HARU
-          </Link>
-        </h2>
+        <Link to="/" className="logo">
+          <h2 className="logo">HARU</h2>
+        </Link>
+
         <div className="container">
           <input type="checkbox" id="trigger" />
           <label htmlFor="trigger">
@@ -72,7 +71,7 @@ function Header() {
               </button>
               <img
                 src="img/search.png"
-                style={{ width: "28px", height: "28px" }}
+                style={{ width: "25px", height: "25px", marginTop: "20px" }}
               ></img>
             </div>
           )}

@@ -8,7 +8,10 @@ function Profile(prop) {
         {profileImg !== null ? (
           <img src={profileImg} style={{ width: "50px", height: "50px" }} />
         ) : (
-          <img src="img/profile_icon.png" />
+          <img
+            src="img/profile_icon.png"
+            style={{ width: "32px", heigth: "32px" }}
+          />
         )}
       </Link>
     </div>
