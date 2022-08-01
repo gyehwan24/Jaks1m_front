@@ -33,7 +33,7 @@ ul li {
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
-  font-size: 19px;
+  font-size: 18px;
   line-height: 35px;
   color: black;
   width: 200px;
@@ -42,24 +42,29 @@ ul li {
 }
 .menu_item_on {
   display: flex;
-  padding-top: 25px;
+  padding-top: 20px;
+  padding-bottom: 25px;
   margin-top: 16px;
+  width: 600px;
+  height: 25px;
   position: relative;
   left: -40px;
   background-color: white;
   border: 1px solid #a9a9a9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  /* transform: translateY(-50px); */
+  /* transform: translateY(50px); */
 }
 .menu_item_off {
   display: none;
 }
 #menu > li {
-  font-size: 18px;
+  /* font-size: 17px; */
 }
-#menu > li > ul {
-  padding: 0;
-  margin-top: 10px;
+#menu > li > div > li {
+  margin-right: 30px;
+
+  padding-left: 30px;
+  border-left: 1px solid #a9a9a9;
 }
 
 .loginjoin_btn {

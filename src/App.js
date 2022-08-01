@@ -6,9 +6,12 @@ import Kakao from "./routes/Kakao";
 import Naver from "./routes/Naver";
 import FindPw from "./routes/FindPw";
 import ProfilePage from "./routes/ProfilePage";
+import MyStudy from "./routes/MyStudy";
+
 function App() {
   return (
     <Routes>
+      <Route path="/category/mystudy" element={<MyStudy />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/findpw" element={<FindPw />} />
       <Route path="/join/oauth/naver" element={<Naver />} />

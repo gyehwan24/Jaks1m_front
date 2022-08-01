@@ -4,7 +4,7 @@ import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import search from "../img/search.png";
 function Header() {
   const USER_NAME = "USER_NAME";
   const ACCESS_TOKEN = "ACCESS_TOKEN";
@@ -41,10 +41,18 @@ function Header() {
                 전체 카테고리
                 <div className={menuClicked ? "menu_item_on" : "menu_item_off"}>
                   <ul>
-                    <li>게시판</li>
+                    <li style={{ border: "0" }}>개인스터디</li>
                   </ul>
                   <ul>
-                    <li>ToDo</li>
+                    <li>그룹스터디</li>
+                  </ul>
+                  <ul>
+                    <li>커뮤니티</li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <Link to="/category/mystudy">마이스터디</Link>
+                    </li>
                   </ul>
                 </div>
               </li>
@@ -64,7 +72,7 @@ function Header() {
                 로그아웃
               </button>
               <img
-                src="img/search.png"
+                src={search}
                 style={{
                   width: "25px",
                   height: "25px",

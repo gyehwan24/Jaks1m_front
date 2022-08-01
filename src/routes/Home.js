@@ -13,9 +13,7 @@ const StyledImg = styled.img`
   top: ${(props) => props.top};
   display: block;
 `;
-styled(Header)`
-  position: fixed;
-`;
+
 function Home() {
   const USER_NAME = "USER_NAME";
   const userName = localStorage.getItem(USER_NAME); //localStorage에 저장한 userName
