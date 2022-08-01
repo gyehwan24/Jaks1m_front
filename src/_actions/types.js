@@ -4,3 +4,4 @@ export const KAKAO_JOIN = "KAKAO_JOIN";
 export const NAVER_JOIN = "NAVER_JOIN";
 export const GET_NEWTOKEN = "GET_NEWTOKEN";
 export const IMAGE_UPLOAD = "IMAGE_UPLOAD";
+export const POST_TODO = "POST_TODO";

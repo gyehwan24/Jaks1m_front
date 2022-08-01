@@ -6,6 +6,7 @@ import {
   GET_NEWTOKEN,
   KAKAO_GET_TOKEN,
   IMAGE_UPLOAD,
+  POST_TODO,
 } from "./types";
 
 import axios from "axios";
@@ -79,6 +80,22 @@ export function imageUpload(dataToSubmit) {
     .then((response) => response.data);
   return {
     type: IMAGE_UPLOAD,
+    payload: request,
+  };
+}
+
+//서버에 todo 보내기
+export function postToDo(dataToSubmit) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  const request = customAxios
+    .post("/api/users/todo", dataToSubmit, {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
+    .then((response) => response.data);
+  return {
+    type: POST_TODO,
     payload: request,
   };
 }

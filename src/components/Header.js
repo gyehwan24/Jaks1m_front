@@ -40,8 +40,8 @@ function Header() {
               <li>
                 전체 카테고리
                 <div className={menuClicked ? "menu_item_on" : "menu_item_off"}>
-                  <ul>
-                    <li style={{ border: "0" }}>개인스터디</li>
+                  <ul style={{ border: "0" }}>
+                    <li>개인스터디</li>
                   </ul>
                   <ul>
                     <li>그룹스터디</li>
@@ -50,7 +50,7 @@ function Header() {
                     <li>커뮤니티</li>
                   </ul>
                   <ul>
-                    <li>
+                    <li onClick={handleMenuClick}>
                       <Link to="/category/mystudy">마이스터디</Link>
                     </li>
                   </ul>
