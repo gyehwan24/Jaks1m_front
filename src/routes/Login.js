@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
@@ -30,6 +32,7 @@ function Login() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
+
     if (email !== "" && password !== "") {
       let body = {
         email: email,
@@ -40,7 +43,7 @@ function Login() {
         localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
         setCookie("refreshToken", response.payload.refreshToken);
-        alert("로그인 되었습니다!");
+        toastSuccess("로그인 되었습니다!");
 
         //API 요청마다 헤더에 accessToken 담아 보내도록 세팅
         axios.defaults.headers.common[
@@ -54,14 +57,28 @@ function Login() {
       });
     }
 
-    if (email === "") alert("이메일을 입력해야 합니다.");
-    if (password === "") alert("비밀번호를 입력해야 합니다.");
+    if (email === "") toastError("이메일을 입력해야 합니다.");
+    if (password === "") toastError("비밀번호를 입력해야 합니다.");
   };
+
   const handleAutoLogin = (event) => {
     event.preventDefault();
     setAutoLogin((current) => !current);
   };
-
+  const toastSuccess = (text) => {
+    toast.success(text, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
+  const toastError = (text) => {
+    toast.error(text, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
   return (
     <div className="loginjoin">
       <Logo />
@@ -74,7 +91,6 @@ function Login() {
             placeholder="이메일"
             value={email}
             onChange={handleInputEmail}
-            onSubmit={onSubmit}
             className="loginjoin_input"
           />
         </div>
@@ -99,9 +115,12 @@ function Login() {
             />
             자동로그인
           </label>
-          <Link to="/findpw">
-            <button className="login_findpw">비밀번호 찾기</button>
-          </Link>
+
+          <button className="login_findpw">
+            <Link to="/findpw" className="login_findpw">
+              비밀번호 찾기
+            </Link>
+          </button>
         </div>
         <button
           type="submit"
@@ -158,6 +177,7 @@ function Login() {
           회원가입하기
         </button>
       </Link>
+      <ToastContainer />
     </div>
   );
 }

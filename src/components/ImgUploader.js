@@ -3,6 +3,9 @@ import { useEffect } from "react-dom";
 import { imageUpload } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function ImageUploader() {
   const profileImg = localStorage.getItem("IMG_PROFILE");
   let previewImg = "img/profile_icon.png"; //프리뷰 이미지 기본값.
@@ -13,6 +16,20 @@ function ImageUploader() {
   });
   let inputRef;
   const dispatch = useDispatch();
+  const toastSuccess = (text) => {
+    toast.success(text, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
+  const toastError = (text) => {
+    toast.error(text, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
   //이미지 업로드 버튼
   const saveImage = (event) => {
     event.preventDefault();
@@ -44,11 +61,11 @@ function ImageUploader() {
       formData.append("image", image.image_file);
       dispatch(imageUpload(formData)).then((response) => {
         console.log(response);
-        alert("사진이 업로드 되었습니다!");
+        toastSuccess("사진이 업로드 되었습니다!");
         localStorage.setItem("IMG_PROFILE", response.payload.updatedImg);
       });
     } else {
-      alert("사진을 등록하세요!");
+      toastError("사진을 등록하세요!");
     }
   };
   return (
@@ -86,6 +103,7 @@ function ImageUploader() {
           업로드
         </Button>
       </div>
+      <ToastContainer />
     </div>
   );
 }

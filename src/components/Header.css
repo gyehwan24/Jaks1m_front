@@ -59,12 +59,14 @@ ul li {
   opacity: 0;
   display: flex;
   width: 600px;
-  height: 25px;
+  height: 10px;
   position: relative;
   left: -40px;
   transition: 0.4s;
 }
-
+#menu > li {
+  height: 40px;
+}
 #menu > li > div > ul {
   margin-right: 30px;
   padding-left: 30px;

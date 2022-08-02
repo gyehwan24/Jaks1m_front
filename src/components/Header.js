@@ -94,7 +94,7 @@ function Header() {
                 </Link>
               </button>
               <img
-                src="img/search.png"
+                src={search}
                 style={{
                   width: "25px",
                   height: "25px",

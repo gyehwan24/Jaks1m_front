@@ -4,15 +4,14 @@ import {
   NAVER_JOIN,
   LOGIN_USER,
   GET_NEWTOKEN,
-  KAKAO_GET_TOKEN,
   IMAGE_UPLOAD,
-  POST_TODO,
+  INSERT_TODO,
 } from "./types";
 
 import axios from "axios";
 import { customAxios } from "../customAxios";
 
-//Action Creator return Object
+//Action Creator 는 객체를 반환한다. (type, payload)
 
 export function joinUser(dataToSubmit) {
   // axios를 이용해 login 요청을 보내고 response.data를 반환하여 request에 넣어준다.
@@ -85,7 +84,7 @@ export function imageUpload(dataToSubmit) {
 }
 
 //서버에 todo 보내기
-export function postToDo(dataToSubmit) {
+export function insertToDo(dataToSubmit) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios
     .post("/api/users/todo", dataToSubmit, {
@@ -93,9 +92,14 @@ export function postToDo(dataToSubmit) {
         Authorization: `${accessToken}`,
       },
     })
-    .then((response) => response.data);
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
   return {
-    type: POST_TODO,
+    type: INSERT_TODO,
     payload: request,
   };
 }
+
+// export function changeToDo();
+// export function removeToDo();
+// export function checkToDo();

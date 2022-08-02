@@ -1,15 +1,15 @@
 import {
   JOIN_USER,
   KAKAO_JOIN,
-  KAKAO_GET_TOKEN,
   NAVER_JOIN,
   LOGIN_USER,
   GET_NEWTOKEN,
   IMAGE_UPLOAD,
-  POST_TODO,
+  INSERT_TODO,
 } from "../_actions/types";
 
 //reducer -> mute state 금지 -> ...state / 값을 변경하는게 아니라 새로운 객체를 반환한다.
+//reducer는 state와 action을 인자로 받는다.
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -30,7 +30,8 @@ export default function (state = {}, action) {
       return { ...state, loginSuccess: action.payload };
     case IMAGE_UPLOAD:
       return { ...state, loginSuccess: action.payload };
-    case POST_TODO:
+
+    case INSERT_TODO:
       return { ...state, loginSuccess: action.payload };
     default:
       return state;

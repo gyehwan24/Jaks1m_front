@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 import Kakao from "./Kakao";
 import Naver from "./Naver";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function Join() {
   //state
   const [email, setEmail] = useState("");
@@ -18,7 +21,7 @@ function Join() {
   const [agree_1, setAgree_1] = useState(false);
   const [agree_2, setAgree_2] = useState(false);
   const [agree_3, setAgree_3] = useState(false);
-  const clearBtnStyle = `style={{display:"none"}}`;
+
   const navigate = useNavigate();
   // const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http://localhost:3000/join/oauth/kakao&response_type=code`;
@@ -51,6 +54,20 @@ function Join() {
     event.preventDefault();
     setAgree_3((current) => !current);
   };
+  const toastSuccess = (text) => {
+    toast.success(text, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
+  const toastError = (text) => {
+    toast.error(text, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1000,
+      hideProgressBar: true,
+    });
+  };
   //회원가입 버튼 눌렀을 때
   const onSubmit = (event) => {
     event.preventDefault();
@@ -82,16 +99,16 @@ function Join() {
         console.log(response);
       });
       navigate("/login");
-      alert("로그인 해주세요.");
+      toastSuccess("회원가입이 완료되었습니다. 로그인 해주세요!");
     }
-    if (email === "") alert("이메일을 입력해야 합니다.");
-    if (name === "") alert("닉네임을 입력해야 합니다.");
-    if (password === "") alert("비밀번호를 입력해야 합니다.");
-    if (confirmPassword === "") alert("비밀번호 확인을 입력해야 합니다.");
+    if (email === "") toastError("이메일을 입력해야합니다.");
+    if (name === "") toastError("닉네임을 입력해야 합니다.");
+    if (password === "") toastError("비밀번호를 입력해야 합니다.");
+    if (confirmPassword === "") toastError("비밀번호 확인을 입력해야 합니다.");
     if (password !== confirmPassword)
-      alert("비밀번호와 비밀번호 확인이 다릅니다!");
+      toastError("비밀번호와 비밀번호 확인이 다릅니다!");
     if (agree_1 === false || agree_2 === false)
-      alert("약관에 동의해야 합니다.");
+      toastError("약관에 동의해야 합니다.");
   };
 
   return (
@@ -225,6 +242,7 @@ function Join() {
           </a>
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
