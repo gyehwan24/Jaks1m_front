@@ -8,7 +8,7 @@ function Naver() {
   const navigate = useNavigate();
   const ACCESS_TOKEN = "ACCESS_TOKEN";
   const USER_NAME = "USER_NAME";
-  const IMG_PROFILE = "IMG_PROFILE";
+  const USER_PROFILE = "USER_PROFILE";
   //인가코드
   let code = new URL(window.location.href).searchParams.get("code");
   //state
@@ -23,7 +23,7 @@ function Naver() {
       console.log(response);
       localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
       localStorage.setItem(USER_NAME, response.payload.responseUser.name);
-      localStorage.setItem(IMG_PROFILE, response.payload.responseUser.img);
+      localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
       axios.defaults.headers.common[
         "AccessToken"
       ] = `${response.payload.accessToken}`;

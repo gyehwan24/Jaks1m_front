@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ImageUploader() {
-  const profileImg = localStorage.getItem("IMG_PROFILE");
+  const profileImg = localStorage.getItem("USER_PROFILE");
   let previewImg = "img/profile_icon.png"; //프리뷰 이미지 기본값.
   if (profileImg) previewImg = profileImg; //사용자가 프로필을 설정했었다면 그 이미지로 설정.
   const [image, setImage] = useState({

@@ -20,7 +20,7 @@ function Kakao() {
   const navigate = useNavigate();
   const ACCESS_TOKEN = "ACCESS_TOKEN";
   const USER_NAME = "USER_NAME";
-  const IMG_PROFILE = "IMG_PROFILE";
+  const USER_PROFILE = "USER_PROFILE";
   //인가코드
   let code = new URL(window.location.href).searchParams.get("code");
 
@@ -34,7 +34,7 @@ function Kakao() {
       console.log(response);
       localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
       localStorage.setItem(USER_NAME, response.payload.responseUser.name);
-      localStorage.setItem(IMG_PROFILE, response.payload.responseUser.img);
+      localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
       axios.defaults.headers.common[
         "accesstoken"
       ] = `Bearer ${response.payload.accessToken}`;

@@ -8,7 +8,7 @@ import search from "../img/search.png";
 function Header() {
   const USER_NAME = "USER_NAME";
   const ACCESS_TOKEN = "ACCESS_TOKEN";
-  const IMG_PROFILE = "IMG_PROFILE";
+  const USER_PROFILE = "USER_PROFILE";
   const userName = localStorage.getItem(USER_NAME); //localStorage에 저장한 userName
   const [menuClicked, setMenuClicked] = useState(false);
   const handleMenuClick = () => {
@@ -19,7 +19,7 @@ function Header() {
     event.preventDefault();
     localStorage.removeItem(USER_NAME);
     localStorage.removeItem(ACCESS_TOKEN);
-    localStorage.removeItem(IMG_PROFILE);
+    localStorage.removeItem(USER_PROFILE);
     alert("로그아웃 되었습니다!");
     navigate("/");
   };

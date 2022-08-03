@@ -37,7 +37,6 @@ export function getToDo() {
 // 삭제할 todo delete하기
 export function removeToDo(remove_id) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  console.log(remove_id);
   const request = customAxios
     .delete("/api/users/todo", {
       headers: {
