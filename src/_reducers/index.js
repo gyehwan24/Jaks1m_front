@@ -5,5 +5,5 @@ import todo from "./todoReducer";
 
 export default combineReducers({
   user,
-  // todo,
+  todo,
 });

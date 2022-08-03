@@ -28,7 +28,7 @@ function MyStudy() {
         <StyledSmallBox left={"5%"}>My schedule</StyledSmallBox>
 
         <StyledSmallBox left={"52%"}>
-          Task to do
+          To Do List
           <ToDo />
         </StyledSmallBox>
       </StyledBackground>

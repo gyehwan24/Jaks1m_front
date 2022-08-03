@@ -7,7 +7,6 @@ import { applyMiddleware, createStore } from "redux";
 import promiseMiddleware from "redux-promise";
 import reduxThunk from "redux-thunk";
 import Reducer from "./_reducers";
-import "./index.css";
 import { CookiesProvider } from "react-cookie";
 
 const createStoreWidthMiddleware = applyMiddleware(

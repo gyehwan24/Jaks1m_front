@@ -5,13 +5,12 @@ import {
   LOGIN_USER,
   GET_NEWTOKEN,
   IMAGE_UPLOAD,
-  INSERT_TODO,
 } from "./types";
 
 import axios from "axios";
 import { customAxios } from "../customAxios";
 
-//Action Creator 는 객체를 반환한다. (type, payload)
+//Action Creator 는 객체를 반환한다. action(type, payload)
 
 export function joinUser(dataToSubmit) {
   // axios를 이용해 login 요청을 보내고 response.data를 반환하여 request에 넣어준다.
@@ -82,24 +81,3 @@ export function imageUpload(dataToSubmit) {
     payload: request,
   };
 }
-
-//서버에 todo 보내기
-export function insertToDo(dataToSubmit) {
-  const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  const request = customAxios
-    .post("/api/users/todo", dataToSubmit, {
-      headers: {
-        Authorization: `${accessToken}`,
-      },
-    })
-    .then((response) => response.data)
-    .catch((error) => console.log(error));
-  return {
-    type: INSERT_TODO,
-    payload: request,
-  };
-}
-
-// export function changeToDo();
-// export function removeToDo();
-// export function checkToDo();
