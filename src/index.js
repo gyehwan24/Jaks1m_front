@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import App from "./App";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <CookiesProvider>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         <Provider
           store={createStoreWidthMiddleware(
             Reducer,
@@ -28,7 +28,7 @@ root.render(
         >
           <App />
         </Provider>
-      </BrowserRouter>
+      </HashRouter>
     </CookiesProvider>
   </React.StrictMode>
 );
