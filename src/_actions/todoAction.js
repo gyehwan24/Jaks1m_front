@@ -1,4 +1,4 @@
-import { INSERT_TODO, GET_TODO } from "./types";
+import { INSERT_TODO, GET_TODO, REMOVE_TODO } from "./types";
 import axios from "axios";
 import { customAxios } from "../customAxios";
 
@@ -34,6 +34,25 @@ export function getToDo() {
     payload: request,
   };
 }
+// 삭제할 todo delete하기
+export function removeToDo(remove_id) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  console.log(remove_id);
+  const request = customAxios
+    .delete("/api/users/todo", {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+      data: {
+        id: remove_id,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+  return {
+    type: REMOVE_TODO,
+    payload: request,
+  };
+}
 // export function changeToDo();
-// export function removeToDo();
 // export function checkToDo();

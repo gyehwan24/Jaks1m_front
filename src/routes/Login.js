@@ -42,6 +42,7 @@ function Login() {
         console.log(response);
         localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
+        localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
         setCookie("refreshToken", response.payload.refreshToken);
         toastSuccess("로그인 되었습니다!");
 

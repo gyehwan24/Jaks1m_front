@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ImgUploader from "./ImgUploader";
 function Profile(prop) {
-  const profileImg = localStorage.getItem("IMG_PROFILE");
+  const profileImg = localStorage.getItem("USER_PROFILE");
   return (
     <div>
       <Link to="/profile">

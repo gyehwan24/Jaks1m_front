@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { insertToDo, getToDo } from "../_actions/todoAction";
+import { insertToDo, getToDo, removeToDo } from "../_actions/todoAction";
 function ToDo() {
   const dispatch = useDispatch();
   const [todo, setToDo] = useState(""); //todo 1개단위
   const [todos, setTodos] = useState([]); //todo 배열
   const [todoList, setToDoList] = useState([]); //todo list
+
+  const handleInputToDo = (event) => {
+    event.preventDefault();
+    setToDo(event.target.value);
+  };
 
   const handleSubmitToDo = (event) => {
     event.preventDefault();
@@ -16,22 +21,20 @@ function ToDo() {
       isChecked: false,
     };
     setTodos((currentArray) => [inputTodo, ...currentArray]);
-    dispatch(insertToDo(inputTodo)).then((response) => {
-      console.log(response);
-    });
-
+    dispatch(insertToDo(inputTodo)).then((response) => {});
     setToDo("");
   };
 
   useEffect(() => {
     dispatch(getToDo()).then((response) => {
       setToDoList(response.payload.toDos);
-      console.log(response.payload.toDos);
     });
   }, [todos]);
-  const handleInputToDo = (event) => {
-    event.preventDefault();
-    setToDo(event.target.value);
+
+  const handleRemoveToDo = (id) => {
+    dispatch(removeToDo(id)).then((response) => {
+      setTodos(response.payload.toDos);
+    });
   };
   return (
     <div>
@@ -61,7 +64,11 @@ function ToDo() {
           todoList.map((item) => (
             <div>
               <li key={item._id}>
+                <input type="checkbox" />
                 {item.content} ({item.date}) /checked:{item.isChecked}
+                <button onClick={() => handleRemoveToDo(item._id)}>
+                  remove
+                </button>
               </li>
             </div>
           ))}

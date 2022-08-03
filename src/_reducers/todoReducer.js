@@ -9,9 +9,11 @@ import {
 export default function (state = {}, action) {
   switch (action.type) {
     case INSERT_TODO:
-      return { ...state, loginSuccess: action.payload };
+      return { ...state, Success: action.payload };
     case GET_TODO:
-      return { ...state, loginSuccess: action.payload };
+      return { ...state, Success: action.payload };
+    case REMOVE_TODO:
+      return { ...state, Success: action.payload };
     default:
       return state;
   }
