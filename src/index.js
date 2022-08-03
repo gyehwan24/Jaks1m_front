@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <CookiesProvider>
-      <HashRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Provider
           store={createStoreWidthMiddleware(
             Reducer,
@@ -28,7 +28,7 @@ root.render(
         >
           <App />
         </Provider>
-      </HashRouter>
+      </BrowserRouter>
     </CookiesProvider>
   </React.StrictMode>
 );
