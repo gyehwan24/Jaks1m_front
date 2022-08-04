@@ -12,6 +12,8 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import kakao_logo from "../img/Kakao_logo.png";
+import naver_logo from "../img/Naver_logo.png";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPw] = useState("");
@@ -146,7 +148,7 @@ function Login() {
           }}
         >
           <a href={naverUrl}>
-            <img src="/img/Naver_logo.png" style={{ width: "60px" }} />
+            <img src={naver_logo} style={{ width: "60px" }} />
           </a>
         </button>
         <button
@@ -157,7 +159,7 @@ function Login() {
           }}
         >
           <a href={kakaoUrl}>
-            <img src="/img/Kakao_logo.png" style={{ width: "60px" }} />
+            <img src={kakao_logo} style={{ width: "60px" }} />
           </a>
         </button>
       </div>

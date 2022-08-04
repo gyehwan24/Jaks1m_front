@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
+import logo from "../img/jaks1m_logo.jpeg";
 function Logo() {
   return (
     <div>
       <Link to="/">
-        <img
-          src="img/jaks1m_logo.jpeg"
-          style={{ width: "150px", height: "150px" }}
-        />
+        <img src={logo} style={{ width: "150px", height: "150px" }} />
       </Link>
     </div>
   );

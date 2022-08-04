@@ -13,6 +13,6 @@ export const IMAGE_UPLOAD = "IMAGE_UPLOAD";
 //ToDo
 export const INSERT_TODO = "INSERT_TODO";
 export const GET_TODO = "GET_TODO";
-export const CHANGE_TODO = "CHANGE_TODO";
+export const EDIT_TODO = "EDIT_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const CHECK_TODO = "CHECK_TODO";

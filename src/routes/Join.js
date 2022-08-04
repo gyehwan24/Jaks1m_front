@@ -11,7 +11,9 @@ import Naver from "./Naver";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import kakao_logo from "../img/Kakao_logo.png";
+import naver_logo from "../img/Naver_logo.png";
+import jaksim from "../img/jaks1m_logo.jpeg";
 function Join() {
   //state
   const [email, setEmail] = useState("");
@@ -226,7 +228,7 @@ function Join() {
           }}
         >
           <a href={naverUrl}>
-            <img src="/img/Naver_logo.png" style={{ width: "60px" }} />
+            <img src={naver_logo} style={{ width: "60px" }} />
           </a>
         </button>
 
@@ -238,7 +240,7 @@ function Join() {
           }}
         >
           <a href={kakaoUrl}>
-            <img src="/img/Kakao_logo.png" style={{ width: "60px" }} />
+            <img src={kakao_logo} style={{ width: "60px" }} />
           </a>
         </button>
       </div>

@@ -1,4 +1,10 @@
-import { INSERT_TODO, GET_TODO, REMOVE_TODO } from "./types";
+import {
+  INSERT_TODO,
+  GET_TODO,
+  REMOVE_TODO,
+  CHECK_TODO,
+  EDIT_TODO,
+} from "./types";
 import axios from "axios";
 import { customAxios } from "../customAxios";
 
@@ -53,5 +59,39 @@ export function removeToDo(remove_id) {
     payload: request,
   };
 }
-// export function changeToDo();
-// export function checkToDo();
+//todo 수정하기
+export function editToDo(edit_id, edit_content) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  const request = customAxios
+    .put("/api/users/todo", {
+      data: {
+        id: edit_id,
+        content: edit_content,
+      },
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+  return {
+    type: EDIT_TODO,
+    payload: request,
+  };
+}
+//todo check상태 변경
+export function checkToDo(check_id) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  const request = customAxios
+    .put("/api/users/todo", check_id, {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+  return {
+    type: CHECK_TODO,
+    payload: request,
+  };
+}
