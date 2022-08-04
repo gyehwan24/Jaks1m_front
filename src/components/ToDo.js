@@ -15,6 +15,7 @@ function ToDo() {
   const [todo, setToDo] = useState(""); //todo 1개단위
   const [todos, setTodos] = useState([]); //todo 배열
   const [todoList, setToDoList] = useState([]); //todo list
+  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     dispatch(getToDo()).then((response) => {
@@ -49,9 +50,9 @@ function ToDo() {
   };
 
   //todo check handler
-  const handleCheckToDo = (id) => {
+  const handleCheckToDo = (id, check) => {
     dispatch(
-      checkToDo(id).then((response) => {
+      checkToDo(id, check).then((response) => {
         setTodos(response.payload.toDos);
       })
     );
@@ -72,33 +73,21 @@ function ToDo() {
           onChange={handleInputToDo}
           type="text"
           value={todo}
-          placeholder="write your to do!"
+          placeholder="할 일을 입력하세요"
         />
         <button type="submit">Add</button>
       </form>
-      <ul>
-        {/* {todos.map((item) => (
-          <div>
-            <li key={item.date}>
-              <input type="checkbox" />
-              {item.text}
-              <button>remove</button>
-              <button>change</button>
-            </li>
-          </div>
-        ))} */}
-      </ul>
       <ul>
         {todoList &&
           todoList.map((item) => (
             <li key={item._id}>
               <input
-                onClick={() => handleCheckToDo(item._id)}
+                onClick={() => handleCheckToDo(item._id, item.isChecked)}
                 type="checkbox"
               />
               {item.content} ({item.date})
-              <button onClick={() => handleEditToDo(item._id)}>edit</button>
-              <button onClick={() => handleRemoveToDo(item._id)}>remove</button>
+              <button onClick={() => handleEditToDo(item._id)}>수정</button>
+              <button onClick={() => handleRemoveToDo(item._id)}>삭제</button>
             </li>
           ))}
       </ul>

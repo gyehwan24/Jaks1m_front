@@ -80,10 +80,14 @@ export function editToDo(edit_id, edit_content) {
   };
 }
 //todo check상태 변경
-export function checkToDo(check_id) {
+export function checkToDo(check_id, check) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios
-    .put("/api/users/todo", check_id, {
+    .put("/api/users/todo", {
+      data: {
+        id: check_id,
+        isChecked: check,
+      },
       headers: {
         Authorization: `${accessToken}`,
       },

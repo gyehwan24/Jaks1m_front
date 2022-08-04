@@ -10,8 +10,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+// import { toast, ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 import kakao_logo from "../img/Kakao_logo.png";
 import naver_logo from "../img/Naver_logo.png";
 function Login() {
@@ -55,33 +55,20 @@ function Login() {
           "RefreshToken"
         ] = `${response.payload.refreshToken}`;
 
-        toastSuccess("로그인 되었습니다!");
+        alert("로그인 되었습니다!");
         navigate("/");
       });
     }
 
-    if (email === "") toastError("이메일을 입력해야 합니다.");
-    if (password === "") toastError("비밀번호를 입력해야 합니다.");
+    if (email === "") alert("이메일을 입력해야 합니다.");
+    if (password === "") alert("비밀번호를 입력해야 합니다.");
   };
 
   const handleAutoLogin = (event) => {
     event.preventDefault();
     setAutoLogin((current) => !current);
   };
-  const toastSuccess = (text) => {
-    toast.success(text, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 1000,
-      hideProgressBar: true,
-    });
-  };
-  const toastError = (text) => {
-    toast.error(text, {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 1000,
-      hideProgressBar: true,
-    });
-  };
+
   return (
     <div className="loginjoin">
       <Logo />
@@ -180,7 +167,6 @@ function Login() {
           회원가입하기
         </button>
       </Link>
-      <ToastContainer />
     </div>
   );
 }

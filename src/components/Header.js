@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import search from "../img/search.png";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function Header() {
   const USER_NAME = "USER_NAME";
@@ -23,11 +21,7 @@ function Header() {
     localStorage.removeItem(USER_NAME);
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(USER_PROFILE);
-    toast.success("로그아웃 되었습니다!", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 1000,
-      hideProgressBar: true,
-    });
+    alert("로그아웃 되었습니다.");
     navigate("/");
   };
   return (
@@ -113,7 +107,6 @@ function Header() {
           )}
         </nav>
       </header>
-      <ToastContainer />
     </div>
   );
 }
