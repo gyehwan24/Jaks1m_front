@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import {
   insertToDo,
   getToDo,
@@ -56,7 +57,7 @@ function ToDo() {
     );
   };
 
-  //todo edit handler
+  //todo 수정 handler
   const handleEditToDo = (id, content) => {
     dispatch(
       editToDo(id, content).then((response) => {

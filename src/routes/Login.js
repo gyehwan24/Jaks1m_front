@@ -46,7 +46,6 @@ function Login() {
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
         localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
         setCookie("refreshToken", response.payload.refreshToken);
-        toastSuccess("로그인 되었습니다!");
 
         //API 요청마다 헤더에 accessToken 담아 보내도록 세팅
         axios.defaults.headers.common[
@@ -56,6 +55,7 @@ function Login() {
           "RefreshToken"
         ] = `${response.payload.refreshToken}`;
 
+        toastSuccess("로그인 되었습니다!");
         navigate("/");
       });
     }

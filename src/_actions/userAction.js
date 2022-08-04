@@ -55,6 +55,7 @@ export function loginUser(dataTosubmit) {
   };
 }
 
+//accessToken 만료시 새로운 토큰 발급
 export function getNewToken(dataTosubmit) {
   const request = customAxios
     .post("/api/auth/refresh", dataTosubmit)
