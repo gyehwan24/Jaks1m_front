@@ -8,6 +8,7 @@ import "./css/Calendar.css";
 function Calendar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const now = new Date();
   const [today, setToday] = useState(now.getDate()); //오늘 날짜
   //이달의 마지막 날짜
@@ -15,9 +16,19 @@ function Calendar() {
     new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
   );
   const [daylist, setDaylist] = useState([]); //표시할 날짜 리스트
+  // useEffect(() => {
+  //   const year = now.getFullYear();
+  //   const month = String(now.getMonth() + 1).padStart(2, "0");
+  //   const day = String(today).padStart(2, "0");
+  //   let inputDate = `${year}${month}${day}`;
+  //   navigate(`/category/mystudy/${inputDate}`);
+  // }, [today]);
+
   const onClickDayList = (date) => {
-    let inputDate = `${now.getFullYear()}-${now.getMonth() + 1}-${date}`;
-    console.log(inputDate);
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(date).padStart(2, "0");
+    let inputDate = `${year}${month}${day}`;
     dispatch(getDateToDo(inputDate)).then((response) => console.log(response));
     navigate(`/category/mystudy/${inputDate}`);
   };
@@ -46,14 +57,21 @@ function Calendar() {
         <span>
           <Year format={"YYYY"} ticking={true} />년
         </span>
+        <span> </span>
         <span>
           <Month format={"M"} ticking={true} />월
         </span>
       </p>
       <ul className="dayList">
         {daylist.map((item) => (
-          <button onClick={() => onClickDayList(item.date)} className="dayBtn">
-            <li key={item.date} className="date">
+          <button
+            onClick={() => onClickDayList(item.date)}
+            className={today === item.date ? "todayBtn" : "dayBtn"}
+          >
+            <li
+              key={item.date}
+              className={today > item.date ? "before_date" : "date"}
+            >
               {item.date}
             </li>
             <li key={item.dayOfWeek} className="dayOfWeek">

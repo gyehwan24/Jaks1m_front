@@ -41,6 +41,7 @@ export function getToDo() {
     payload: request,
   };
 }
+//서버로부터 선택한 date의 todo 받아오기 형식: ex)2022-08-05
 export function getDateToDo(date) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios

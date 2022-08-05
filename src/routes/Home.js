@@ -9,6 +9,7 @@ import home1 from "../img/home_1.png";
 import home2 from "../img/home_2.png";
 import home3 from "../img/home_3.png";
 import home4 from "../img/home_4.png";
+
 const StyledImg = styled.img`
   position: absolute;
   width: 100%;

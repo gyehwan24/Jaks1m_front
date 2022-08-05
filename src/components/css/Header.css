@@ -52,7 +52,7 @@ ul li {
   background-color: white;
   border: 1px solid #a9a9a9;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  transition: 0.5s;
+  transition: 0.4s;
   /* transform: translateY(px); */
 }
 .menu_item_off {
@@ -187,28 +187,3 @@ h2.logo {
   left: 210px;
   transition: 0.3s;
 } */
-
-.todo_off {
-  appearance: none;
-  border-color: transparent;
-  background-image: url("/src/img/todo_off.png");
-  background-size: 100%;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  width: 1.1rem;
-  height: 1.1rem;
-  cursor: pointer;
-  margin-right: 7px;
-}
-.todo_on {
-  appearance: none;
-  border-color: transparent;
-  background-image: url("/src/img/todo_on.png");
-  background-size: 100%;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  width: 1.1rem;
-  height: 1.1rem;
-  cursor: pointer;
-  margin-right: 7px;
-}
