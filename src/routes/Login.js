@@ -20,8 +20,8 @@ function Login() {
   const USER_NAME = "USER_NAME";
   const USER_PROFILE = "USER_PROFILE";
   const [cookies, setCookie, removeCookie] = useCookies(["myCookie"]);
-  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=https://jaksim.netlify.app/join/oauth/kakao&response_type=code`;
-  const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=https://jaksim.netlify.app/join/oauth/naver&state=jaksim`;
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=https://jaksimharu.netlify.app/join/oauth/kakao&response_type=code`;
+  const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=https://jaksimharu.netlify.app/join/oauth/naver&state=jaksim`;
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
   };
