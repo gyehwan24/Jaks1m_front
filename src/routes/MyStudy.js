@@ -17,7 +17,7 @@ const StyledSmallBox = styled.div`
   width: 45%;
   height: 602px;
   left: ${(props) => props.left};
-  top: 391px;
+  top: 300px;
   background: #d9d9d9;
   border-radius: 56px;
 `;
@@ -27,9 +27,9 @@ function MyStudy() {
     <div>
       <StyledBackground>
         <Calendar />
-        <StyledSmallBox left={"5%"}>My schedule</StyledSmallBox>
+        <StyledSmallBox left={"3.5%"}>My schedule</StyledSmallBox>
 
-        <StyledSmallBox left={"52%"}>
+        <StyledSmallBox left={"51.5%"}>
           To Do List
           <ToDo />
         </StyledSmallBox>

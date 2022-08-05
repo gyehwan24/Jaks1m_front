@@ -1,0 +1,53 @@
+.year_month {
+  position: absolute;
+  width: 134px;
+  height: 32px;
+  left: 97px;
+  top: 20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 32px;
+  color: black;
+}
+
+.dayList {
+  display: flex;
+  position: absolute;
+  left: -5px;
+  top: 70px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 29px;
+  line-height: 34px;
+
+  /* background-color: rgba(217, 217, 217, 0.5); */
+}
+
+.dayBtn {
+  border: 0;
+  padding-top: 20px;
+  padding-left: 60px;
+  padding-right: 55px;
+  background-color: rgba(217, 217, 217, 0);
+  cursor: pointer;
+}
+.date {
+  padding-bottom: 20px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 29px;
+  line-height: 34px;
+  color: black;
+}
+.dayOfWeek {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 29px;
+  line-height: 34px;
+  color: #999999;
+}

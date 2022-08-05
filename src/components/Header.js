@@ -1,5 +1,5 @@
 //모든 페이지 상단에 위치할 헤더 컴포넌트. 로고와 메뉴바, 프로필, 로그인 등
-import "./Header.css";
+import "./css/Header.css";
 import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";

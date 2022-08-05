@@ -3,9 +3,11 @@ import Year from "react-live-clock";
 import Month from "react-live-clock";
 import { useDispatch } from "react-redux";
 import { getDateToDo } from "../_actions/todoAction";
-
+import { Link, useNavigate } from "react-router-dom";
+import "./css/Calendar.css";
 function Calendar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const now = new Date();
   const [today, setToday] = useState(now.getDate()); //오늘 날짜
   //이달의 마지막 날짜
@@ -17,6 +19,7 @@ function Calendar() {
     let inputDate = `${now.getFullYear()}-${now.getMonth() + 1}-${date}`;
     console.log(inputDate);
     dispatch(getDateToDo(inputDate)).then((response) => console.log(response));
+    navigate(`/category/mystudy/${inputDate}`);
   };
 
   useEffect(() => {
@@ -39,7 +42,7 @@ function Calendar() {
 
   return (
     <div>
-      <p>
+      <p className="year_month">
         <span>
           <Year format={"YYYY"} ticking={true} />년
         </span>
@@ -47,11 +50,16 @@ function Calendar() {
           <Month format={"M"} ticking={true} />월
         </span>
       </p>
-      <ul>
+      <ul className="dayList">
         {daylist.map((item) => (
-          <li key={item.date} onClick={() => onClickDayList(item.date)}>
-            {item.date}({item.dayOfWeek})
-          </li>
+          <button onClick={() => onClickDayList(item.date)} className="dayBtn">
+            <li key={item.date} className="date">
+              {item.date}
+            </li>
+            <li key={item.dayOfWeek} className="dayOfWeek">
+              {item.dayOfWeek}
+            </li>
+          </button>
         ))}
       </ul>
     </div>
