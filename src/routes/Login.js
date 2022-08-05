@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styled from "styled-components";
+
 import Logo from "../components/Logo";
 import { Link } from "react-router-dom";
-import Checkbox from "../components/Checkbox";
+
 import "./LoginJoin.css";
-import { LOGIN_USER } from "../_actions/types";
+
 import { getNewToken, loginUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,7 @@
-import Header from "../components/Header";
 import styled from "styled-components";
 import ToDo from "../components/ToDo";
+import Header from "../components/Header";
+import Calendar from "../components/Calendar";
 const StyledBackground = styled.div`
   position: absolute;
   width: 1440px;
@@ -25,6 +26,7 @@ function MyStudy() {
   return (
     <div>
       <StyledBackground>
+        <Calendar />
         <StyledSmallBox left={"5%"}>My schedule</StyledSmallBox>
 
         <StyledSmallBox left={"52%"}>

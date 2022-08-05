@@ -11,7 +11,9 @@ import MyStudy from "./routes/MyStudy";
 function App() {
   return (
     <Routes>
-      <Route path="/category/mystudy" element={<MyStudy />} />
+      <Route path="/category/mystudy" element={<MyStudy />}>
+        <Route path=":date" element={<MyStudy />} />
+      </Route>
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/findpw" element={<FindPw />} />
       <Route path="/join/oauth/naver" element={<Naver />} />

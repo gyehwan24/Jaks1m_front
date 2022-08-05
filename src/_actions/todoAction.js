@@ -1,6 +1,7 @@
 import {
   INSERT_TODO,
   GET_TODO,
+  GET_DATE_TODO,
   REMOVE_TODO,
   CHECK_TODO,
   EDIT_TODO,
@@ -40,6 +41,21 @@ export function getToDo() {
     payload: request,
   };
 }
+export function getDateToDo(date) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  const request = customAxios
+    .get(`/api/users/todo/${date}`, {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+  return {
+    type: GET_DATE_TODO,
+    payload: request,
+  };
+}
 // 삭제할 todo delete하기
 export function removeToDo(remove_id) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
@@ -60,34 +76,34 @@ export function removeToDo(remove_id) {
   };
 }
 //todo 수정하기
-export function editToDo(edit_id, edit_content) {
-  const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  const request = customAxios
-    .put("/api/users/todo", {
-      data: {
-        id: edit_id,
-        content: edit_content,
-      },
-      headers: {
-        Authorization: `${accessToken}`,
-      },
-    })
-    .then((response) => response.data)
-    .catch((error) => console.log(error));
-  return {
-    type: EDIT_TODO,
-    payload: request,
-  };
-}
+// export function editToDo(edit_id, edit_content) {
+//   const accessToken = localStorage.getItem("ACCESS_TOKEN");
+//   const request = customAxios
+//     .put("/api/users/todo", {
+//       data: {
+//         id: edit_id,
+//         content: edit_content,
+//       },
+//       headers: {
+//         Authorization: `${accessToken}`,
+//       },
+//     })
+//     .then((response) => response.data)
+//     .catch((error) => console.log(error));
+//   return {
+//     type: EDIT_TODO,
+//     payload: request,
+//   };
+// }
 //todo check상태 변경
-export function checkToDo(check_id, check) {
+export function checkToDo(check_id, is_check) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  let data = {
+    id: check_id,
+    isChecked: is_check,
+  };
   const request = customAxios
-    .put("/api/users/todo", {
-      data: {
-        id: check_id,
-        isChecked: check,
-      },
+    .put("/api/users/todo", data, {
       headers: {
         Authorization: `${accessToken}`,
       },

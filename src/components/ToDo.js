@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
+import "./Header.css";
 import {
   insertToDo,
   getToDo,
@@ -16,7 +16,7 @@ function ToDo() {
   const [todos, setTodos] = useState([]); //todo 배열
   const [todoList, setToDoList] = useState([]); //todo list
   const [edit, setEdit] = useState(false);
-
+  const [isChecked, setIsChecked] = useState(false); //check 상태
   useEffect(() => {
     dispatch(getToDo()).then((response) => {
       setToDoList(response.payload.toDos);
@@ -51,21 +51,20 @@ function ToDo() {
 
   //todo check handler
   const handleCheckToDo = (id, check) => {
-    dispatch(
-      checkToDo(id, check).then((response) => {
-        setTodos(response.payload.toDos);
-      })
-    );
+    console.log(id, check);
+
+    dispatch(checkToDo(id, check)).then((response) => {
+      setTodos(response.payload.toDos);
+      console.log(response);
+    });
   };
 
   //todo 수정 handler
-  const handleEditToDo = (id, content) => {
-    dispatch(
-      editToDo(id, content).then((response) => {
-        setTodos(response.payload.toDos);
-      })
-    );
-  };
+  // const handleEditToDo = (id, content) => {
+  //   dispatch(editToDo(id, content)).then((response) => {
+  //     setTodos(response.payload.toDos);
+  //   });
+  // };
   return (
     <div>
       <form onSubmit={handleSubmitToDo}>
@@ -84,9 +83,10 @@ function ToDo() {
               <input
                 onClick={() => handleCheckToDo(item._id, item.isChecked)}
                 type="checkbox"
+                className={item.isChecked ? "todo_on" : "todo_off"}
               />
               {item.content} ({item.date})
-              <button onClick={() => handleEditToDo(item._id)}>수정</button>
+              {/* <button onClick={() => handleEditToDo(item._id)}>수정</button> */}
               <button onClick={() => handleRemoveToDo(item._id)}>삭제</button>
             </li>
           ))}
