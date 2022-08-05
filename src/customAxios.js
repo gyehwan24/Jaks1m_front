@@ -16,9 +16,9 @@ import axios from "axios";
 
 export const customAxios = axios.create({
   headers: {
-    "Access-Control-Allow-Origin": "http://jaksimharu.shop:8800",
+    "Access-Control-Allow-Origin": "http://43.200.113.236:8800",
   },
-  baseURL: "http://jaksimharu.shop:8800",
+  baseURL: "http://43.200.113.236:8800",
   withCredentials: true,
 });
 
