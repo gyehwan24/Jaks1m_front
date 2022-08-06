@@ -47,7 +47,7 @@ function ImageUploader() {
       dispatch(imageUpload(formData)).then((response) => {
         console.log(response);
         alert("사진이 업로드 되었습니다!");
-        localStorage.setItem("IMG_PROFILE", response.payload.updatedImg);
+        localStorage.setItem("USER_PROFILE", response.payload.updatedImg);
       });
     } else {
       alert("사진을 등록하세요!");
