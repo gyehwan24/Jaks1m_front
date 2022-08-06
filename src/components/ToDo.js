@@ -110,7 +110,7 @@ function ToDo() {
       <ul>
         {todoList &&
           todoList.map((item) => (
-            <li key={item._id} style={{ marginBottom: "20px" }}>
+            <li key={item._id} className="todoList">
               <input
                 onClick={() => handleCheckToDo(item._id, item.isChecked)}
                 type="checkbox"
