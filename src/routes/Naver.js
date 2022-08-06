@@ -31,8 +31,7 @@ function Naver() {
       //   "RefreshToken"
       // ] = `${response.payload.refreshToken}`;
     });
-    alert("네이버 회원가입이 완료되었습니다. 로그인 해주세요!");
-    navigate("/login");
+    navigate("/");
   }, []);
 
   return (
