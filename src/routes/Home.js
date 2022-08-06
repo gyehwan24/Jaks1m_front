@@ -26,6 +26,7 @@ function Home() {
 
   useEffect(() => {
     setGreeting(`${userName}님 안녕하세요!`);
+    // window.location.replace("/");
   }, [userName]);
 
   return (

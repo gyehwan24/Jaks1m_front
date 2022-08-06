@@ -3,7 +3,7 @@ import "./css/Header.css";
 import Profile from "../components/Profile";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import search from "../img/search.png";
 
 function Header() {
@@ -24,6 +24,7 @@ function Header() {
     alert("로그아웃 되었습니다.");
     navigate("/");
   };
+
   return (
     <div>
       <header>

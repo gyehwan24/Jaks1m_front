@@ -42,7 +42,8 @@ function Kakao() {
       //   "refreshtoken"
       // ] = `Bearer ${response.payload.refreshToken}`;
     });
-    navigate("/");
+    alert("카카오 회원가입이 완료되었습니다. 로그인 해주세요!");
+    navigate("/login");
   }, []);
 
   return (

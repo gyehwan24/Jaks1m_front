@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ImgUploader from "./ImgUploader";
+import profile_default from "../img/profile_icon.png";
 function Profile(prop) {
   const profileImg = localStorage.getItem("USER_PROFILE");
   return (
@@ -18,7 +19,7 @@ function Profile(prop) {
           />
         ) : (
           <img
-            src="img/profile_icon.png"
+            src={profile_default}
             style={{
               width: "32px",
               heigth: "32px",

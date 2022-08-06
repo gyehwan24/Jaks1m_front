@@ -14,6 +14,8 @@ import kakao_logo from "../img/Kakao_logo.png";
 import naver_logo from "../img/Naver_logo.png";
 import jaksim from "../img/jaks1m_logo.jpeg";
 function Join() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   //state
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -23,12 +25,9 @@ function Join() {
   const [agree_2, setAgree_2] = useState(false);
   const [agree_3, setAgree_3] = useState(false);
 
-  const navigate = useNavigate();
-  // const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=http%3A%2F%2F13.125.232.250%3A8800%2Fapi%2Fauth%2Fkakao%2Flogin&response_type=code`;
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_KEY}&redirect_uri=https://jaksimharu.netlify.app/join/oauth/kakao&response_type=code`;
   const naverUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.REACT_APP_NAVER_KEY}&redirect_uri=https://jaksimharu.netlify.app/join/oauth/naver&state=jaksim`;
 
-  const dispatch = useDispatch();
   //handler function
   const handleInputEmail = (event) => {
     setEmail(event.target.value);
@@ -68,12 +67,6 @@ function Join() {
       agree_1 === true &&
       agree_2 === true
     ) {
-      alert(
-        `email: ${email}
-        name: ${name}
-        pw: ${password}
-        confirmpw: ${confirmPassword}`
-      );
       let body = {
         email: email,
         name: name,

@@ -22,3 +22,46 @@
   cursor: pointer;
   margin-right: 7px;
 }
+.content {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 32px;
+  color: #000000;
+}
+.done_content {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 32px;
+  text-decoration-line: line-through;
+  color: #bebebe;
+}
+.title {
+  width: 550px;
+  margin-left: 70px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 29px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 3.5px solid black;
+}
+.todoInput {
+  border-color: transparent;
+  border-bottom: 3px solid #bebebe;
+  background-color: #99999900;
+  margin-left: 68px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+}
+.todoAddBtn {
+  border: 0;
+  background-color: #99999900;
+}

@@ -93,15 +93,20 @@ function ToDo() {
 
   return (
     <div>
+      <h3 className="title">To Do List</h3>
       <form onSubmit={handleSubmitToDo}>
         <input
           onChange={handleInputToDo}
           type="text"
           value={todo}
           placeholder="할 일을 입력하세요"
+          className="todoInput"
         />
-        <button type="submit">Add</button>
+        <button type="submit" className="todoAddBtn">
+          ➕
+        </button>
       </form>
+
       <ul>
         {todoList &&
           todoList.map((item) => (
@@ -111,7 +116,9 @@ function ToDo() {
                 type="checkbox"
                 className={item.isChecked ? "todo_on" : "todo_off"}
               />
-              {item.content} ({item.date})
+              <span className={item.isChecked ? "done_content" : "content"}>
+                {item.content} ({item.date})
+              </span>
               {/* <button onClick={() => handleEditToDo(item._id)}>수정</button> */}
               <button onClick={() => handleRemoveToDo(item._id)}>삭제</button>
             </li>
