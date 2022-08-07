@@ -14,12 +14,12 @@ import {
 function ToDo() {
   const dispatch = useDispatch();
   const params = useParams();
-  let day_todo = params.date;
+  let click_day = params.date;
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
-  let inputDate = `${year}${month}${day}`;
+  let inputDate = click_day === undefined ? `${year}${month}${day}` : click_day;
   //state
   const [todo, setToDo] = useState(""); //todo 1개단위
   const [todos, setTodos] = useState([]); //todo 배열
@@ -39,10 +39,6 @@ function ToDo() {
       alert("할 일을 입력하세요!");
       return; //todo가 빈칸이면 submit X
     }
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    let inputDate = `${year}${month}${day}`;
     let inputTodo = {
       date: inputDate,
       content: todo,
@@ -54,7 +50,6 @@ function ToDo() {
     });
     setToDo("");
     dispatch(getDateToDo(inputDate)).then((response) => {
-      console.log(response);
       setToDoList(response.payload.toDos);
     });
   };
@@ -80,18 +75,18 @@ function ToDo() {
   //   });
   // };
   useEffect(() => {
-    if (day_todo === undefined) {
+    if (click_day === undefined) {
       dispatch(getDateToDo(inputDate)).then((response) => {
         console.log(response);
         setToDoList(response.payload.toDos);
       });
     } else {
-      dispatch(getDateToDo(day_todo)).then((response) => {
+      dispatch(getDateToDo(click_day)).then((response) => {
         console.log(response);
         setToDoList(response.payload.toDos);
       });
     }
-  }, [todos, day_todo]);
+  }, [todos, click_day]);
 
   return (
     <div>

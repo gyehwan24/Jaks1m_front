@@ -1,17 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { insertSchedule, getSchedule } from "../_actions/scheduleAction";
+import {
+  insertSchedule,
+  getSchedule,
+  removeSchedule,
+} from "../_actions/scheduleAction";
 import "./css/Schedule.css";
 function Schedule() {
   const dispatch = useDispatch();
   const params = useParams();
-  let day_todo = params.date; //url에 붙은 date 변수
+  let click_day = params.date; //url에 붙은 date 변수
   const now = new Date();
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
-  let inputDate = `${year}${month}${day}`;
+  let inputDate = click_day === undefined ? `${year}${month}${day}` : click_day;
   const hourList = [
     "0",
     "1",
@@ -45,6 +49,7 @@ function Schedule() {
   const [endHour, setEndHour] = useState("");
   const [endMinute, setEndMinute] = useState("");
   const [schedule, setSchedule] = useState("");
+  const [schedules, setSchedules] = useState([]);
   const [scheduleList, setScheduleList] = useState([]); //서버에서 받는 schedule list
   const handleStartHour = (e) => {
     setStartHour(e.target.value);
@@ -78,6 +83,7 @@ function Schedule() {
       content: schedule,
       isChecked: false,
     };
+    setSchedules((currentArray) => [...currentArray, inputSchedule]);
     dispatch(insertSchedule(inputSchedule, inputDate)).then((response) => {
       console.log(response);
     });
@@ -91,6 +97,22 @@ function Schedule() {
     setEndHour("");
     setEndMinute("");
   };
+  const handleRemoveSchedule = (id) => {
+    dispatch(removeSchedule(id)).then((response) => {
+      setSchedules(response.payload.schedules);
+    });
+  };
+  useEffect(() => {
+    if (click_day === undefined) {
+      dispatch(getSchedule(inputDate)).then((response) => {
+        setScheduleList(response.payload.schedules);
+      });
+    } else {
+      dispatch(getSchedule(click_day)).then((response) => {
+        setScheduleList(response.payload.schedules);
+      });
+    }
+  }, [schedules, click_day]);
   return (
     <div>
       <h3 className="title">My Schedule</h3>
@@ -132,17 +154,23 @@ function Schedule() {
           placeholder="스케줄을 입력하세요"
           className="scheduleInput"
         />
-        <button type="submit" className="todoBtn">
+        <button type="submit" className="scheduleBtn">
           ➕
         </button>
       </form>
       <ul>
         {scheduleList &&
           scheduleList.map((item) => (
-            <li key={item._id}>
-              <span>
+            <li key={item._id} className="scheduleList">
+              <span className={item.isChecked ? "done_content" : "content"}>
                 {item.time} {item.content}
               </span>
+              <button
+                onClick={() => handleRemoveSchedule(item._id)}
+                className="scheduleBtn"
+              >
+                ❌
+              </button>
             </li>
           ))}
       </ul>

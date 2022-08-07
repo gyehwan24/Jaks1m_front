@@ -1,3 +1,14 @@
+.title {
+  width: 550px;
+  margin-left: 70px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 29px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 3.5px solid black;
+}
 .scheduleInput {
   border-color: transparent;
   border-bottom: 3px solid #bebebe;
@@ -22,4 +33,35 @@
 .timeSelect {
   border: 0;
   background-color: #440c0c00;
+}
+.scheduleBtn {
+  border: 0;
+  background-color: #99999900;
+  font-size: 20px;
+  cursor: pointer;
+}
+.scheduleList {
+  margin-bottom: 20px;
+  margin-left: 25px;
+}
+.content {
+  margin-right: 13px;
+  margin-left: 15px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  color: #000000;
+}
+.done_content {
+  margin-right: 13px;
+  margin-left: 15px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  text-decoration-line: line-through;
+  color: #bebebe;
 }
