@@ -35,7 +35,10 @@ function ToDo() {
   //todo insert handler
   const handleSubmitToDo = (event) => {
     event.preventDefault();
-    if (todo === "") return; //todo가 빈칸이면 submit X
+    if (todo === "") {
+      alert("할 일을 입력하세요!");
+      return; //todo가 빈칸이면 submit X
+    }
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(now.getDate()).padStart(2, "0");
@@ -67,7 +70,6 @@ function ToDo() {
   const handleCheckToDo = (id, check) => {
     dispatch(checkToDo(id, check)).then((response) => {
       setTodos(response.payload.toDos);
-      console.log(response);
     });
   };
 

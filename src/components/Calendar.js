@@ -4,11 +4,14 @@ import Month from "react-live-clock";
 import { useDispatch } from "react-redux";
 import { getDateToDo } from "../_actions/todoAction";
 import { Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./css/Calendar.css";
 function Calendar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const params = useParams();
+  const click_date = params.date;
+  console.log(click_date);
   const now = new Date();
   const [today, setToday] = useState(now.getDate()); //오늘 날짜
   //이달의 마지막 날짜
@@ -16,15 +19,9 @@ function Calendar() {
     new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate()
   );
   const [daylist, setDaylist] = useState([]); //표시할 날짜 리스트
-  // useEffect(() => {
-  //   const year = now.getFullYear();
-  //   const month = String(now.getMonth() + 1).padStart(2, "0");
-  //   const day = String(today).padStart(2, "0");
-  //   let inputDate = `${year}${month}${day}`;
-  //   navigate(`/category/mystudy/${inputDate}`);
-  // }, [today]);
 
   const onClickDayList = (date) => {
+    // setToday(date);
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(date).padStart(2, "0");
@@ -40,7 +37,7 @@ function Calendar() {
     const week = ["일", "월", "화", "수", "목", "금", "토"];
     let firstDay = today - 4;
     dates[0] = firstDay;
-    for (let i = 0; i <= today + 4; i++) {
+    for (let i = 0; i <= today + 3; i++) {
       dates[i] = firstDay + i;
       dayofweek[i] = week[dates[i] % 7];
       let inputDayList = {
@@ -50,7 +47,9 @@ function Calendar() {
       setDaylist((currentArray) => [...currentArray, inputDayList]);
     }
   }, [today]); //today가 바뀔때만 리스트 계산
-
+  // useEffect(() => {
+  //   setToday(click_date);
+  // }, [click_date]);
   return (
     <div>
       <p className="year_month">

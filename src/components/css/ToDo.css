@@ -9,6 +9,7 @@
   height: 25px;
   cursor: pointer;
   margin-right: 7px;
+  margin-top: 7px;
 }
 .todo_on {
   appearance: none;
@@ -21,6 +22,7 @@
   height: 25px;
   cursor: pointer;
   margin-right: 7px;
+  margin-top: 7px;
 }
 .content {
   margin-right: 13px;
@@ -59,7 +61,7 @@
   border-bottom: 3px solid #bebebe;
   background-color: #99999900;
   margin-left: 67px;
-
+  margin-bottom: 10px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;

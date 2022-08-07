@@ -17,3 +17,7 @@ export const EDIT_TODO = "EDIT_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const CHECK_TODO = "CHECK_TODO";
 export const GET_DATE_TODO = "GET_DATE_TODO";
+
+//Schedule
+export const INSERT_SCHEDULE = "INSERT_SCHEDULE";
+export const GET_SCHEDULE = "GET_SCHEDULE";

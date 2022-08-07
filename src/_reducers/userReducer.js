@@ -26,13 +26,13 @@ export default function (state = {}, action) {
       break;
     case LOGIN_USER:
       return { ...state, loginSuccess: action.payload };
+      break;
     case GET_NEWTOKEN:
       return { ...state, loginSuccess: action.payload };
+      break;
     case IMAGE_UPLOAD:
       return { ...state, loginSuccess: action.payload };
-
-    case INSERT_TODO:
-      return { ...state, loginSuccess: action.payload };
+      break;
     default:
       return state;
   }
