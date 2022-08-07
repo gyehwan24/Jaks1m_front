@@ -35,7 +35,7 @@ export function getSchedule(date) {
 export function removeSchedule(remove_id, date) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios
-    .delete(`/api/users/todo/${date}`, {
+    .delete(`/api/users/schedule/${date}`, {
       headers: {
         Authorization: `${accessToken}`,
       },
