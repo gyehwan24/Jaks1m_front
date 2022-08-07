@@ -47,6 +47,7 @@ function Calendar() {
       setDaylist((currentArray) => [...currentArray, inputDayList]);
     }
   }, [today]); //today가 바뀔때만 리스트 계산
+
   // useEffect(() => {
   //   setToday(click_date);
   // }, [click_date]);

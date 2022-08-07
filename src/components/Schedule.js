@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { insertSchedule, getSchedule } from "../_actions/scheduleAction";
+import "./css/Schedule.css";
 function Schedule() {
   const dispatch = useDispatch();
   const params = useParams();
@@ -63,13 +64,7 @@ function Schedule() {
   };
   const handleSubmitSchedule = (e) => {
     e.preventDefault();
-    if (
-      startHour === "" ||
-      startMinute === "" ||
-      endHour === "" ||
-      endMinute === "" ||
-      schedule === ""
-    ) {
+    if (schedule === "") {
       alert("입력하지 않은 칸이 있습니다.");
       return;
     }
@@ -99,31 +94,31 @@ function Schedule() {
   return (
     <div>
       <h3 className="title">My Schedule</h3>
-      <form onSubmit={handleSubmitSchedule}>
-        시작시간
-        <select onChange={handleStartHour}>
+      <form onSubmit={handleSubmitSchedule} className="scheduleForm">
+        시작:
+        <select onChange={handleStartHour} className="timeSelect">
           {hourList.map((item) => (
             <option value={item} key={item}>
               {item}
             </option>
           ))}
         </select>
-        <select onChange={handleStartMinute}>
+        <select onChange={handleStartMinute} className="timeSelect">
           {minuteList.map((item) => (
             <option value={item} key={item}>
               {item}
             </option>
           ))}
         </select>
-        ~ 종료시간
-        <select onChange={handleEndHour}>
+        종료:
+        <select onChange={handleEndHour} className="timeSelect">
           {hourList.map((item) => (
             <option value={item} key={item}>
               {item}
             </option>
           ))}
         </select>
-        <select onChange={handleEndMinute}>
+        <select onChange={handleEndMinute} className="timeSelect">
           {minuteList.map((item) => (
             <option value={item} key={item}>
               {item}
@@ -135,7 +130,7 @@ function Schedule() {
           type="text"
           value={schedule}
           placeholder="스케줄을 입력하세요"
-          className="todoInput"
+          className="scheduleInput"
         />
         <button type="submit" className="todoBtn">
           ➕
@@ -146,7 +141,7 @@ function Schedule() {
           scheduleList.map((item) => (
             <li key={item._id}>
               <span>
-                {item.time}: {item.content}
+                {item.time} {item.content}
               </span>
             </li>
           ))}

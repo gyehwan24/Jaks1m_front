@@ -1,0 +1,25 @@
+.scheduleInput {
+  border-color: transparent;
+  border-bottom: 3px solid #bebebe;
+  background-color: #99999900;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 32px;
+}
+.scheduleForm {
+  margin-left: 65px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 40px;
+  color: #000000;
+}
+.timeSelect {
+  border: 0;
+  background-color: #440c0c00;
+}
