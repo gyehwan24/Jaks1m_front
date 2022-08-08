@@ -44,10 +44,10 @@ function Schedule() {
     "24",
   ];
   const minuteList = ["00", "10", "20", "30", "40", "50"];
-  const [startHour, setStartHour] = useState("");
-  const [startMinute, setStartMinute] = useState("");
-  const [endHour, setEndHour] = useState("");
-  const [endMinute, setEndMinute] = useState("");
+  const [startHour, setStartHour] = useState("0");
+  const [startMinute, setStartMinute] = useState("00");
+  const [endHour, setEndHour] = useState("0");
+  const [endMinute, setEndMinute] = useState("00");
   const [schedule, setSchedule] = useState("");
   const [schedules, setSchedules] = useState([]);
   const [scheduleList, setScheduleList] = useState([]); //서버에서 받는 schedule list
@@ -92,10 +92,10 @@ function Schedule() {
       setScheduleList(response.payload.schedules);
     });
     setSchedule("");
-    setStartHour("");
-    setStartMinute("");
-    setEndHour("");
-    setEndMinute("");
+    // setStartHour("");
+    // setStartMinute("");
+    // setEndHour("");
+    // setEndMinute("");
   };
   const handleRemoveSchedule = (id) => {
     dispatch(removeSchedule(id)).then((response) => {

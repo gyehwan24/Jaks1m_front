@@ -15,20 +15,22 @@ const createStoreWidthMiddleware = applyMiddleware(
 )(createStore);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+//<React.StrictMode> = twice rendering issue
 root.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <BrowserRouter>
-        <Provider
-          store={createStoreWidthMiddleware(
-            Reducer,
-            window.__REDUX_DEVTOOLS_EXTENSION__ &&
-              window.__REDUX_DEVTOOLS_EXTENSION__()
-          )}
-        >
-          <App />
-        </Provider>
-      </BrowserRouter>
-    </CookiesProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <CookiesProvider>
+    <BrowserRouter>
+      <Provider
+        store={createStoreWidthMiddleware(
+          Reducer,
+          window.__REDUX_DEVTOOLS_EXTENSION__ &&
+            window.__REDUX_DEVTOOLS_EXTENSION__()
+        )}
+      >
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </CookiesProvider>
+  // {/* </React.StrictMode> */}
 );

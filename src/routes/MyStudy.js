@@ -3,6 +3,10 @@ import ToDo from "../components/ToDo";
 import Header from "../components/Header";
 import Calendar from "../components/Calendar";
 import Schedule from "../components/Schedule";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 const StyledBackground = styled.div`
   position: absolute;
   width: 1440px;
@@ -24,6 +28,19 @@ const StyledSmallBox = styled.div`
 `;
 
 function MyStudy() {
+  const navigate = useNavigate();
+  //엑세스토큰이 없으면 로그인 시키기
+
+  if (localStorage.getItem("ACCESS_TOKEN") === null) {
+    // toast.error("로그인 후 이용해주세요!", {
+    //   position: toast.POSITION.TOP_CENTER,
+    //   autoClose: 1000,
+    //   hideProgressBar: true,
+    // });
+    alert("로그인 후 이용해주세요!");
+    navigate("/login");
+  }
+
   return (
     <div>
       <StyledBackground>
@@ -37,6 +54,7 @@ function MyStudy() {
         </StyledSmallBox>
       </StyledBackground>
       <Header />
+      <ToastContainer />
     </div>
   );
 }
