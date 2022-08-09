@@ -49,10 +49,12 @@ function Header() {
                     <li>그룹스터디</li>
                   </ul>
                   <ul>
-                    <li>커뮤니티</li>
+                    <li>
+                      <Link to="/category/community">커뮤니티</Link>
+                    </li>
                   </ul>
                   <ul>
-                    <li onClick={handleMenuClick}>
+                    <li>
                       <Link to="/category/mystudy">마이스터디</Link>
                     </li>
                   </ul>

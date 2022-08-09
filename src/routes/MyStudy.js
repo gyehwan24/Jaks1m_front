@@ -29,20 +29,25 @@ const StyledSmallBox = styled.div`
 
 function MyStudy() {
   const navigate = useNavigate();
+  const isAdmin = () => {
+    console.log("hi");
+    return !!localStorage.getItem("ACCESS_TOKEN");
+  };
   //엑세스토큰이 없으면 로그인 시키기
-
-  if (localStorage.getItem("ACCESS_TOKEN") === null) {
-    // toast.error("로그인 후 이용해주세요!", {
-    //   position: toast.POSITION.TOP_CENTER,
-    //   autoClose: 1000,
-    //   hideProgressBar: true,
-    // });
-    alert("로그인 후 이용해주세요!");
-    navigate("/login");
-  }
+  // const token = localStorage.getItem("ACCESS_TOKEN");
+  // if (localStorage.getItem("ACCESS_TOKEN") === null) {
+  //   // toast.error("로그인 후 이용해주세요!", {
+  //   //   position: toast.POSITION.TOP_CENTER,
+  //   //   autoClose: 1000,
+  //   //   hideProgressBar: true,
+  //   // });
+  //   navigate("/login");
+  //   alert("로그인 후 이용해주세요!");
+  // }
 
   return (
     <div>
+      {isAdmin() ? null : <Link to="/login" />}
       <StyledBackground>
         <Calendar />
         <StyledSmallBox left={"3.5%"}>

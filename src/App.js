@@ -7,10 +7,14 @@ import Naver from "./routes/Naver";
 import FindPw from "./routes/FindPw";
 import ProfilePage from "./routes/ProfilePage";
 import MyStudy from "./routes/MyStudy";
+import Community from "./routes/Community";
 
 function App() {
   return (
     <Routes>
+      <Route path="/category/community" element={<Community />}>
+        {/* <Route path=":id" element={<Community />} /> */}
+      </Route>
       <Route path="/category/mystudy" element={<MyStudy />}>
         <Route path=":date" element={<MyStudy />} />
       </Route>
