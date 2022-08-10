@@ -39,14 +39,6 @@ function PostArticle() {
     formData.append("desc", value.desc);
     formData.append("category", board_type);
     formData.append("anonymous", value.anonymous);
-    // let body = {
-    //   title: value.title,
-    //   desc: value.desc,
-    //   image: formData,
-    //   category: board_type,
-    //   anonymous: value.anonymous,
-    // };
-    // console.log(body);
     dispatch(postArticle(formData)).then((response) => {
       console.log(response);
       if (response.payload.success === true) {
@@ -85,7 +77,7 @@ function PostArticle() {
         </Form.Item>
 
         <Form.Item
-          label="글 내용"
+          label="내용"
           name="desc"
           rules={[
             {
@@ -95,9 +87,9 @@ function PostArticle() {
           ]}
         >
           <Input.TextArea
-            rows={15}
+            rows={10}
             showCount
-            size="large"
+            size="middle"
             placeholder="내용을 입력하세요"
           />
         </Form.Item>

@@ -19,12 +19,15 @@ function BoardList() {
       <button>
         <Link to={url}>글쓰기</Link>
       </button>
+      <Link to={`/community/category/id?id=${34343}`}>글</Link>
       <ul>
         {articles &&
           articles.map((item) => (
             <li key={item._id}>
               <p>
-                {item.title}/{item.desc}/{item.category}
+                <Link to={`/community/category/id?id=${item._id}`}>
+                  {item.title}/{item.desc}/{item.category}
+                </Link>
               </p>
             </li>
           ))}

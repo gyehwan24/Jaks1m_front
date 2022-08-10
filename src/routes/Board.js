@@ -5,7 +5,7 @@ function Board() {
   return (
     <div>
       <h1>게시판_{board_type}</h1>
-
+      {/* 글 목록을 불러온다. */}
       <BoardList />
     </div>
   );

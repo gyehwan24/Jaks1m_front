@@ -10,7 +10,7 @@ import MyStudy from "./routes/MyStudy";
 import Community from "./routes/Community";
 import Board from "./routes/Board";
 import PostArticle from "./components/PostArticle";
-
+import Article from "./routes/Article";
 function App() {
   return (
     <Routes>
@@ -19,6 +19,7 @@ function App() {
       </Route>
       <Route path="community/category" element={<Board />} />
       <Route path="community/category/posting" element={<PostArticle />} />
+      <Route path="community/category/id" element={<Article />} />
       <Route path="/mystudy" element={<MyStudy />}>
         <Route path=":date" element={<MyStudy />} />
       </Route>

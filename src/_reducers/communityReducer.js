@@ -1,4 +1,4 @@
-import { GET_COMMUNITY, POST_ARTICLE } from "../_actions/types";
+import { GET_COMMUNITY, POST_ARTICLE, GET_ARTICLE } from "../_actions/types";
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -6,6 +6,9 @@ export default function (state = {}, action) {
       return { ...state, Success: action.payload };
       break;
     case POST_ARTICLE:
+      return { ...state, Success: action.payload };
+      break;
+    case GET_ARTICLE:
       return { ...state, Success: action.payload };
       break;
     default:
