@@ -73,7 +73,7 @@ function Article() {
   return (
     <div>
       <p>{articles.title}</p>
-      <p>{articles.createdAt.toLocaleString()}</p>
+      <p>{new Date(articles.createdAt).toLocaleString()}</p>
       <p>{articles.desc}</p>
       {articles.image !== "" ? (
         <img
