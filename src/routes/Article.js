@@ -43,7 +43,7 @@ function Article() {
   const userName = localStorage.getItem("USER_NAME");
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
-      setArticles(response.payload.postings);
+      setArticles(response.payload.posting);
       console.log(response);
     });
   }, []);
@@ -72,8 +72,10 @@ function Article() {
   };
   return (
     <div>
-      {/* <p>{articles.title}</p>
-      <p>{articles.desc}</p> */}
+      <p>{articles.title}</p>
+      <p>{articles.createdAt}</p>
+      <p>{articles.desc}</p>
+      {articles.image !== "" ? <img src={articles.image} /> : null}
       {/* <Form
         name="basic"
         labelCol={{
