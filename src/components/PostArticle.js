@@ -32,6 +32,8 @@ function PostArticle() {
     const formData = new FormData();
     if (image.image_file) {
       formData.append("image", image.image_file);
+    } else {
+      formData.append("image", null);
     }
     let body = {
       title: value.title,

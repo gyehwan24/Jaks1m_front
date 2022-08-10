@@ -24,9 +24,7 @@ function BoardList() {
           articles.map((item) => (
             <li key={item._id}>
               <p>
-                {item.title}
-                {item.desc}
-                {item.category}
+                {item.title}/{item.desc}/{item.category}
               </p>
             </li>
           ))}
