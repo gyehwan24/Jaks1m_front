@@ -9,7 +9,7 @@ function BoardList() {
   useEffect(() => {
     dispatch(getCommunity(board_type)).then((response) => {
       console.log(response);
-      setArticles(response.payload.posting);
+      setArticles(response.payload.responsePostings);
     });
   }, []);
   let url = `posting/?category=${board_type}`;
@@ -25,6 +25,7 @@ function BoardList() {
             <li key={item._id}>
               <p>
                 {item.title}
+                {item.desc}
                 {item.category}
               </p>
             </li>
