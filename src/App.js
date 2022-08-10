@@ -9,6 +9,7 @@ import ProfilePage from "./routes/ProfilePage";
 import MyStudy from "./routes/MyStudy";
 import Community from "./routes/Community";
 import Board from "./routes/Board";
+import PostArticle from "./components/PostArticle";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         {/* <Route path=":id" element={<Community />} /> */}
       </Route>
       <Route path="community/category" element={<Board />} />
-
+      <Route path="community/category/posting" element={<PostArticle />} />
       <Route path="/mystudy" element={<MyStudy />}>
         <Route path=":date" element={<MyStudy />} />
       </Route>

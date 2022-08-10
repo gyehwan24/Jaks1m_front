@@ -6,7 +6,7 @@ function Board() {
     <div>
       <h1>게시판_{board_type}</h1>
 
-      <BoardList></BoardList>
+      <BoardList />
     </div>
   );
 }

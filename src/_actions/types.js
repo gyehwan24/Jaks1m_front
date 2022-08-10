@@ -25,3 +25,4 @@ export const REMOVE_SCHEDULE = "REMOVE_SCHEDULE";
 
 //Community
 export const GET_COMMUNITY = "GET_COMMUNITY"; //커뮤니티 글 가져오기
+export const POST_ARTICLE = "POST_ARTICLE"; //글 포스팅하기
