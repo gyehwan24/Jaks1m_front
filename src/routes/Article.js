@@ -44,6 +44,7 @@ function Article() {
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.postings);
+      console.log(response);
     });
   }, []);
   const handleSubmitComment = (value) => {
@@ -71,8 +72,8 @@ function Article() {
   };
   return (
     <div>
-      <p>{articles.title}</p>
-      <p>{articles.desc}</p>
+      {/* <p>{articles.title}</p>
+      <p>{articles.desc}</p> */}
       {/* <Form
         name="basic"
         labelCol={{
