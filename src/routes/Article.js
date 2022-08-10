@@ -56,6 +56,7 @@ function Article() {
     if (!value) return; //댓글내용 없으면 포스트X
     setSubmitting(true);
     dispatch(postComment(id, value)).then((response) => {
+      console.log(value);
       console.log(response);
       setComments(response.payload.posting.comments);
     });
@@ -79,7 +80,7 @@ function Article() {
   return (
     <div>
       <p>
-        제목: {articles.title} 작성일자:
+        제목: {articles.title} / 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
       <p>{articles.desc}</p>
