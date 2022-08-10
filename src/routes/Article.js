@@ -55,8 +55,10 @@ function Article() {
   const handleSubmit = () => {
     if (!value) return; //댓글내용 없으면 포스트X
     setSubmitting(true);
-    dispatch(postComment(id, value)).then((response) => {
-      console.log(value);
+    let desc = {
+      desc: value,
+    };
+    dispatch(postComment(id, desc)).then((response) => {
       console.log(response);
       setComments(response.payload.posting.comments);
     });
