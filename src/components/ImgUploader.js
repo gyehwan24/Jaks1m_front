@@ -65,7 +65,11 @@ function ImageUploader() {
       />
       <div
         className="img-wrapper"
-        style={{ border: "1px solid black", width: "200px", height: "200px" }}
+        style={{
+          border: "1px solid black",
+          width: "200px",
+          height: "200px",
+        }}
       >
         <img
           src={image.preview_URL}

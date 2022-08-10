@@ -13,7 +13,7 @@ function BoardList() {
     });
   }, []);
   let url = `posting/?category=${board_type}`;
-  console.log(url);
+
   return (
     <div>
       <button>

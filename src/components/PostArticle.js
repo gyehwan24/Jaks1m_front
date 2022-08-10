@@ -2,19 +2,47 @@
 import { Form, Input, Button, Checkbox } from "antd";
 import { postArticle } from "../_actions/community";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 function PostArticle() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   let board_type = new URL(window.location.href).searchParams.get("category");
+  //이미지 업로드
+  let previewImg = "img/profile_icon.png"; //프리뷰 이미지 기본값.
+  const [image, setImage] = useState({
+    image_file: "",
+    preview_URL: previewImg,
+  });
+  const saveImage = (event) => {
+    event.preventDefault();
+    const fileReader = new FileReader();
+    if (event.target.files[0]) {
+      fileReader.readAsDataURL(event.target.files[0]);
+    }
+    fileReader.onload = () => {
+      setImage({
+        image_file: event.target.files[0],
+        preview_URL: fileReader.result,
+      });
+    };
+  };
+  //글 작성 서버로 보내기
   const onFinish = (value) => {
     let body = {
-      image: null,
       title: value.title,
       desc: value.desc,
+      image: image.image_file,
       category: board_type,
+      anonymous: value.anonymous,
     };
     console.log(body);
     dispatch(postArticle(body)).then((response) => {
       console.log(response);
+      if (response.payload.success === true) {
+        alert("글 작성이 완료되었습니다!");
+        navigate(`/community/category?category=${board_type}`);
+      }
     });
   };
   return (
@@ -74,6 +102,27 @@ function PostArticle() {
         >
           <Checkbox>익명</Checkbox>
         </Form.Item>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={saveImage}
+          onClick={(event) => (event.target.value = null)}
+        />
+        {image.image_file !== "" ? (
+          <div
+            className="img-wrapper"
+            style={{
+              border: "1px solid black",
+              width: "200px",
+              height: "200px",
+            }}
+          >
+            <img
+              src={image.preview_URL}
+              style={{ width: "200px", height: "200px" }}
+            />
+          </div>
+        ) : null}
 
         <Form.Item
           wrapperCol={{
