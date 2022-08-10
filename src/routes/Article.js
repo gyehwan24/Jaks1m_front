@@ -84,9 +84,9 @@ function Article() {
     <div>
       <p>
         제목: {articles.title}{" "}
-        {articles.userId.name === undefined ? null : (
+        {/* {articles.userId.name === undefined ? null : (
           <div>작성자: {articles.userId.name}</div>
-        )}
+        )} */}
         / 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
