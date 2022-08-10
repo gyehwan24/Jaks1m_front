@@ -29,10 +29,14 @@ function PostArticle() {
   };
   //글 작성 서버로 보내기
   const onFinish = (value) => {
+    if (image.image_file) {
+      const formData = new FormData();
+      formData.append("image", image.image_file);
+    }
     let body = {
       title: value.title,
       desc: value.desc,
-      image: image.image_file,
+      image: formData,
       category: board_type,
       anonymous: value.anonymous,
     };

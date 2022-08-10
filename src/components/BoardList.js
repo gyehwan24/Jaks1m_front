@@ -9,7 +9,7 @@ function BoardList() {
   useEffect(() => {
     dispatch(getCommunity(board_type)).then((response) => {
       console.log(response);
-      setArticles(response.payload.responsePostings);
+      setArticles(response.payload.postings);
     });
   }, []);
   let url = `posting/?category=${board_type}`;
