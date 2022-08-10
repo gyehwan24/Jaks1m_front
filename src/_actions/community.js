@@ -1,8 +1,8 @@
 import { POST_ARTICLE, GET_COMMUNITY, GET_ARTICLE } from "./types";
 import { customAxios } from "../customAxios";
 import { getNewToken } from "./userAction";
-import { useDispatch } from "react-redux";
-const dispatch = useDispatch();
+// import { useDispatch } from "react-redux";
+// const dispatch = useDispatch();
 //글 포스트하기
 export function postArticle(dataToSubmit) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
