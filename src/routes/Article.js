@@ -1,4 +1,4 @@
-import { getArticle } from "../_actions/community";
+import { getArticle, postComment } from "../_actions/community";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, Comment, Avatar, List } from "antd";
@@ -8,7 +8,7 @@ const { TextArea } = Input;
 const CommentList = ({ comments }) => (
   <List
     dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? "replies" : "reply"}`}
+    header={`${comments.length} 댓글`}
     itemLayout="horizontal"
     renderItem={(props) => <Comment {...props} />}
   />
@@ -39,32 +39,38 @@ function Article() {
   const [comments, setComments] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
+  //   const [commentList, setCommentList] = useState([]);
   const profileImg = localStorage.getItem("USER_PROFILE");
   const userName = localStorage.getItem("USER_NAME");
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
+      setComments(response.payload.posting.comments);
     });
-  }, []);
+  }, [comments]);
   const handleSubmitComment = (value) => {
     console.log(value);
   };
   const handleSubmit = () => {
-    if (!value) return;
+    if (!value) return; //댓글내용 없으면 포스트X
     setSubmitting(true);
+    dispatch(postComment(id, value)).then((response) => {
+      console.log(response);
+      setComments(response.payload.posting.comments);
+    });
     setTimeout(() => {
       setSubmitting(false);
       setValue("");
-      setComments([
-        ...comments,
-        {
-          author: userName,
-          avatar: profileImg,
-          content: <p>{value}</p>,
-          datetime: moment().fromNow(),
-        },
-      ]);
+      //   setComments([
+      //     ...comments,
+      //     {
+      //       author: userName,
+      //       avatar: profileImg,
+      //       content: <p>{value}</p>,
+      //       datetime: moment().fromNow(),
+      //     },
+      //   ]);
     }, 1000);
   };
   const handleChange = (e) => {
@@ -72,8 +78,10 @@ function Article() {
   };
   return (
     <div>
-      <p>{articles.title}</p>
-      <p>{new Date(articles.createdAt).toLocaleString()}</p>
+      <p>
+        제목: {articles.title} 작성자: {articles.userId.name} 작성일자:
+        {new Date(articles.createdAt).toLocaleString()}
+      </p>
       <p>{articles.desc}</p>
       {articles.image !== "" ? (
         <img
@@ -81,53 +89,7 @@ function Article() {
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
       ) : null}
-      {/* <Form
-        name="basic"
-        labelCol={{
-          span: 80,
-        }}
-        wrapperCol={{
-          span: 160,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={handleSubmitComment}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="댓글"
-          name="comment"
-          rules={[
-            {
-              required: true,
-              message: "댓글을 작성하세요!",
-            },
-          ]}
-        >
-          <Input.TextArea size="small" placeholder="댓글을 작성하세요" />
-        </Form.Item>
-        <Form.Item
-          name="anonymous"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 1,
-            span: 16,
-          }}
-        >
-          <Checkbox>익명</Checkbox>
-        </Form.Item>
-        <Form.Item
-          wrapperCol={{
-            offset: 1,
-            span: 16,
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            댓글 쓰기
-          </Button>
-        </Form.Item>
-      </Form> */}
+
       {comments.length > 0 && <CommentList comments={comments} />}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}

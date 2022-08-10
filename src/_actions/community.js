@@ -1,4 +1,9 @@
-import { POST_ARTICLE, GET_COMMUNITY, GET_ARTICLE } from "./types";
+import {
+  POST_ARTICLE,
+  GET_COMMUNITY,
+  GET_ARTICLE,
+  POST_COMMENT,
+} from "./types";
 import { customAxios } from "../customAxios";
 import { getNewToken } from "./userAction";
 // import { useDispatch } from "react-redux";
@@ -52,6 +57,22 @@ export function getArticle(id) {
     .catch((error) => console.log(error));
   return {
     type: GET_ARTICLE,
+    payload: request,
+  };
+}
+//글에 댓글달기 글의 id와 댓글내용을 파라미터로 받는다.
+export function postComment(id, desc) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  const request = customAxios
+    .post(`/api/community/${id}/comment`, desc, {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+  return {
+    type: POST_COMMENT,
     payload: request,
   };
 }
