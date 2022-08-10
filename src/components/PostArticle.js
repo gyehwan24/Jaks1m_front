@@ -35,15 +35,19 @@ function PostArticle() {
     } else {
       formData.append("image", null);
     }
-    let body = {
-      title: value.title,
-      desc: value.desc,
-      image: formData,
-      category: board_type,
-      anonymous: value.anonymous,
-    };
-    console.log(body);
-    dispatch(postArticle(body)).then((response) => {
+    formData.append("title", value.title);
+    formData.append("desc", value.desc);
+    formData.append("category", board_type);
+    formData.append("anonymous", value.anonymous);
+    // let body = {
+    //   title: value.title,
+    //   desc: value.desc,
+    //   image: formData,
+    //   category: board_type,
+    //   anonymous: value.anonymous,
+    // };
+    // console.log(body);
+    dispatch(postArticle(formData)).then((response) => {
       console.log(response);
       if (response.payload.success === true) {
         alert("글 작성이 완료되었습니다!");
