@@ -36,7 +36,7 @@ function Article() {
   const dispatch = useDispatch();
   let id = new URL(window.location.href).searchParams.get("id");
   const [articles, setArticles] = useState([]);
-  const [comments, setComments] = useState(null);
+  const [comments, setComments] = useState([]);
 
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -48,11 +48,10 @@ function Article() {
       setArticles(response.payload.posting);
       console.log(response);
       setComments(response.payload.posting.comments);
+      console.log(comments);
     });
   }, []);
-  const handleSubmitComment = (value) => {
-    console.log(value);
-  };
+
   const handleSubmit = () => {
     if (!value) return; //댓글내용 없으면 포스트X
     setSubmitting(true);
