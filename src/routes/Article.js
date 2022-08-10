@@ -79,7 +79,7 @@ function Article() {
   return (
     <div>
       <p>
-        제목: {articles.title} 작성자: {articles.userId.name} 작성일자:
+        제목: {articles.title} 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
       <p>{articles.desc}</p>
