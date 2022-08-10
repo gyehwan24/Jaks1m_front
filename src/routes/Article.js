@@ -74,7 +74,7 @@ function Article() {
       //       datetime: moment().fromNow(),
       //     },
       //   ]);
-    }, 1000);
+    }, 500);
   };
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -82,7 +82,7 @@ function Article() {
   return (
     <div>
       <p>
-        제목: {articles.title} / 작성일자:
+        제목: {articles.title} 작성자: {articles.userId.name}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
       <p>{articles.desc}</p>
@@ -92,7 +92,15 @@ function Article() {
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
       ) : null}
-
+      <ul>
+        {comments.map((item) => (
+          <li key={item._id}>
+            <p>
+              {item.userId}: {item.desc}
+            </p>
+          </li>
+        ))}
+      </ul>
       {comments.length > 0 && <CommentList comments={comments} />}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
