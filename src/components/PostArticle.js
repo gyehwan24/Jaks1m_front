@@ -29,8 +29,8 @@ function PostArticle() {
   };
   //글 작성 서버로 보내기
   const onFinish = (value) => {
+    const formData = new FormData();
     if (image.image_file) {
-      const formData = new FormData();
       formData.append("image", image.image_file);
     }
     let body = {
