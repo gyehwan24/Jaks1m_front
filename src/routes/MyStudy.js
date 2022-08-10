@@ -12,7 +12,7 @@ const StyledBackground = styled.div`
   width: 1440px;
   height: 2186px;
   left: 0px;
-  top: 69px;
+  top: 75px;
   width: 100%;
   background: rgba(217, 217, 217, 0.5);
   border-radius: 96px;

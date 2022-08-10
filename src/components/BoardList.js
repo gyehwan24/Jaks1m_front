@@ -26,7 +26,7 @@ function BoardList() {
             <li key={item._id}>
               <p>
                 <Link to={`/community/category/id?id=${item._id}`}>
-                  {item.title}/{item.desc}/{item.category}
+                  {item.title}/ {item.desc}/ 작성자: {item.userId.name}
                 </Link>
               </p>
             </li>

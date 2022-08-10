@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div>
-      <StyledImg src={home1} top={"69px"}></StyledImg>
+      <StyledImg src={home1} top={"75px"}></StyledImg>
       <Header />
       <StyledImg src={home2} top={"629px"}></StyledImg>
       <StyledImg src={home3} top={"1275px"}></StyledImg>
