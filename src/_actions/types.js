@@ -22,3 +22,6 @@ export const GET_DATE_TODO = "GET_DATE_TODO";
 export const INSERT_SCHEDULE = "INSERT_SCHEDULE";
 export const GET_SCHEDULE = "GET_SCHEDULE";
 export const REMOVE_SCHEDULE = "REMOVE_SCHEDULE";
+
+//Community
+export const GET_COMMUNITY = "GET_COMMUNITY";

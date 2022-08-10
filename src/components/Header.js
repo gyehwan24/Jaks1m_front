@@ -50,12 +50,12 @@ function Header() {
                   </ul>
                   <ul>
                     <li>
-                      <Link to="/category/community">커뮤니티</Link>
+                      <Link to="/community">커뮤니티</Link>
                     </li>
                   </ul>
                   <ul>
                     <li>
-                      <Link to="/category/mystudy">마이스터디</Link>
+                      <Link to="/mystudy">마이스터디</Link>
                     </li>
                   </ul>
                 </div>
