@@ -48,7 +48,7 @@ function Article() {
       console.log(response);
       setComments(response.payload.posting.comments);
     });
-  }, [comments]);
+  }, []);
   const handleSubmitComment = (value) => {
     console.log(value);
   };
