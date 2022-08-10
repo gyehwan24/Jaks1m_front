@@ -6,9 +6,8 @@ function Board() {
   return (
     <div>
       <h1>게시판_{board_type}</h1>
-      <Container className="p-3">
-        <BoardList></BoardList>
-      </Container>
+
+      <BoardList></BoardList>
     </div>
   );
 }

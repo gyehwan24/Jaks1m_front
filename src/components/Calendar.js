@@ -27,7 +27,7 @@ function Calendar() {
     const day = String(date).padStart(2, "0");
     let inputDate = `${year}${month}${day}`;
     dispatch(getDateToDo(inputDate)).then((response) => console.log(response));
-    navigate(`/category/mystudy/${inputDate}`);
+    navigate(`/mystudy/${inputDate}`);
   };
 
   useEffect(() => {

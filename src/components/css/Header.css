@@ -43,10 +43,10 @@ ul li {
 .menu_item_on {
   display: flex;
   padding-top: 20px;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
   margin-top: 16px;
   width: 600px;
-  height: 25px;
+
   position: relative;
   left: -40px;
   background-color: white;
