@@ -4,6 +4,7 @@ import { postArticle } from "../_actions/community";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Header from "../components/Header";
 function PostArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ function PostArticle() {
   };
   return (
     <div>
+      <Header />
       <Form
         name="basic"
         labelCol={{
@@ -98,7 +100,7 @@ function PostArticle() {
           name="anonymous"
           valuePropName="checked"
           wrapperCol={{
-            offset: 8,
+            offset: 1,
             span: 16,
           }}
         >
@@ -128,7 +130,7 @@ function PostArticle() {
 
         <Form.Item
           wrapperCol={{
-            offset: 8,
+            offset: 3,
             span: 16,
           }}
         >

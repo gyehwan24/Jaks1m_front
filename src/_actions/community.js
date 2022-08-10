@@ -1,7 +1,8 @@
 import { POST_ARTICLE, GET_COMMUNITY, GET_ARTICLE } from "./types";
-
 import { customAxios } from "../customAxios";
-
+import { getNewToken } from "./userAction";
+import { useDispatch } from "react-redux";
+const dispatch = useDispatch();
 //글 포스트하기
 export function postArticle(dataToSubmit) {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
@@ -28,7 +29,11 @@ export function getCommunity(category) {
       },
     })
     .then((response) => response.data)
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      if (error.response.data.status === 403) {
+        // dispatch(getNewToken()).then(response);
+      }
+    });
   return {
     type: GET_COMMUNITY,
     payload: request,

@@ -41,15 +41,15 @@ function Login() {
         localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
         localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
-        setCookie("refreshToken", response.payload.refreshToken);
+        // setCookie("refreshToken", response.payload.refreshToken);
 
         //API 요청마다 헤더에 accessToken 담아 보내도록 세팅
-        axios.defaults.headers.common[
-          "AccessToken"
-        ] = `${response.payload.accessToken}`;
-        axios.defaults.headers.common[
-          "RefreshToken"
-        ] = `${response.payload.refreshToken}`;
+        // axios.defaults.headers.common[
+        //   "AccessToken"
+        // ] = `${response.payload.accessToken}`;
+        // axios.defaults.headers.common[
+        //   "RefreshToken"
+        // ] = `${response.payload.refreshToken}`;
 
         alert("로그인 되었습니다!");
         navigate("/");

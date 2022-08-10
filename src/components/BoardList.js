@@ -19,7 +19,7 @@ function BoardList() {
       <button>
         <Link to={url}>글쓰기</Link>
       </button>
-      <Link to={`/community/category/id?id=${34343}`}>글</Link>
+
       <ul>
         {articles &&
           articles.map((item) => (

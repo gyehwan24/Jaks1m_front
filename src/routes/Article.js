@@ -73,9 +73,14 @@ function Article() {
   return (
     <div>
       <p>{articles.title}</p>
-      <p>{articles.createdAt}</p>
+      <p>{articles.createdAt.toLocaleString()}</p>
       <p>{articles.desc}</p>
-      {articles.image !== "" ? <img src={articles.image} /> : null}
+      {articles.image !== "" ? (
+        <img
+          src={articles.image}
+          style={{ maxWidth: "300px", maxHeight: "300px" }}
+        />
+      ) : null}
       {/* <Form
         name="basic"
         labelCol={{

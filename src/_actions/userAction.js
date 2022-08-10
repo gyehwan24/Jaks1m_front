@@ -56,9 +56,14 @@ export function loginUser(dataTosubmit) {
 }
 
 //accessToken 만료시 새로운 토큰 발급
-export function getNewToken(dataTosubmit) {
+export function getNewToken() {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
   const request = customAxios
-    .post("/api/auth/refresh", dataTosubmit)
+    .get("/api/auth/refresh", {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
     .then((response) => response.data);
   return {
     type: GET_NEWTOKEN,

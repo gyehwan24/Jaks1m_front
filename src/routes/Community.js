@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-
+import Header from "../components/Header";
 import BoardList from "../components/BoardList";
 function Community() {
   return (
     <div>
+      <Header />
       <h1>커뮤니티</h1>
 
       <nav>

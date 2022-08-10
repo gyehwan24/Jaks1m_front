@@ -1,7 +1,8 @@
 .year_month {
   position: absolute;
   left: 97px;
-  top: 20px;
+  top: 40px;
+
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
@@ -14,7 +15,7 @@
   display: flex;
   position: absolute;
   left: -5px;
-  top: 70px;
+  top: 90px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
