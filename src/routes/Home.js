@@ -1,9 +1,6 @@
-import Logo from "../components/Logo";
-import Profile from "../components/Profile";
-import Header from "../components/Header";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Header from "../components/Header";
 import styled from "styled-components";
 import home1 from "../img/home_1.png";
 import home2 from "../img/home_2.png";

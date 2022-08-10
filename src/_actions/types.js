@@ -24,4 +24,4 @@ export const GET_SCHEDULE = "GET_SCHEDULE";
 export const REMOVE_SCHEDULE = "REMOVE_SCHEDULE";
 
 //Community
-export const GET_COMMUNITY = "GET_COMMUNITY";
+export const GET_COMMUNITY = "GET_COMMUNITY"; //커뮤니티 글 가져오기

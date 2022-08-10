@@ -8,6 +8,7 @@ function BoardList() {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     dispatch(getCommunity(board_type)).then((response) => {
+      console.log(response);
       setArticles(response.payload.posting);
     });
   }, []);

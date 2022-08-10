@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Container from "react-bootstrap/Container";
+
 import BoardList from "../components/BoardList";
 function Community() {
   return (

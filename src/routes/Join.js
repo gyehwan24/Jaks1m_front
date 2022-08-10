@@ -3,16 +3,10 @@ import Logo from "../components/Logo";
 import { useDispatch } from "react-redux";
 import "./LoginJoin.css";
 import { joinUser } from "../_actions/userAction";
-import finalPropsSelectorFactory from "react-redux/es/connect/selectorFactory";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import Kakao from "./Kakao";
-import Naver from "./Naver";
 import { useNavigate } from "react-router-dom";
 
 import kakao_logo from "../img/Kakao_logo.png";
 import naver_logo from "../img/Naver_logo.png";
-import jaksim from "../img/jaks1m_logo.jpeg";
 function Join() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

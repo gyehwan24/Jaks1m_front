@@ -4,10 +4,8 @@ import { useParams } from "react-router-dom";
 import "./css/ToDo.css";
 import {
   insertToDo,
-  getToDo,
   removeToDo,
   checkToDo,
-  editToDo,
   getDateToDo,
 } from "../_actions/todoAction";
 

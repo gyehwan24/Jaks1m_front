@@ -30,7 +30,6 @@ const StyledSmallBox = styled.div`
 function MyStudy() {
   const navigate = useNavigate();
   const isAdmin = () => {
-    console.log("hi");
     return !!localStorage.getItem("ACCESS_TOKEN");
   };
   //엑세스토큰이 없으면 로그인 시키기
@@ -47,7 +46,7 @@ function MyStudy() {
 
   return (
     <div>
-      {isAdmin() ? null : <Link to="/login" />}
+      {/* {isAdmin() ? null : <Link to="/login" />} */}
       <StyledBackground>
         <Calendar />
         <StyledSmallBox left={"3.5%"}>

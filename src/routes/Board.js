@@ -1,4 +1,3 @@
-import Container from "react-bootstrap/Container";
 import BoardList from "../components/BoardList";
 
 function Board() {

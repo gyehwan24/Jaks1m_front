@@ -21,7 +21,6 @@ function Calendar() {
   const [daylist, setDaylist] = useState([]); //표시할 날짜 리스트
 
   const onClickDayList = (date) => {
-    // setToday(date);
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(date).padStart(2, "0");
