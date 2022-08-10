@@ -36,7 +36,7 @@ function Article() {
   const dispatch = useDispatch();
   let id = new URL(window.location.href).searchParams.get("id");
   const [articles, setArticles] = useState([]);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState(null);
 
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
@@ -83,11 +83,7 @@ function Article() {
   return (
     <div>
       <p>
-        제목: {articles.title}{" "}
-        {/* {articles.userId.name === undefined ? null : (
-          <div>작성자: {articles.userId.name}</div>
-        )} */}
-        / 작성일자:
+        제목: {articles.title}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
       <p>{articles.desc}</p>
@@ -106,7 +102,7 @@ function Article() {
           </li>
         ))}
       </ul>
-      {comments.length > 0 && <CommentList comments={comments} />}
+      {/* {comments.length > 0 && <CommentList comments={comments} />} */}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
         content={
