@@ -29,7 +29,7 @@ function BoardList() {
           <List.Item>
             <Link to={`/community/category/id?id=${item._id}`}>
               <List.Item.Meta
-                style={{ width: "100%" }}
+                style={{ width: "1000px" }}
                 avatar={<Avatar src={item.userId.img} />}
                 title={item.title}
                 description={item.desc}
