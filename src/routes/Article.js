@@ -67,20 +67,11 @@ function Article() {
           {
             author: userName,
             avatar: profileImg,
-            desc: <p>{value}</p>,
+            content: <p>{value}</p>,
             datetime: moment().fromNow(),
           },
         ]);
       });
-      //   setComments([
-      //     ...comments,
-      //     {
-      //       author: userName,
-      //       avatar: profileImg,
-      //       content: <p>{value}</p>,
-      //       datetime: moment().fromNow(),
-      //     },
-      //   ]);
     }, 500);
   };
   const handleChange = (e) => {
@@ -88,11 +79,11 @@ function Article() {
   };
   return (
     <div>
-      <span>
+      <p>
         제목: {articles.title}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
-      </span>
-      <span>{articles.desc}</span>
+      </p>
+      <p>내용: {articles.desc}</p>
       {articles.image !== "" ? (
         <img
           src={articles.image}
@@ -109,6 +100,7 @@ function Article() {
           </li>
         ))}
       </ul>
+      {comments.length > 0 && <CommentList comments={commentList} />}
       {comments.length > 0 && <CommentList comments={comments} />}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
