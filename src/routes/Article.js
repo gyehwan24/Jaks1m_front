@@ -53,12 +53,12 @@ function Article() {
   const [value, setValue] = useState("");
   const profileImg = localStorage.getItem("USER_PROFILE");
   const userName = localStorage.getItem("USER_NAME");
+  let writerName = "";
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
-      console.log(articles.userId);
-      console.log(response.payload.posting.userId);
+      writerName = response.payload.posting.userId.name;
       setCommentList(response.payload.posting.comments);
     });
   }, [comments]);
@@ -102,7 +102,10 @@ function Article() {
               />
             ) : null}
           </p>
-          <p>작성일자: {new Date(articles.createdAt).toLocaleString()}</p>
+          <p>
+            작성자: {writerName} 작성일자:{" "}
+            {new Date(articles.createdAt).toLocaleString()}
+          </p>
         </Card>
       </Card>
       {/* <p>
@@ -120,7 +123,8 @@ function Article() {
         {commentList.map((item) => (
           <li key={item._id}>
             <span>
-              {item.desc} / {new Date(item.createdAt).toLocaleString()}
+              {item.userId.name}: {item.desc} / (
+              {new Date(item.createdAt).toLocaleString()})
             </span>
           </li>
         ))}
