@@ -138,7 +138,6 @@ function PostArticle() {
           </Button>
         </Form.Item>
       </Form>
-      <Header />
     </div>
   );
 }

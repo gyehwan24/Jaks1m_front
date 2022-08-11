@@ -102,10 +102,7 @@ function Article() {
               />
             ) : null}
           </p>
-          <p>
-            작성일자:
-            {new Date(articles.createdAt).toLocaleString()}
-          </p>
+          <p>작성일자: {new Date(articles.createdAt).toLocaleString()}</p>
         </Card>
       </Card>
       {/* <p>
@@ -130,7 +127,7 @@ function Article() {
         ))}
       </ul>
       {/* {comments.length > 0 && <CommentList comments={commentList} />} */}
-      {comments.length > 0 && <CommentList comments={comments} />}
+      {/* {comments.length > 0 && <CommentList comments={comments} />} */}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
         content={
@@ -142,7 +139,6 @@ function Article() {
           />
         }
       />
-      <Header />
     </div>
   );
 }

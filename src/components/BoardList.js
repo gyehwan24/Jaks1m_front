@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCommunity } from "../_actions/community";
 import { Link } from "react-router-dom";
+import { Avatar, List } from "antd";
+
 function BoardList() {
   const dispatch = useDispatch();
   let board_type = new URL(window.location.href).searchParams.get("category");
@@ -19,8 +21,22 @@ function BoardList() {
       <button>
         <Link to={url}>글쓰기</Link>
       </button>
-
-      <ul>
+      <List
+        itemLayout="horizontal"
+        dataSource={articles}
+        renderItem={(item) => (
+          <List.Item>
+            <Link to={`/community/category/id?id=${item._id}`}>
+              <List.Item.Meta
+                avatar={<Avatar src={item.userId.img} />}
+                title={item.title}
+                description={item.desc}
+              />
+            </Link>
+          </List.Item>
+        )}
+      />
+      {/* <ul>
         {articles &&
           articles.map((item) => (
             <li key={item._id}>
@@ -31,7 +47,7 @@ function BoardList() {
               </p>
             </li>
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
