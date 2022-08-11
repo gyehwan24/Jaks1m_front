@@ -102,11 +102,7 @@ function Article() {
               />
             ) : null}
           </p>
-          <p>
-            작성자:{" "}
-            {articles.userId.name === undefined ? null : articles.userId.name}/
-            작성일자: {new Date(articles.createdAt).toLocaleString()}
-          </p>
+          <p>작성일자: {new Date(articles.createdAt).toLocaleString()}</p>
         </Card>
       </Card>
       {/* <p>

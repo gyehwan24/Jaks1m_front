@@ -18,7 +18,7 @@ function BoardList() {
 
   return (
     <div>
-      <button>
+      <button style={{ backgroundColor: "white", borderColor: "lightgray" }}>
         <Link to={url}>글쓰기</Link>
       </button>
 
