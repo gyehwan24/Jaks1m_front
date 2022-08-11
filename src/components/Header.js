@@ -80,7 +80,7 @@ function Header() {
                 style={{
                   width: "25px",
                   height: "25px",
-                  marginTop: "20px",
+                  marginTop: "27px",
                   marginRight: "15px",
                 }}
               ></img>
@@ -102,7 +102,7 @@ function Header() {
                 style={{
                   width: "25px",
                   height: "25px",
-                  marginTop: "20px",
+                  marginTop: "27px",
                   marginRight: "15px",
                 }}
               ></img>

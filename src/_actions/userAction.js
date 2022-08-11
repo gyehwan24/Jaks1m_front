@@ -47,7 +47,9 @@ export function naverJoin(dataToSubmit) {
 //login 시 post
 export function loginUser(dataTosubmit) {
   const request = customAxios
-    .post("/api/auth/signin", dataTosubmit)
+    .post("/api/auth/signin", dataTosubmit, {
+      withCredentials: true,
+    })
     .then((response) => response.data);
   return {
     type: LOGIN_USER,

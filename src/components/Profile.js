@@ -13,8 +13,8 @@ function Profile(prop) {
               width: "45px",
               height: "45px",
               borderRadius: "70%",
-              marginTop: "8px",
-              marginRight: "5px",
+              marginTop: "12px",
+              marginRight: "10px",
             }}
           />
         ) : (
