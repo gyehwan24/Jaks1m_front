@@ -21,6 +21,7 @@ function BoardList() {
       <button>
         <Link to={url}>글쓰기</Link>
       </button>
+
       <List
         itemLayout="horizontal"
         dataSource={articles}
@@ -28,6 +29,7 @@ function BoardList() {
           <List.Item>
             <Link to={`/community/category/id?id=${item._id}`}>
               <List.Item.Meta
+                style={{ width: "100%" }}
                 avatar={<Avatar src={item.userId.img} />}
                 title={item.title}
                 description={item.desc}
