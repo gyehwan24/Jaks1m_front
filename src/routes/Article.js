@@ -37,19 +37,19 @@ function Article() {
   let id = new URL(window.location.href).searchParams.get("id");
   const [articles, setArticles] = useState([]);
   const [comments, setComments] = useState([]);
+  const [commentList, setCommentList] = useState([]);
 
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState("");
-  //   const [commentList, setCommentList] = useState([]);
   const profileImg = localStorage.getItem("USER_PROFILE");
   const userName = localStorage.getItem("USER_NAME");
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
-      setComments(response.payload.posting.comments);
+      setCommentList(response.payload.posting.comments);
     });
-  }, []);
+  }, [comments]);
 
   const handleSubmit = () => {
     if (!value) return; //댓글내용 없으면 포스트X
@@ -57,13 +57,20 @@ function Article() {
     let desc = {
       desc: value,
     };
-
     setTimeout(() => {
       setSubmitting(false);
       setValue("");
       dispatch(postComment(id, desc)).then((response) => {
         console.log(response);
-        setComments(response.payload.posting.comments);
+        setComments([
+          ...comments,
+          {
+            author: userName,
+            avatar: profileImg,
+            desc: <p>{value}</p>,
+            datetime: moment().fromNow(),
+          },
+        ]);
       });
       //   setComments([
       //     ...comments,
@@ -93,7 +100,7 @@ function Article() {
         />
       ) : null}
       <ul>
-        {comments.map((item) => (
+        {commentList.map((item) => (
           <li key={item._id}>
             <span>
               {item.userId}: {item.desc} /{" "}
@@ -102,7 +109,7 @@ function Article() {
           </li>
         ))}
       </ul>
-      {/* {comments.length > 0 && <CommentList comments={comments} />} */}
+      {comments.length > 0 && <CommentList comments={comments} />}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
         content={
