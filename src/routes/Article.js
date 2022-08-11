@@ -47,7 +47,7 @@ function Article() {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
-      // setComments(response.payload.posting.comments);
+      setComments(response.payload.posting.comments);
     });
   }, []);
 
@@ -63,7 +63,7 @@ function Article() {
       setValue("");
       dispatch(postComment(id, desc)).then((response) => {
         console.log(response);
-        setComments(response.payload.posting.comments);
+        // setComments(response.payload.posting.comments);
       });
       //   setComments([
       //     ...comments,
@@ -81,11 +81,11 @@ function Article() {
   };
   return (
     <div>
-      <p>
+      <span>
         제목: {articles.title}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
-      </p>
-      <p>{articles.desc}</p>
+      </span>
+      <span>{articles.desc}</span>
       {articles.image !== "" ? (
         <img
           src={articles.image}
@@ -95,10 +95,10 @@ function Article() {
       <ul>
         {comments.map((item) => (
           <li key={item._id}>
-            <p>
+            <span>
               {item.userId}: {item.desc} /{" "}
               {new Date(item.createdAt).toLocaleString()}
-            </p>
+            </span>
           </li>
         ))}
       </ul>
