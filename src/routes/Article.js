@@ -63,7 +63,7 @@ function Article() {
       setValue("");
       dispatch(postComment(id, desc)).then((response) => {
         console.log(response);
-        // setComments(response.payload.posting.comments);
+        setComments(response.payload.posting.comments);
       });
       //   setComments([
       //     ...comments,
