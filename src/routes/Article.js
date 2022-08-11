@@ -1,4 +1,4 @@
-import { getArticle, postComment } from "../_actions/community";
+import { getArticle, postComment, getComment } from "../_actions/community";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { Form, Input, Button, Checkbox, Comment, Avatar, List } from "antd";
@@ -47,8 +47,7 @@ function Article() {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
-      setComments(response.payload.posting.comments);
-      console.log(comments);
+      // setComments(response.payload.posting.comments);
     });
   }, []);
 
@@ -58,13 +57,14 @@ function Article() {
     let desc = {
       desc: value,
     };
-    dispatch(postComment(id, desc)).then((response) => {
-      console.log(response);
-      setComments(response.payload.posting.comments);
-    });
+
     setTimeout(() => {
       setSubmitting(false);
       setValue("");
+      dispatch(postComment(id, desc)).then((response) => {
+        console.log(response);
+        setComments(response.payload.posting.comments);
+      });
       //   setComments([
       //     ...comments,
       //     {
@@ -96,7 +96,8 @@ function Article() {
         {comments.map((item) => (
           <li key={item._id}>
             <p>
-              {item.userId}: {item.desc}
+              {item.userId}: {item.desc} /{" "}
+              {new Date(item.createdAt).toLocaleString()}
             </p>
           </li>
         ))}

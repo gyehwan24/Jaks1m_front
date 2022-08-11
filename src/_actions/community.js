@@ -3,6 +3,7 @@ import {
   GET_COMMUNITY,
   GET_ARTICLE,
   POST_COMMENT,
+  GET_COMMENT,
 } from "./types";
 import { customAxios } from "../customAxios";
 import { getNewToken } from "./userAction";
@@ -57,6 +58,21 @@ export function getArticle(id) {
     .catch((error) => console.log(error));
   return {
     type: GET_ARTICLE,
+    payload: request,
+  };
+}
+export function getComment(id) {
+  const accessToken = localStorage.getItem("ACCESS_TOKEN");
+  const request = customAxios
+    .get(`/api/community/${id}`, {
+      headers: {
+        Authorization: `${accessToken}`,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => console.log(error));
+  return {
+    type: GET_COMMENT,
     payload: request,
   };
 }
