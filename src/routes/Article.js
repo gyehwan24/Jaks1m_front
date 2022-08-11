@@ -53,12 +53,12 @@ function Article() {
   const [value, setValue] = useState("");
   const profileImg = localStorage.getItem("USER_PROFILE");
   const userName = localStorage.getItem("USER_NAME");
-  let writerName = "";
+  const [writerName, setWriterName] = useState("");
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
-      writerName = response.payload.posting.userId.name;
+      setWriterName(response.payload.posting.userId.name);
       setCommentList(response.payload.posting.comments);
     });
   }, [comments]);
