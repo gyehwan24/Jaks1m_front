@@ -1,7 +1,17 @@
 import { getArticle, postComment, getComment } from "../_actions/community";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Checkbox, Comment, Avatar, List } from "antd";
+import Header from "../components/Header";
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Comment,
+  Avatar,
+  List,
+  Card,
+} from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
 const { TextArea } = Input;
@@ -47,6 +57,8 @@ function Article() {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
+      console.log(articles.userId.name);
+      console.log(response.payload.posting.userId.name);
       setCommentList(response.payload.posting.comments);
     });
   }, [comments]);
@@ -79,6 +91,18 @@ function Article() {
   };
   return (
     <div>
+      <Header />
+      <Card title="Card title">
+        <Card type="inner" title={articles.title}>
+          {articles.desc}
+          {articles.image !== "" ? (
+            <img
+              src={articles.image}
+              style={{ maxWidth: "300px", maxHeight: "300px" }}
+            />
+          ) : null}
+        </Card>
+      </Card>
       <p>
         제목: {articles.title}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
@@ -100,7 +124,7 @@ function Article() {
           </li>
         ))}
       </ul>
-      {comments.length > 0 && <CommentList comments={commentList} />}
+      {/* {comments.length > 0 && <CommentList comments={commentList} />} */}
       {comments.length > 0 && <CommentList comments={comments} />}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
