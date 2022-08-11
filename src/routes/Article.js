@@ -57,8 +57,8 @@ function Article() {
     dispatch(getArticle(id)).then((response) => {
       setArticles(response.payload.posting);
       console.log(response);
-      console.log(articles.userId.name);
-      console.log(response.payload.posting.userId.name);
+      console.log(articles.userId);
+      console.log(response.payload.posting.userId);
       setCommentList(response.payload.posting.comments);
     });
   }, [comments]);
@@ -91,19 +91,24 @@ function Article() {
   };
   return (
     <div>
-      <Header />
-      <Card title="Card title">
+      <Card>
         <Card type="inner" title={articles.title}>
-          {articles.desc}
-          {articles.image !== "" ? (
-            <img
-              src={articles.image}
-              style={{ maxWidth: "300px", maxHeight: "300px" }}
-            />
-          ) : null}
+          <p>{articles.desc}</p>
+          <p>
+            {articles.image !== "" ? (
+              <img
+                src={articles.image}
+                style={{ maxWidth: "300px", maxHeight: "300px" }}
+              />
+            ) : null}
+          </p>
+          <p>
+            작성일자:
+            {new Date(articles.createdAt).toLocaleString()}
+          </p>
         </Card>
       </Card>
-      <p>
+      {/* <p>
         제목: {articles.title}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
@@ -113,7 +118,7 @@ function Article() {
           src={articles.image}
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
-      ) : null}
+      ) : null} */}
       <ul>
         {commentList.map((item) => (
           <li key={item._id}>
@@ -137,6 +142,7 @@ function Article() {
           />
         }
       />
+      <Header />
     </div>
   );
 }

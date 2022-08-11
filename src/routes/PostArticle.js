@@ -50,7 +50,6 @@ function PostArticle() {
   };
   return (
     <div>
-      <Header />
       <Form
         name="basic"
         labelCol={{
@@ -139,6 +138,7 @@ function PostArticle() {
           </Button>
         </Form.Item>
       </Form>
+      <Header />
     </div>
   );
 }
