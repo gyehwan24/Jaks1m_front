@@ -14,6 +14,7 @@ import {
 } from "antd";
 import "antd/dist/antd.css";
 import moment from "moment";
+import "moment/locale/ko";
 const { TextArea } = Input;
 const CommentList = ({ comments }) => (
   <List
@@ -56,10 +57,20 @@ function Article() {
   const [writerName, setWriterName] = useState("");
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
-      setArticles(response.payload.posting);
       console.log(response);
+      setArticles(response.payload.posting);
       setWriterName(response.payload.posting.userId.name);
-      setCommentList(response.payload.posting.comments);
+      // setCommentList(response.payload.posting.comments);
+      setCommentList([
+        {
+          author: response.payload.posting.comments.userId.name,
+          avatar: response.payload.posting.comments.userId.img,
+          content: <p>{response.payload.posting.comments.desc}</p>,
+          datetime: moment(
+            response.payload.posting.comments.createdAt
+          ).fromNow(),
+        },
+      ]);
     });
   }, [comments]);
 
@@ -119,7 +130,7 @@ function Article() {
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
       ) : null} */}
-      <ul>
+      {/* <ul>
         {commentList.map((item) => (
           <li key={item._id}>
             <span>
@@ -128,8 +139,9 @@ function Article() {
             </span>
           </li>
         ))}
-      </ul>
-      {/* {comments.length > 0 && <CommentList comments={commentList} />} */}
+      </ul> */}
+
+      {comments.length > 0 && <CommentList comments={commentList} />}
       {/* {comments.length > 0 && <CommentList comments={comments} />} */}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
