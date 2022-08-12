@@ -60,17 +60,17 @@ function Article() {
       console.log(response);
       setArticles(response.payload.posting);
       setWriterName(response.payload.posting.userId.name);
-      // setCommentList(response.payload.posting.comments);
-      setCommentList([
-        {
-          author: response.payload.posting.comments.userId.name,
-          avatar: response.payload.posting.comments.userId.img,
-          content: <p>{response.payload.posting.comments.desc}</p>,
-          datetime: moment(
-            response.payload.posting.comments.createdAt
-          ).fromNow(),
-        },
-      ]);
+      setCommentList(response.payload.posting.comments);
+      // setCommentList([
+      //   {
+      //     author: response.payload.posting.comments.userId.name,
+      //     avatar: response.payload.posting.comments.userId.img,
+      //     content: <p>{response.payload.posting.comments.desc}</p>,
+      //     datetime: moment(
+      //       response.payload.posting.comments.createdAt
+      //     ).fromNow(),
+      //   },
+      // ]);
     });
   }, [comments]);
 
@@ -130,7 +130,7 @@ function Article() {
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
       ) : null} */}
-      {/* <ul>
+      <ul>
         {commentList.map((item) => (
           <li key={item._id}>
             <span>
@@ -139,9 +139,9 @@ function Article() {
             </span>
           </li>
         ))}
-      </ul> */}
+      </ul>
 
-      {comments.length > 0 && <CommentList comments={commentList} />}
+      {/* {comments.length > 0 && <CommentList comments={commentList} />} */}
       {/* {comments.length > 0 && <CommentList comments={comments} />} */}
       <Comment
         avatar={<Avatar src={profileImg} alt={userName} />}
