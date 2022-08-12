@@ -29,22 +29,23 @@ function BoardList() {
         navigate("/community/category?category=tipboard");
     }
   };
+
   useEffect(() => {
     dispatch(getCommunity(board_type)).then((response) => {
       console.log(response);
       setArticles(response.payload.postings);
-      switch (board_type) {
-        case "freeboard":
-          setDefaultTab("1");
-          break;
-        case "questionboard":
-          setDefaultTab("2");
-          break;
-        case "tipboard":
-          setDefaultTab("3");
-          break;
-      }
     });
+    switch (board_type) {
+      case "freeboard":
+        setDefaultTab("1");
+        break;
+      case "questionboard":
+        setDefaultTab("2");
+        break;
+      case "tipboard":
+        setDefaultTab("3");
+        break;
+    }
   }, [board_type]);
   let url = `posting/?category=${board_type}`;
   return (

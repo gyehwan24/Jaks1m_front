@@ -40,7 +40,7 @@ function PostArticle() {
     formData.append("title", value.title);
     formData.append("desc", value.desc);
     formData.append("category", board_type);
-    formData.append("anonymous", value.anonymous);
+    formData.append("anonymous", value.anonymous === undefined ? false : true);
     dispatch(postArticle(formData)).then((response) => {
       console.log(response);
       if (response.payload.success === true) {
