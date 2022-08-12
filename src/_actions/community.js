@@ -37,6 +37,8 @@ export function getCommunity(category) {
     .then((response) => response.data)
     .catch((error) => {
       if (error.response.data.status === 403) {
+        console.log("403이다!!");
+        console.log(error);
         // dispatch(getNewToken()).then(response);
       }
     });

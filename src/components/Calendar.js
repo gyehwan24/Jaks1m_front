@@ -10,8 +10,7 @@ function Calendar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const click_date = params.date;
-  console.log(click_date);
+  const click_date = params.date; //클릭한 날짜. url에 있는 날짜임
   const now = new Date();
   const [today, setToday] = useState(now.getDate()); //오늘 날짜
   //이달의 마지막 날짜
@@ -31,12 +30,16 @@ function Calendar() {
 
   useEffect(() => {
     setDaylist([]); //계산하기 전에 리스트 초기화.
-    let dates = [];
+    let dates = []; //날짜 배열
     let dayofweek = []; //요일 배열
     const week = ["일", "월", "화", "수", "목", "금", "토"];
     let firstDay = today - 4;
+    // if (click_date !== undefined) {
+    //   firstDay = click_date.slice(6) - 4;
+    // } //이 코드는 날짜를 클릭하면 클릭한 날짜를 가운데로 정렬하는 코드이다.
+
     dates[0] = firstDay;
-    for (let i = 0; i <= today + 3; i++) {
+    for (let i = 0; i < 10; i++) {
       dates[i] = firstDay + i;
       dayofweek[i] = week[dates[i] % 7];
       let inputDayList = {
@@ -45,11 +48,8 @@ function Calendar() {
       };
       setDaylist((currentArray) => [...currentArray, inputDayList]);
     }
-  }, [today]); //today가 바뀔때만 리스트 계산
+  }, [today, click_date]); //today가 바뀔때만 리스트 계산
 
-  // useEffect(() => {
-  //   setToday(click_date);
-  // }, [click_date]);
   return (
     <div>
       <p className="year_month">

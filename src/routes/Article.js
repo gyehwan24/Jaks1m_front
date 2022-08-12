@@ -98,13 +98,13 @@ function Article() {
             {articles.image !== "" ? (
               <img
                 src={articles.image}
-                style={{ maxWidth: "300px", maxHeight: "300px" }}
+                style={{ maxWidth: "400px", maxHeight: "400px" }}
               />
             ) : null}
           </p>
           <p>
-            작성자: {writerName} 작성일자:{" "}
-            {new Date(articles.createdAt).toLocaleString()}
+            작성자: {writerName} (
+            {new Date(articles.createdAt).toLocaleString()})
           </p>
         </Card>
       </Card>
