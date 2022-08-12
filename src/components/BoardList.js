@@ -6,18 +6,17 @@ import { Avatar, List } from "antd";
 import { Pagination } from "antd";
 import { Tabs } from "antd";
 const { TabPane } = Tabs;
-function BoardList(props) {
+function BoardList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // let board_type = new URL(window.location.href).searchParams.get("category");
-  let board_type = props.type;
+  let board_type = new URL(window.location.href).searchParams.get("category");
+
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
   const onTabClick = (event) => {
-    console.log(event);
     switch (event) {
       case "1":
         navigate("/community/category?category=freeboard");
@@ -36,7 +35,6 @@ function BoardList(props) {
     });
   }, []);
   let url = `posting/?category=${board_type}`;
-
   return (
     <div style={{ position: "absolute", top: "90px", left: "0px" }}>
       <Tabs defaultActiveKey="1" onTabClick={onTabClick} centered>

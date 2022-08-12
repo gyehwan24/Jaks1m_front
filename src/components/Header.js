@@ -50,7 +50,7 @@ function Header() {
                   </ul>
                   <ul>
                     <li>
-                      <Link to="community/category?category=questionboard">
+                      <Link to="/community/category?category=freeboard">
                         커뮤니티
                       </Link>
                     </li>

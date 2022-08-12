@@ -7,7 +7,6 @@ const { TabPane } = Tabs;
 function Community() {
   const navigate = useNavigate();
   const onTabClick = (event) => {
-    console.log(event);
     switch (event) {
       case "1":
         navigate("/community/category?category=freeboard");

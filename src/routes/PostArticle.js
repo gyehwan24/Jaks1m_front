@@ -9,6 +9,7 @@ function PostArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let board_type = new URL(window.location.href).searchParams.get("category");
+
   //이미지 업로드
   let previewImg = "img/profile_icon.png"; //프리뷰 이미지 기본값.
   const [image, setImage] = useState({
