@@ -1,13 +1,34 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCommunity } from "../_actions/community";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Avatar, List } from "antd";
-
-function BoardList() {
+import { Pagination } from "antd";
+import { Tabs } from "antd";
+const { TabPane } = Tabs;
+function BoardList(props) {
   const dispatch = useDispatch();
-  let board_type = new URL(window.location.href).searchParams.get("category");
+  const navigate = useNavigate();
+  // let board_type = new URL(window.location.href).searchParams.get("category");
+  let board_type = props.type;
   const [articles, setArticles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  const onTabClick = (event) => {
+    console.log(event);
+    switch (event) {
+      case "1":
+        navigate("/community/category?category=freeboard");
+        break;
+      case "2":
+        navigate("/community/category?category=questionboard");
+        break;
+      case "3":
+        navigate("/community/category?category=tipboard");
+    }
+  };
   useEffect(() => {
     dispatch(getCommunity(board_type)).then((response) => {
       console.log(response);
@@ -17,11 +38,15 @@ function BoardList() {
   let url = `posting/?category=${board_type}`;
 
   return (
-    <div>
+    <div style={{ position: "absolute", top: "90px", left: "0px" }}>
+      <Tabs defaultActiveKey="1" onTabClick={onTabClick} centered>
+        <TabPane tab="자유게시판" key="1"></TabPane>
+        <TabPane tab="질문게시판" key="2"></TabPane>
+        <TabPane tab="팁 게시판" key="3"></TabPane>
+      </Tabs>
       <button style={{ backgroundColor: "white", borderColor: "lightgray" }}>
         <Link to={url}>글쓰기</Link>
       </button>
-
       <List
         itemLayout="horizontal"
         dataSource={articles}
@@ -38,6 +63,13 @@ function BoardList() {
           </List.Item>
         )}
       />
+      <Pagination
+        current={currentPage}
+        onChange={handlePageChange}
+        total={10}
+        centered
+      />
+
       {/* <ul>
         {articles &&
           articles.map((item) => (
