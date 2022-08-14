@@ -4,7 +4,7 @@ import { getCommunity } from "../_actions/community";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, List } from "antd";
 import { Pagination } from "antd";
-
+import searchIcon from "../img/search_gray.png";
 import styled from "styled-components";
 
 function BoardList() {
@@ -29,7 +29,10 @@ function BoardList() {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
+  const handleSearchArticle = (e) => {
+    //게시글 검색
+    e.preventDefault();
+  };
   useEffect(() => {
     dispatch(getCommunity(board_type)).then((response) => {
       console.log(response);
@@ -53,7 +56,19 @@ function BoardList() {
       <IntroduceBoard>{board_name}</IntroduceBoard>
 
       <TopOfArticles>
-        <SearchArticle type="text" placeholder="검색어를 입력하세요" />
+        <form onSubmit={handleSearchArticle}>
+          <SearchArticle type="text" placeholder="검색어를 입력하세요" />
+          <button
+            style={{
+              border: "0px",
+              backgroundColor: "transparent",
+              cursor: "pointer",
+            }}
+          >
+            <img src={searchIcon} style={{ width: "25px" }} />
+          </button>
+        </form>
+
         <Link to={post_url}>
           <PostArticleBtn>글 등록하기</PostArticleBtn>
         </Link>
@@ -66,7 +81,7 @@ function BoardList() {
           <ListItem>
             <Link to={`/community/category/id?id=${item._id}`}>
               <List.Item.Meta
-                style={{ width: "1000px" }}
+                style={{ width: "900px" }}
                 avatar={<Avatar src={item.userId.img} />}
                 title={item.title}
                 description={item.desc}
@@ -147,10 +162,11 @@ const PostArticleBtn = styled.button`
   color: #ffffff;
 `;
 const SearchArticle = styled.input`
-  width: 254px;
+  width: 190px;
   height: 21px;
   border: 0;
   margin-top: 10px;
+
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
@@ -160,7 +176,6 @@ const SearchArticle = styled.input`
 `;
 const IntroduceBoard = styled.div`
   position: relative;
-
   left: 373px;
   top: -290px;
   font-family: "Roboto";

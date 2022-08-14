@@ -2,7 +2,7 @@ import "./css/LoginJoin.css";
 import { useState } from "react";
 import Logo from "../components/Logo";
 import { Link, useNavigate } from "react-router-dom";
-import { getNewToken, loginUser } from "../_actions/userAction";
+import { getNewToken, loginUser, test } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useCookies } from "react-cookie";
@@ -28,7 +28,7 @@ function Login() {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-
+    dispatch(test()).then((response) => console.log(response));
     if (email !== "" && password !== "") {
       let body = {
         email: email,
