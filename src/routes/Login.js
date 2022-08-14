@@ -39,9 +39,10 @@ function Login() {
         localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
         localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
-        let refreshToken = response.headers.get("set-cookie").slice(14);
-        console.log(refreshToken);
-        setCookie("refreshToken", refreshToken);
+        console.log(response.headers);
+        // let refreshToken = response.headers.get("set-cookie").slice(14);
+        // console.log(refreshToken);
+        // setCookie("refreshToken", refreshToken);
 
         //API 요청마다 헤더에 accessToken 담아 보내도록 세팅
         // axios.defaults.headers.common[

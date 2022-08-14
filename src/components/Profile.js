@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import ImgUploader from "./ImgUploader";
 import profile_default from "../img/profile_icon.png";
-function Profile(prop) {
+function Profile() {
   const profileImg = localStorage.getItem("USER_PROFILE");
+
   return (
     <div>
       <Link to="/profile">
-        {profileImg !== null ? (
+        {profileImg !== "" ? (
           <img
             src={profileImg}
             style={{
