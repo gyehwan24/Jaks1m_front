@@ -58,7 +58,7 @@ export function loginUser(dataTosubmit) {
   };
 }
 export function test() {
-  const request = customAxios
+  const request = axios
     .get("/", {
       withCredentials: true,
     })
