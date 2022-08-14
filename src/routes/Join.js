@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "../components/Logo";
 import { useDispatch } from "react-redux";
-import "./LoginJoin.css";
+import "./css/LoginJoin.css";
 import { joinUser } from "../_actions/userAction";
 import { useNavigate } from "react-router-dom";
 

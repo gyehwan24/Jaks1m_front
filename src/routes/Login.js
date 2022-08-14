@@ -1,4 +1,4 @@
-import "./LoginJoin.css";
+import "./css/LoginJoin.css";
 import { useState } from "react";
 import Logo from "../components/Logo";
 import { Link, useNavigate } from "react-router-dom";
