@@ -4,10 +4,8 @@ import Logo from "../components/Logo";
 import { Link, useNavigate } from "react-router-dom";
 import { getNewToken, loginUser } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
-
 import axios from "axios";
 import { useCookies } from "react-cookie";
-
 import kakao_logo from "../img/Kakao_logo.png";
 import naver_logo from "../img/Naver_logo.png";
 function Login() {
@@ -41,7 +39,9 @@ function Login() {
         localStorage.setItem(ACCESS_TOKEN, response.payload.accessToken);
         localStorage.setItem(USER_NAME, response.payload.responseUser.name);
         localStorage.setItem(USER_PROFILE, response.payload.responseUser.img);
-        // setCookie("refreshToken", response.payload.refreshToken);
+        let refreshToken = response.headers.get("set-cookie").slice(14);
+        console.log(refreshToken);
+        setCookie("refreshToken", refreshToken);
 
         //API 요청마다 헤더에 accessToken 담아 보내도록 세팅
         // axios.defaults.headers.common[
