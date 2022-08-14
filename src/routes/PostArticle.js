@@ -66,6 +66,9 @@ function PostArticle() {
       }
     });
   };
+  const onClickCancelBtn = () => {
+    navigate(`/community/category?category=${board_type}`);
+  };
   return (
     <div>
       <div className="purpleBox"></div>
@@ -136,10 +139,7 @@ function PostArticle() {
           <Form.Item
             name="anonymous"
             valuePropName="checked"
-            wrapperCol={{
-              offset: 2,
-              span: 16,
-            }}
+            style={{ width: "100px", marginLeft: "51px" }}
           >
             <Checkbox>익명</Checkbox>
           </Form.Item>
@@ -175,7 +175,7 @@ function PostArticle() {
               등록
             </PostBtn>
           </Form.Item>
-          <CancelBtn>취소</CancelBtn>
+          <CancelBtn onClick={onClickCancelBtn}>취소</CancelBtn>
         </PostForm>
       </div>
     </div>
@@ -199,7 +199,7 @@ const BoardMenu = styled.div`
 const IntroduceBoard = styled.div`
   position: relative;
   left: 373px;
-  top: -290px;
+  top: -300px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -214,7 +214,7 @@ const PostForm = styled(Form)`
 `;
 const PostBtn = styled(Button)`
   position: absolute;
-  top: -290px;
+  top: -90px;
   left: 220px;
   width: 159px;
   height: 52px;

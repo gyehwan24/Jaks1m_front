@@ -182,7 +182,7 @@ const SearchArticle = styled.input`
 const IntroduceBoard = styled.div`
   position: relative;
   left: 373px;
-  top: -290px;
+  top: -300px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
