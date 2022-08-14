@@ -51,9 +51,9 @@ function BoardList() {
         </Link>
       </nav>
       <IntroduceBoard>{board_name}</IntroduceBoard>
+
       <TopOfArticles>
         <SearchArticle type="text" placeholder="검색어를 입력하세요" />
-
         <Link to={post_url}>
           <PostArticleBtn>글 등록하기</PostArticleBtn>
         </Link>
@@ -63,7 +63,7 @@ function BoardList() {
         itemLayout="horizontal"
         dataSource={articles}
         renderItem={(item) => (
-          <List.Item>
+          <ListItem>
             <Link to={`/community/category/id?id=${item._id}`}>
               <List.Item.Meta
                 style={{ width: "1000px" }}
@@ -72,7 +72,7 @@ function BoardList() {
                 description={item.desc}
               />
             </Link>
-          </List.Item>
+          </ListItem>
         )}
       />
       {/* <Pagination
@@ -114,10 +114,15 @@ const BoardMenu = styled.div`
 const ArticleList = styled(List)`
   position: absolute;
   left: 373px;
-  top: 115px;
+  top: 100px;
   width: 1000px;
   height: 420px;
   background: rgba(216, 216, 216, 0.1);
+`;
+const ListItem = styled(List.Item)`
+  padding-left: 25px;
+  border-top: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 `;
 const TopOfArticles = styled.div`
   width: 1000px;
@@ -126,7 +131,7 @@ const TopOfArticles = styled.div`
   justify-content: space-between;
   position: absolute;
   left: 373px;
-  top: 65px;
+  top: 50px;
 `;
 const PostArticleBtn = styled.button`
   border: 0;
