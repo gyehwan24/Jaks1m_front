@@ -11,7 +11,7 @@ function Board() {
       <div className="purpleBox"></div>
       <div className="topBox">
         <img src={profileImg} className="topBox_img" />
-        <span className="topBox_name">userName</span>
+        <span className="topBox_name">{userName}</span>
       </div>
       {/* 글 목록을 불러온다. */}
       <BoardList />
