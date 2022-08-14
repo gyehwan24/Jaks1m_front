@@ -5,7 +5,6 @@ import {
   LOGIN_USER,
   GET_NEWTOKEN,
   IMAGE_UPLOAD,
-  TEST,
 } from "./types";
 
 import axios from "axios";
@@ -57,17 +56,7 @@ export function loginUser(dataTosubmit) {
     payload: request,
   };
 }
-export function test() {
-  const request = axios
-    .get("/", {
-      withCredentials: true,
-    })
-    .then((response) => response.data);
-  return {
-    type: TEST,
-    payload: request,
-  };
-}
+
 //accessToken 만료시 새로운 토큰 발급
 export function getNewToken() {
   const accessToken = localStorage.getItem("ACCESS_TOKEN");

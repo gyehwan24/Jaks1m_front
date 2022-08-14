@@ -33,9 +33,7 @@ export default function (state = {}, action) {
     case IMAGE_UPLOAD:
       return { ...state, loginSuccess: action.payload };
       break;
-    case TEST:
-      return { ...state, loginSuccess: action.payload };
-      break;
+
     default:
       return state;
   }

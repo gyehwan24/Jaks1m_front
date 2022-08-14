@@ -6,7 +6,7 @@ import { Avatar, List } from "antd";
 import { Pagination } from "antd";
 import searchIcon from "../img/search_gray.png";
 import styled from "styled-components";
-
+import "./css/BoardList.css";
 function BoardList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,7 +82,12 @@ function BoardList() {
             <Link to={`/community/category/id?id=${item._id}`}>
               <List.Item.Meta
                 style={{ width: "900px" }}
-                avatar={<Avatar src={item.userId.img} />}
+                avatar={
+                  <Avatar
+                    style={{ width: "45px", height: "45px" }}
+                    src={item.userId.img}
+                  />
+                }
                 title={item.title}
                 description={item.desc}
               />
@@ -118,6 +123,7 @@ const BoardMenu = styled.div`
   width: 240px;
   margin-left: 67px;
   margin-bottom: 67px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #d9d9d9;
   font-family: "Roboto";
   font-style: normal;
@@ -166,13 +172,12 @@ const SearchArticle = styled.input`
   height: 21px;
   border: 0;
   margin-top: 10px;
-
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 21px;
-  color: #d8d8d8;
+  color: rgb(151 151 151);
 `;
 const IntroduceBoard = styled.div`
   position: relative;
