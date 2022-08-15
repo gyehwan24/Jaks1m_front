@@ -56,8 +56,8 @@ function Schedule() {
       id: 1,
       isChecked: false,
       date: "20220815",
-      time: "1500-1600",
-      content: "코딩",
+      time: "1600-1700",
+      content: "코딩zz",
     },
   ]); //서버에서 받는 schedule list
   const handleStartHour = (e) => {
@@ -129,7 +129,12 @@ function Schedule() {
     const schedule_endHour = schedule.time.slice(5, 7);
     const schedule_endMinute = schedule.time.slice(7);
     if (schedule_startHour <= nowHour && schedule_startMinute <= nowMinute) {
-      if (schedule_endHour >= nowHour && schedule_endMinute >= nowMinute) {
+      if (schedule_endHour > nowHour) {
+        return true;
+      } else if (
+        schedule_endHour >= nowHour &&
+        schedule_endMinute >= nowMinute
+      ) {
         return true;
       } else {
         return false;
