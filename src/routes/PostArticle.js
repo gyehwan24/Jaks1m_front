@@ -5,11 +5,28 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Header from "../components/Header";
+import styled from "styled-components";
+import profile_default from "../img/profile_icon.png";
+
 function PostArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userName = localStorage.getItem("USER_NAME");
+  let profileImg = localStorage.getItem("USER_PROFILE");
+  if (profileImg === null) profileImg = profile_default;
   let board_type = new URL(window.location.href).searchParams.get("category");
-
+  let board_name = "";
+  switch (board_type) {
+    case "freeboard":
+      board_name = "자유게시판";
+      break;
+    case "questionboard":
+      board_name = "질문게시판";
+      break;
+    case "tipboard":
+      board_name = "팁게시판";
+      break;
+  }
   //이미지 업로드
   let previewImg = "img/profile_icon.png"; //프리뷰 이미지 기본값.
   const [image, setImage] = useState({
@@ -49,97 +66,178 @@ function PostArticle() {
       }
     });
   };
+  const onClickCancelBtn = () => {
+    navigate(`/community/category?category=${board_type}`);
+  };
   return (
     <div>
-      <Form
-        name="basic"
-        labelCol={{
-          span: 80,
-        }}
-        wrapperCol={{
-          span: 160,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        autoComplete="off"
-      >
-        <Form.Item
-          label="제목"
-          name="title"
-          rules={[
-            {
-              required: true,
-              message: "제목을 입력하세요!",
-            },
-          ]}
-        >
-          <Input.TextArea size="small" placeholder="제목을 입력하세요" />
-        </Form.Item>
+      <div className="purpleBox"></div>
+      <div className="topBox">
+        <img src={profileImg} className="topBox_img" />
+        <span className="topBox_name">{userName}</span>
+      </div>
+      <Header />
+      <div style={{ position: "absolute", top: "300px", left: "0px" }}>
+        <nav>
+          <Link to="/community/category?category=freeboard">
+            <BoardMenu>자유게시판</BoardMenu>
+          </Link>
+          <Link to="/community/category?category=questionboard">
+            <BoardMenu>질문게시판</BoardMenu>
+          </Link>
+          <Link to="/community/category?category=tipboard">
+            <BoardMenu>팁 게시판 </BoardMenu>
+          </Link>
+        </nav>
+        <IntroduceBoard>{board_name}</IntroduceBoard>
 
-        <Form.Item
-          label="내용"
-          name="desc"
-          rules={[
-            {
-              required: true,
-              message: "내용을 입력하세요!",
-            },
-          ]}
-        >
-          <Input.TextArea
-            rows={10}
-            showCount
-            size="middle"
-            placeholder="내용을 입력하세요"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="anonymous"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 1,
-            span: 16,
+        <PostForm
+          name="basic"
+          labelCol={{
+            span: 80,
           }}
+          wrapperCol={{
+            span: 160,
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          autoComplete="off"
         >
-          <Checkbox>익명</Checkbox>
-        </Form.Item>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={saveImage}
-          onClick={(event) => (event.target.value = null)}
-        />
-        {image.image_file !== "" ? (
-          <div
-            className="img-wrapper"
-            style={{
-              border: "1px solid black",
-              width: "200px",
-              height: "200px",
+          <Form.Item
+            label="제목"
+            name="title"
+            rules={[
+              {
+                required: true,
+                message: "제목을 입력하세요!",
+              },
+            ]}
+          >
+            <Input.TextArea size="small" placeholder="제목을 입력하세요" />
+          </Form.Item>
+
+          <Form.Item
+            label="내용"
+            name="desc"
+            rules={[
+              {
+                required: true,
+                message: "내용을 입력하세요!",
+              },
+            ]}
+          >
+            <Input.TextArea
+              rows={10}
+              showCount
+              size="middle"
+              placeholder="내용을 입력하세요"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="anonymous"
+            valuePropName="checked"
+            style={{ width: "100px", marginLeft: "51px" }}
+          >
+            <Checkbox>익명</Checkbox>
+          </Form.Item>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={saveImage}
+            onClick={(event) => (event.target.value = null)}
+          />
+          {image.image_file !== "" ? (
+            <div
+              className="img-wrapper"
+              style={{
+                border: "1px solid black",
+                width: "200px",
+                height: "200px",
+              }}
+            >
+              <img
+                src={image.preview_URL}
+                style={{ width: "200px", height: "200px" }}
+              />
+            </div>
+          ) : null}
+
+          <Form.Item
+            wrapperCol={{
+              offset: 3,
+              span: 16,
             }}
           >
-            <img
-              src={image.preview_URL}
-              style={{ width: "200px", height: "200px" }}
-            />
-          </div>
-        ) : null}
-
-        <Form.Item
-          wrapperCol={{
-            offset: 3,
-            span: 16,
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            글 쓰기
-          </Button>
-        </Form.Item>
-      </Form>
+            <PostBtn type="primary" htmlType="submit">
+              등록
+            </PostBtn>
+          </Form.Item>
+          <CancelBtn onClick={onClickCancelBtn}>취소</CancelBtn>
+        </PostForm>
+      </div>
     </div>
   );
 }
 export default PostArticle;
+
+const BoardMenu = styled.div`
+  width: 240px;
+  margin-left: 67px;
+  margin-bottom: 67px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d9d9d9;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #000000;
+`;
+const IntroduceBoard = styled.div`
+  position: relative;
+  left: 373px;
+  top: -300px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+`;
+const PostForm = styled(Form)`
+  position: absolute;
+  top: 60px;
+  left: 320px;
+  width: 1050px;
+`;
+const PostBtn = styled(Button)`
+  position: absolute;
+  top: -90px;
+  left: 220px;
+  width: 159px;
+  height: 52px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 0;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  color: #ffffff;
+`;
+const CancelBtn = styled(Button)`
+  position: absolute;
+  top: 318px;
+  left: 530px;
+  width: 159px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+`;

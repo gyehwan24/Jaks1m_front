@@ -3,10 +3,10 @@ import { useEffect } from "react-dom";
 import { imageUpload } from "../_actions/userAction";
 import { useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
-
+import profileImg_default from "../img/profile_icon.png";
 function ImageUploader() {
   const profileImg = localStorage.getItem("USER_PROFILE");
-  let previewImg = "img/profile_icon.png"; //프리뷰 이미지 기본값.
+  let previewImg = profileImg_default;
   if (profileImg) previewImg = profileImg; //사용자가 프로필을 설정했었다면 그 이미지로 설정.
   const [image, setImage] = useState({
     image_file: "",
