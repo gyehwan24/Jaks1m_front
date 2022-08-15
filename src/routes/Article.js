@@ -12,7 +12,8 @@ import {
   List,
   Card,
 } from "antd";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
+
 import moment from "moment";
 import "moment/locale/ko";
 const { TextArea } = Input;

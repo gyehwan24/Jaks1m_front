@@ -88,7 +88,7 @@ function BoardList() {
                     src={item.userId.img}
                   />
                 }
-                title={item.title}
+                title={<div style={{ fontSize: "18px" }}>{item.title}</div>}
                 description={item.desc}
               />
             </Link>

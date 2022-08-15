@@ -15,7 +15,8 @@ function Schedule() {
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
-  let inputDate = click_day === undefined ? `${year}${month}${day}` : click_day;
+  const today = `${year}${month}${day}`;
+  let inputDate = click_day === undefined ? today : click_day;
   const hourList = [
     "0",
     "1",
@@ -50,7 +51,15 @@ function Schedule() {
   const [endMinute, setEndMinute] = useState("00");
   const [schedule, setSchedule] = useState("");
   const [schedules, setSchedules] = useState([]);
-  const [scheduleList, setScheduleList] = useState([]); //서버에서 받는 schedule list
+  const [scheduleList, setScheduleList] = useState([
+    {
+      id: 1,
+      isChecked: false,
+      date: "20220815",
+      time: "1500-1600",
+      content: "코딩",
+    },
+  ]); //서버에서 받는 schedule list
   const handleStartHour = (e) => {
     setStartHour(e.target.value);
   };
@@ -92,10 +101,6 @@ function Schedule() {
       setScheduleList(response.payload.schedules);
     });
     setSchedule("");
-    // setStartHour("");
-    // setStartMinute("");
-    // setEndHour("");
-    // setEndMinute("");
   };
   const handleRemoveSchedule = (id) => {
     dispatch(removeSchedule(id)).then((response) => {
@@ -113,6 +118,42 @@ function Schedule() {
       });
     }
   }, [schedules, click_day]);
+
+  const nowHour = now.getHours();
+  const nowMinute = now.getMinutes();
+  //지금 스케줄인지 판단하는 함수
+  const isNowSchedule = (schedule) => {
+    if (today !== schedule.date) return false;
+    const schedule_startHour = schedule.time.slice(0, 2);
+    const schedule_startMinute = schedule.time.slice(2, 4);
+    const schedule_endHour = schedule.time.slice(5, 7);
+    const schedule_endMinute = schedule.time.slice(7);
+    if (schedule_startHour <= nowHour && schedule_startMinute <= nowMinute) {
+      if (schedule_endHour >= nowHour && schedule_endMinute >= nowMinute) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  //지난 스케줄인지 판단하는 함수
+  const isDoneSchedule = (schedule) => {
+    if (today < schedule.date) return false;
+    const schedule_endHour = schedule.time.slice(5, 7);
+    const schedule_endMinute = schedule.time.slice(7);
+    if (schedule_endHour <= nowHour && schedule_endMinute <= nowMinute) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const convertPrettyTime = (time) => {
+    const schedule_startHour = time.slice(0, 2);
+    const schedule_startMinute = time.slice(2, 4);
+    const schedule_endHour = time.slice(5, 7);
+    const schedule_endMinute = time.slice(7);
+    return `${schedule_startHour}:${schedule_startMinute}-${schedule_endHour}:${schedule_endMinute}`;
+  };
   return (
     <div>
       <h3 className="title">My Schedule</h3>
@@ -161,9 +202,25 @@ function Schedule() {
       <ul>
         {scheduleList &&
           scheduleList.map((item) => (
-            <li key={item._id} className="scheduleList">
-              <span className={item.isChecked ? "done_content" : "content"}>
-                {item.time} {item.content}
+            <li
+              key={item._id}
+              className={
+                isNowSchedule(item) ? "now_scheduleList" : "scheduleList"
+              }
+            >
+              <span className={isNowSchedule(item) ? "now_time" : "time"}>
+                {convertPrettyTime(item.time)}
+              </span>
+              <span
+                className={
+                  isNowSchedule(item)
+                    ? "now_content"
+                    : isDoneSchedule(item)
+                    ? "done_content"
+                    : "content"
+                }
+              >
+                {item.content}
               </span>
               <button
                 onClick={() => handleRemoveSchedule(item._id)}
