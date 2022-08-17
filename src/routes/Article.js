@@ -73,7 +73,11 @@ function Article() {
     dispatch(getArticle(id)).then((response) => {
       console.log(response);
       setArticles(response.payload.posting);
-      setWriterName(response.payload.posting.userId.name);
+      setWriterName(
+        response.payload.posting.anonymous === true
+          ? "익명"
+          : response.payload.posting.userId.name
+      );
       setCommentList(response.payload.posting.comments);
       // setCommentList([
       //   {
@@ -132,7 +136,7 @@ function Article() {
               ) : null}
             </p>
             <p>
-              작성자: {articles.anonymous === true ? "익명" : { writerName }} (
+              작성자: {writerName} (
               {new Date(articles.createdAt).toLocaleString()})
             </p>
           </Card>
