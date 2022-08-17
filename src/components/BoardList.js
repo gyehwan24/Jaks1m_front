@@ -3,11 +3,12 @@ import { useDispatch } from "react-redux";
 import { getCommunity } from "../_actions/community";
 import { Link, useNavigate } from "react-router-dom";
 import { Avatar, List } from "antd";
-import { Pagination } from "antd";
+// import { Pagination } from "antd";
 import searchIcon from "../img/search_gray.png";
 import styled from "styled-components";
 import "./css/BoardList.css";
 import BoardLayout from "./BoardLayout";
+import profile_anonymous from "../img/profile_icon.png";
 function BoardList() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,9 +28,9 @@ function BoardList() {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = (page) => {
+  //   setCurrentPage(page);
+  // };
   const handleSearchArticle = (e) => {
     //게시글 검색
     e.preventDefault();
@@ -74,7 +75,11 @@ function BoardList() {
                   avatar={
                     <Avatar
                       style={{ width: "45px", height: "45px" }}
-                      src={item.userId.img}
+                      src={
+                        item.anonymous === true
+                          ? profile_anonymous
+                          : item.userId.img
+                      }
                     />
                   }
                   title={<div style={{ fontSize: "18px" }}>{item.title}</div>}
