@@ -132,7 +132,7 @@ function Article() {
               ) : null}
             </p>
             <p>
-              작성자: {articles.anonymous === true ? 익명 : { writerName }} (
+              작성자: {articles.anonymous === true ? "익명" : { writerName }} (
               {new Date(articles.createdAt).toLocaleString()})
             </p>
           </Card>
