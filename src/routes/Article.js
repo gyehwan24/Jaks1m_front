@@ -57,7 +57,18 @@ function Article() {
   const profileImg = localStorage.getItem("USER_PROFILE");
   const userName = localStorage.getItem("USER_NAME");
   const [writerName, setWriterName] = useState("");
-
+  let board_name = "";
+  switch (articles.category) {
+    case "freeboard":
+      board_name = "자유게시판";
+      break;
+    case "questionboard":
+      board_name = "질문게시판";
+      break;
+    case "tipboard":
+      board_name = "팁게시판";
+      break;
+  }
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       console.log(response);
@@ -107,7 +118,7 @@ function Article() {
     <div>
       <BoardLayout />
       <Header />
-      <Introduce>{articles.category}</Introduce>
+      <Introduce>{board_name}</Introduce>
       <div style={{ position: "relative", top: "290px", left: "370px" }}>
         <Card style={{ width: "1050px" }}>
           <Card type="inner" title={articles.title}>
