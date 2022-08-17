@@ -1,6 +1,5 @@
 import BoardList from "../components/BoardList";
 import Header from "../components/Header";
-import "./css/Board.css";
 
 function Board() {
   return (

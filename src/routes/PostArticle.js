@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import profile_default from "../img/profile_icon.png";
 import BoardLayout from "../components/BoardLayout";
+
 function PostArticle() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

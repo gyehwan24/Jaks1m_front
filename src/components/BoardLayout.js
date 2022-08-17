@@ -1,13 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import profile_default from "../img/profile_icon.png";
 import searchIcon from "../img/search_gray.png";
 import styled from "styled-components";
 import "./css/BoardLayout.css";
+
 function BoardLayout() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const userName = localStorage.getItem("USER_NAME");
   let profileImg = localStorage.getItem("USER_PROFILE");
   if (profileImg === null) profileImg = profile_default;
