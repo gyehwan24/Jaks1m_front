@@ -2,6 +2,8 @@ import { getArticle, postComment, getComment } from "../_actions/community";
 import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+import BoardLayout from "../components/BoardLayout";
+import styled from "styled-components";
 import {
   Form,
   Input,
@@ -13,7 +15,6 @@ import {
   Card,
 } from "antd";
 import "antd/dist/antd.min.css";
-
 import moment from "moment";
 import "moment/locale/ko";
 const { TextArea } = Input;
@@ -56,6 +57,7 @@ function Article() {
   const profileImg = localStorage.getItem("USER_PROFILE");
   const userName = localStorage.getItem("USER_NAME");
   const [writerName, setWriterName] = useState("");
+
   useEffect(() => {
     dispatch(getArticle(id)).then((response) => {
       console.log(response);
@@ -103,24 +105,28 @@ function Article() {
   };
   return (
     <div>
-      <Card>
-        <Card type="inner" title={articles.title}>
-          <p>{articles.desc}</p>
-          <p>
-            {articles.image !== "" ? (
-              <img
-                src={articles.image}
-                style={{ maxWidth: "400px", maxHeight: "400px" }}
-              />
-            ) : null}
-          </p>
-          <p>
-            작성자: {writerName} (
-            {new Date(articles.createdAt).toLocaleString()})
-          </p>
+      <BoardLayout />
+      <Header />
+      <Introduce>{articles.category}</Introduce>
+      <div style={{ position: "relative", top: "290px", left: "370px" }}>
+        <Card style={{ width: "1050px" }}>
+          <Card type="inner" title={articles.title}>
+            <p>{articles.desc}</p>
+            <p>
+              {articles.image !== "" ? (
+                <img
+                  src={articles.image}
+                  style={{ maxWidth: "400px", maxHeight: "400px" }}
+                />
+              ) : null}
+            </p>
+            <p>
+              작성자: {writerName} (
+              {new Date(articles.createdAt).toLocaleString()})
+            </p>
+          </Card>
         </Card>
-      </Card>
-      {/* <p>
+        {/* <p>
         제목: {articles.title}/ 작성일자:
         {new Date(articles.createdAt).toLocaleString()}
       </p>
@@ -131,32 +137,46 @@ function Article() {
           style={{ maxWidth: "300px", maxHeight: "300px" }}
         />
       ) : null} */}
-      <ul>
-        {commentList.map((item) => (
-          <li key={item._id}>
-            <span>
-              {item.userId.name}: {item.desc} / (
-              {new Date(item.createdAt).toLocaleString()})
-            </span>
-          </li>
-        ))}
-      </ul>
+        <ul>
+          {commentList.map((item) => (
+            <li key={item._id}>
+              <span>
+                {item.userId.name}: {item.desc} / (
+                {new Date(item.createdAt).toLocaleString()})
+              </span>
+            </li>
+          ))}
+        </ul>
 
-      {/* {comments.length > 0 && <CommentList comments={commentList} />} */}
-      {/* {comments.length > 0 && <CommentList comments={comments} />} */}
-      <Comment
-        avatar={<Avatar src={profileImg} alt={userName} />}
-        content={
-          <Editor
-            onChange={handleChange}
-            onSubmit={handleSubmit}
-            submitting={submitting}
-            value={value}
-          />
-        }
-      />
+        {/* {comments.length > 0 && <CommentList comments={commentList} />} */}
+        {/* {comments.length > 0 && <CommentList comments={comments} />} */}
+        <Comment
+          style={{ width: "1050px" }}
+          avatar={<Avatar src={profileImg} alt={userName} />}
+          content={
+            <Editor
+              onChange={handleChange}
+              onSubmit={handleSubmit}
+              submitting={submitting}
+              value={value}
+            />
+          }
+        />
+      </div>
     </div>
   );
 }
 
 export default Article;
+const Introduce = styled.div`
+  position: absolute;
+  left: 373px;
+  top: 288px;
+  width: 300px;
+  height: 35px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 35px;
+`;
