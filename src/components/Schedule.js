@@ -51,15 +51,7 @@ function Schedule() {
   const [endMinute, setEndMinute] = useState("00");
   const [schedule, setSchedule] = useState("");
   const [schedules, setSchedules] = useState([]);
-  const [scheduleList, setScheduleList] = useState([
-    {
-      id: 1,
-      isChecked: false,
-      date: "20220815",
-      time: "1600-1700",
-      content: "코딩zz",
-    },
-  ]); //서버에서 받는 schedule list
+  const [scheduleList, setScheduleList] = useState([]); //서버에서 받는 schedule list
   const handleStartHour = (e) => {
     setStartHour(e.target.value);
   };

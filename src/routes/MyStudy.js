@@ -17,16 +17,24 @@ const StyledBackground = styled.div`
   background: rgba(217, 217, 217, 0.5);
   border-radius: 96px;
 `;
-const StyledSmallBox = styled.div`
+const StyledMiddleBox = styled.div`
   position: absolute;
   width: 45%;
   height: 602px;
   left: ${(props) => props.left};
-  top: 300px;
+  top: 270px;
   background: #d9d9d9;
   border-radius: 56px;
 `;
-
+const StyleSmallBox = styled.div`
+  position: absolute;
+  width: 93%;
+  height: 277px;
+  left: 48px;
+  top: 940px;
+  background: #d9d9d9;
+  border-radius: 82px;
+`;
 function MyStudy() {
   const navigate = useNavigate();
   const isAdmin = () => {
@@ -49,15 +57,17 @@ function MyStudy() {
       {/* {isAdmin() ? null : <Link to="/login" />} */}
       <StyledBackground>
         <Calendar />
-        <StyledSmallBox left={"3.5%"}>
+        <StyledMiddleBox left={"3.5%"}>
           <Schedule />
-        </StyledSmallBox>
+        </StyledMiddleBox>
 
-        <StyledSmallBox left={"51.5%"}>
+        <StyledMiddleBox left={"51.5%"}>
           <ToDo />
-        </StyledSmallBox>
+        </StyledMiddleBox>
+        <StyleSmallBox />
       </StyledBackground>
       <Header />
+
       <ToastContainer />
     </div>
   );
